@@ -9,6 +9,7 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/main.css')}}
     {{ HTML::script('js/bootstrap.min.js') }}
+    
   </head>
  
   <body>
@@ -38,17 +39,32 @@
 						<li><a href = "#">View All Bookings</a></li>
 					</ul>
 				</li>
-				<li><a href = "#">Kits</a></li>
-				<li><a href = "#">Transfers</a></li>
+				<li class = "dropdown">
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
+					Kit Info</a>
+					<ul class = "dropdown-menu">
+						<li><a href = "#">Browse Kits</a></li>
+						<li><a href = "#">Create a Kit</a></li>
+					</ul>
+				</li>
+				<li class = "dropdown">
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
+					Transfers</a>
+					<ul class = "dropdown-menu">
+						<li><a href = "#">View My Transfers</a></li>
+					</ul>
+				</li>
 				<li><a href = "#">Logout</a></li>
 			</ul>  
 		</div>
     </div> <!-- end container -->
     </nav>
     
+    <div class = "container">
+		@yield('content')
+		@yield('content2')
+    </div>
     
-	<!-- Javascript for bootstrap
-	================================================== -->
-
+    
   </body>
 </html>
