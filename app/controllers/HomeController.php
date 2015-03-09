@@ -17,7 +17,7 @@ class HomeController extends BaseController {
 
 	public function showWelcome()
 	{
-		return View::make('hello');
+		return View::make('Login');
 	}
 	public function login(){
     $users = DB::table('users')->where('username',Input::get('username'))->first(); /* tries to find a username or returns null if none is found*/
@@ -25,7 +25,7 @@ class HomeController extends BaseController {
         return View::make('test');
     }
     else{
-        return View::make('hello');
+        return View::make('Login');
     }
 }
 
