@@ -17,3 +17,4 @@ Route::get('/', function()
 	
 });
 Route::post('login', array('uses' => 'HomeController@login'));
+Route::resource('transfers', 'TransferController');
