@@ -14,4 +14,6 @@
 Route::get('/', function()
 {
 	return View::make('hello');
+	
 });
+Route::post('login', array('uses' => 'HomeController@login'));
