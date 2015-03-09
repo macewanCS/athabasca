@@ -1,0 +1,23 @@
+body {
+	background-image:url('../images/image.jpg');
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-size: 100% 100%;
+	}
+
+h1 {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:30px;
+	font-weight:bold;
+	margin:0;
+	padding-left:50px;
+	}
+	
+#login {
+    padding: 10px;
+    float: left;
+    width: 35%;
+    height: 350px;
+    border: 1px inset;
+    }
+    

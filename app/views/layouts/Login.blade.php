@@ -1,4 +1,5 @@
 @extends('layouts.default')
+{{HTML::style(asset('css/logincss.css'))}}
 @section('content')
 <body>
 <div id="login">
