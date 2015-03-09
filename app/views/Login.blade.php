@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('content')
 <body>
+<div class="errors">{{Session::get('errors');}}</div>
 <div id="login">
    <h1>Log In</h1>
    <p>
