@@ -26,7 +26,7 @@ class HomeController extends BaseController {
         return View::make('test');
     }
     else{
-        return View::make('Login');
+        return Redirect::back()->withInput()->with('errors','Username or Password is incorrect. Please try again');
     }
 }
 

@@ -6,7 +6,7 @@
 ?>
 <h2>Hello, <?= $users->username;?>
 <p> Email: <?= $users->password;?> <p>
-<?php  
+<?php 
     endif;
 ?>
 @stop
