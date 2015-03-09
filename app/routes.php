@@ -13,8 +13,14 @@
 
 Route::get('/', function()
 {
-	return View::make('Login');
-	
+    $users = Session::get('userdata',NULL);
+    if ($users != NULL){
+	    return View::make('test');
+	}
+	else{
+	    return View::make('Login');
+	}
 });
 Route::post('login', array('uses' => 'HomeController@login'));
 Route::resource('transfers', 'TransferController');
+Route::post('Home', array('uses' => 'HomeController@Home'));
