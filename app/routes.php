@@ -13,7 +13,7 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('Login');
 	
 });
 Route::post('login', array('uses' => 'HomeController@login'));
