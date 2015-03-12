@@ -21,10 +21,16 @@ class kitController extends \BaseController {
 	public function create()
 	{
 		$kits = DB::table('kitType')->lists('kitType');
-		/*return $kits;*/
 		return View::make('kitManage.create')->with('kits', $kits);
 	}
 
+	public function create2()
+	{
+		$assets = Input::get('assets');
+		$kitType = Input::get('kitType');
+		$kits = DB::table('kitType')->lists('kitType');
+		return View::make('kitManage.create2')->with('kits', $kits)->with('kitInput',$kitType)->with('assets',$assets);
+	}
 
 	/**
 	 * Store a newly created resource in storage.

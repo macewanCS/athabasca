@@ -15,12 +15,13 @@
   <body>
 	 <nav class="navbar navbar-default">
 	<div class="container">
+    <br></br>
 		<a href="{{URL::to('/')}}"><img src={{asset('/images/EPL_logo2.png')}}  alt="EPL" style="width:410px;height:46px"></a>
 	</div>
 		<div class="container">
 		<div class="navbar-header">
-			<button type="button" class = "navbar-toggle collapsed" data-toggle = "collapse" data-target = "#nav-collapse">
-				<span class="sr-only">Toggle navigation</span>
+      			<button type="button" class = "navbar-toggle collapsed" data-toggle = "collapse" data-target = "#nav-collapse">
+        <span class="sr-only">Toggle navigation</span>
 				<span class = "icon-bar"></span>
 				<span class = "icon-bar"></span>
 				<span class = "icon-bar"></span>
