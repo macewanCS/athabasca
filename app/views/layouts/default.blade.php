@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
+
     <title>EPL</title>
     {{ HTML::script('js/jquery.js') }}
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/main.css')}}
     {{ HTML::script('js/bootstrap.min.js') }}
-    
+
   </head>
- 
+
   <body>
 	 <nav class="navbar navbar-default">
 	<div class="container">
@@ -26,8 +26,8 @@
 				<span class = "icon-bar"></span>
 			</button>
 		</div>
-	
-		<div class="collapse navbar-collapse" id="nav-collapse">  
+
+		<div class="collapse navbar-collapse" id="nav-collapse">
 			<ul class = "nav navbar-nav navbar-left">
 				<li><a href = "#">Home</a></li>
 				<li class = "dropdown">
@@ -44,7 +44,8 @@
 					Kit Info</a>
 					<ul class = "dropdown-menu">
 						<li><a href = "#">Browse Kits</a></li>
-						<li><a href = "#">Create a Kit</a></li>
+            <li><a href = "#">Add Note to Kit</a></li>
+						<li><a href = "kitmanage/create">Create a Kit</a></li>
 					</ul>
 				</li>
 				<li class = "dropdown">
@@ -55,16 +56,16 @@
 					</ul>
 				</li>
 				<li><a href = "#">Logout</a></li>
-			</ul>  
+			</ul>
 		</div>
     </div> <!-- end container -->
     </nav>
-    
+
     <div class = "container">
 		@yield('content')
 		@yield('content2')
     </div>
-    
-    
+
+
   </body>
 </html>
