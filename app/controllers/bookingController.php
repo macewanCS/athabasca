@@ -45,6 +45,10 @@ class bookingController extends \BaseController {
 		return View::make('test');
 	}
 
+	public function view()
+	{
+		return View::make('viewBooking');
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
