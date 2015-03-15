@@ -35,7 +35,7 @@
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
 					Bookings</a>
 					<ul class = "dropdown-menu">
-						<li><a href = "#">Create A Booking</a></li>
+						<li><a href = "createBooking">Create A Booking</a></li>
 						<li><a href = "#">View My Bookings</a></li>
 						<li><a href = "#">View All Bookings</a></li>
 					</ul>
