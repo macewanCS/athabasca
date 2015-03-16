@@ -30,3 +30,4 @@ Route::any('/createbooking', 'bookingController@check');
 
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
+Route::resource('ViewKits','kitViewController@create');
