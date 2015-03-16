@@ -23,7 +23,7 @@ class HomeController extends BaseController {
 
 	public function login(){
     $users = DB::table('users')->where('username',Input::get('username'))->first(); /* tries to find a username or returns null if none is found*/
-    if($users != NULL and $users->username == Input::get('username') and $users->password == Input::get('password')){ /* compares the password to the stored if one was found */
+    if($users != NULL and $users->empID == Input::get('username') and $users->password == Input::get('password')){ /* compares the password to the stored if one was found */
         return View::make('test');
     }
     else{
