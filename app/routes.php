@@ -24,3 +24,9 @@ Route::get('/', function()
 Route::post('login', array('uses' => 'HomeController@login'));
 Route::resource('transfers', 'TransferController');
 Route::post('Home', array('uses' => 'HomeController@Home'));
+
+Route::any('/kitmanage/create2', 'kitController@create2');
+Route::any('/createbooking', 'bookingController@check');
+
+Route::resource('kitmanage', 'kitController');
+Route::resource('createBooking', 'bookingController@create');
