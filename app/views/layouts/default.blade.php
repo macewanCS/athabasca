@@ -35,18 +35,18 @@
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
 					Bookings</a>
 					<ul class = "dropdown-menu">
-						<li><a href = "createBooking">Create A Booking</a></li>
-						<li><a href = "viewBooking">View My Bookings</a></li>
-						<li><a href = "viewBooking">View All Bookings</a></li>
+						<li><a href = "/createBooking">Create A Booking</a></li>
+						<li><a href = "/viewBooking">View My Bookings</a></li>
+						<li><a href = "/viewBooking">View All Bookings</a></li>
 					</ul>
 				</li>
 				<li class = "dropdown">
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
 					Kit Info</a>
 					<ul class = "dropdown-menu">
-						<li><a href = "ViewKits">Browse Kits</a></li>
+						<li><a href = "/ViewKits">Browse Kits</a></li>
             <li><a href = "#">Add Note to Kit</a></li>
-						<li><a href = "kitmanage/create">Create a Kit</a></li>
+						<li><a href = "/kitmanage/create">Create a Kit</a></li>
 					</ul>
 				</li>
 				<li class = "dropdown">
@@ -56,7 +56,7 @@
 						<li><a href = "#">View My Transfers</a></li>
 					</ul>
 				</li>
-				<li><a href = "#">Logout</a></li>
+				<li><a href = "/logout">Logout</a></li>
 			</ul>
 		</div>
     </div> <!-- end container -->

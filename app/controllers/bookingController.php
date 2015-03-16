@@ -20,23 +20,31 @@ class bookingController extends \BaseController {
 	 */
 	public function create()
 	{
+	    $kit = 0;
 	    $rec = Session::get('rec',NULL);
-	    if ($rec != NULL){
-	        $rec += 1;
-	    }
-	    else{
-		    $rec = 1;
-		}
+		$rec = 1;
 		Session::put('rec',$rec);
-		return View::make('createBooking');
+		return View::make('createBooking')->with('kit', $kit);
+	}
+	
+	public function create2()
+	{
+	    $rec = Session::get('rec',NULL);
+		$rec += 1;
+		Session::put('rec',$rec);
+		$kit = Input::get('desKit');
+		return View::make('createBooking')->with('kit', $kit);
 	}
 	
 	public function check()
 	{
 		if(Input::get('add')){
-		    return $this->create();
+		    return $this->create2();
 		} elseif(Input::get('create')){
 		    return $this->confirm();
+		} elseif(Input::get('kit')){
+		    $kit = Input::get('desKit');
+		    return $this->create()->with('kit', $kit);
 		}
 	}
 	

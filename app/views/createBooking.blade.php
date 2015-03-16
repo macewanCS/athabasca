@@ -2,22 +2,25 @@
 @section('content')
 <?php
     $rec = Session::get('rec',NULL);
+    $kits = DB::table('kitType')->lists('kitType');
 ?>
   <div class = "jumbotron">
-    <h2>Create a new kit by filling out the data below</h2>
-    <p>All fields are required. You may hover over a field for more explanation</p>
-
-  <div class = "dropdown">
+    <h2>Select the Type of kit you want to Book(will default to Ipad Kit)</h2>
     {{Form::open(['url' => 'createbooking']) }}
-    I want to Create a kit of
-
-    with this many
-
-  </div>
+    <p>{{Form::label('desKit', 'Select Kit Type: ')}}
+    {{Form::select('desKit', $kits, $kit) }}</p>
+    <input type="submit" name="kit"  value="Select Kit">
   </div>
   <div>
-    {{Form::label('barcode', 'Kit Barcode')}}
-    {{Form::text('barcode')}}
+    {{Form::label('branch', 'Booking Location')}}
+    {{Form::select('desBranch', $kits) }}
+   </div>
+    Start
+    
+
+    
+    End
+   <div>
     {{Form::label('barcode', 'Kit Barcode')}}
     {{Form::text('barcode')}}
   </div>
