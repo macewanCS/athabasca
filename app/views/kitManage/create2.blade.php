@@ -9,10 +9,10 @@
     {{Form::open(['url' => 'kitmanage/create2add']) }}
     Creating Kit of Class:
     {{Form::label('kitType', 'Kit Type: ') }}
-    {{Form::select('kitType', $kits, $kitInput, ['disabled']) }}
+    {{Form::select('kitType', $kits, $kitInput) }}
     with this many
     {{Form::label('assets', 'Assets (Eg. 7 ipads in kit): ') }}
-    {{Form::number('assets', $assets, ['disabled']) }}
+    {{Form::number('assets', $assets) }}
   </div>
   </div>
   <div>
