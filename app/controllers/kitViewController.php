@@ -20,7 +20,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function create()
 	{
-		View::make('ViewKits');
+		return View::make('ViewKits');
 	}
 
 
