@@ -33,4 +33,4 @@ Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
 Route::resource('ViewKits','kitViewController@create');
 Route::resource('viewBooking', 'bookingController@view');
-
+Route::resource('transfers', 'TransferController@create');
