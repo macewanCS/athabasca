@@ -37,7 +37,7 @@
 					<ul class = "dropdown-menu">
 						<li><a href = "createBooking">Create A Booking</a></li>
 						<li><a href = "viewBooking">View My Bookings</a></li>
-						<li><a href = "#">View All Bookings</a></li>
+						<li><a href = "viewBooking">View All Bookings</a></li>
 					</ul>
 				</li>
 				<li class = "dropdown">
