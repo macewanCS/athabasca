@@ -27,7 +27,10 @@ Route::post('Home', array('uses' => 'HomeController@Home'));
 
 Route::any('/kitmanage/create2', 'kitController@create2');
 Route::any('/createbooking', 'bookingController@check');
+Route::any('/viewbooking', 'bookingController@view');
 
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
 Route::resource('ViewKits','kitViewController@create');
+Route::resource('viewBooking', 'bookingController@view');
+
