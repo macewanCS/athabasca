@@ -18,15 +18,17 @@ class kitController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+
+	//Allows for the starting of kit creation
 	public function create()
 	{
 		$kits = DB::table('kitType')->lists('kitType');
 		return View::make('kitManage.create')->with('kits', $kits);
 	}
 
+	//Renders a page for adding all needed kit information based on create input
 	public function create2()
 	{
-
 		$assets = Input::get('assets');
 		$kitType = Input::get('kitType');
 		$kits = DB::table('kitType')->lists('kitType');
@@ -35,13 +37,19 @@ class kitController extends \BaseController {
 
 	public function create2add()
 	{
+		//Adds an asset placeholder to the page, allowing for dynamic asset addings
 		if(Input::get('add')){
-			//return "iwasmade";
+			$kitType = Input::get('kitType');
 			Input::flash();
 			$kits = DB::table('kitType')->lists('kitType');
-			return View::make('kitManage.create2')->withInput(Input::all())->with('kits', $kits); //->with('assets',$assets);
+			$assets = Input::old('assets') + 1;
+			return View::make('kitManage.create2')->with(Input::old())->with('kitInput',$kitType)->with('kits', $kits)->with('assets',$assets);
 		}
+		//Calls the database store function to store new kit
+		elseif(Input::get('save'))
+		{
 
+		}
 	}
 
 	/**

@@ -2,8 +2,8 @@
 @section('content')
 
   <div class = "jumbotron">
-    <h2>Create a new kit by filling out the data below</h2>
-    <p>All fields are required. You may hover over a field for more explanation</p>
+    <h3>Create a new kit by filling out the data below</h3>
+    <h5>All fields are required.</h5>
 
   <div class = "dropdown">
     {{Form::open(['url' => 'kitmanage/create2']) }}
