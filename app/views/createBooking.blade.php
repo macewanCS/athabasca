@@ -8,7 +8,7 @@
     <p>All fields are required. You may hover over a field for more explanation</p>
 
   <div class = "dropdown">
-    {{Form::open(['url' => 'createbooking']) }}
+    {{Form::open(['url' => 'kitmanage/create2add']) }}
     I want to Create a kit of
 
     with this many

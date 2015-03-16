@@ -26,10 +26,22 @@ class kitController extends \BaseController {
 
 	public function create2()
 	{
+
 		$assets = Input::get('assets');
 		$kitType = Input::get('kitType');
 		$kits = DB::table('kitType')->lists('kitType');
 		return View::make('kitManage.create2')->with('kits', $kits)->with('kitInput',$kitType)->with('assets',$assets);
+	}
+
+	public function create2add()
+	{
+		if(Input::get('add')){
+			//return "iwasmade";
+			Input::flash();
+			$kits = DB::table('kitType')->lists('kitType');
+			return View::make('kitManage.create2')->withInput(Input::all())->with('kits', $kits); //->with('assets',$assets);
+		}
+
 	}
 
 	/**
