@@ -1,7 +1,16 @@
 @extends('layouts.default')
 @section('content')
 
-<div class="container">           
+
+<div class="container"> 
+  <h3> EPL Bookings </h3> 
+  <label for="branch">Branch:</label>
+  <select class="form-control" id="branch">
+    <option>EPL</option>
+    <option>Macewan</option>
+    <option>UofA</option>
+    <option>Century</option>
+  </select>
   <table class="table table-hover">
     <thead>
       <tr>
