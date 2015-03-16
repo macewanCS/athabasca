@@ -5,11 +5,14 @@
     $kits = DB::table('kitType')->lists('kitType');
 ?>
   <div class = "jumbotron">
+
     <h2>Select the Type of kit you want to Book(will default to Ipad Kit)</h2>
     {{Form::open(['url' => 'createbooking']) }}
     <p>{{Form::label('desKit', 'Select Kit Type: ')}}
     {{Form::select('desKit', $kits, $kit) }}</p>
     <input type="submit" name="kit"  value="Select Kit">
+
+    
   </div>
   <div>
     {{Form::label('branch', 'Booking Location')}}

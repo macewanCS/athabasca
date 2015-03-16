@@ -30,10 +30,10 @@
 
 		<div class="collapse navbar-collapse" id="nav-collapse">
 			<ul class = "nav navbar-nav navbar-left">
-				<li><a href = "#">Home</a></li>
+				<li><a href = "/">Home</a></li>
 				<li class = "dropdown">
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
-					Bookings</a>
+            Bookings</a>
 					<ul class = "dropdown-menu">
 						<li><a href = "/createBooking">Create A Booking</a></li>
 						<li><a href = "/viewBooking">View My Bookings</a></li>
@@ -53,7 +53,7 @@
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
 					Transfers</a>
 					<ul class = "dropdown-menu">
-						<li><a href = "#">View My Transfers</a></li>
+						<li><a href = "/transfer">View My Transfers</a></li>
 					</ul>
 				</li>
 				<li><a href = "/logout">Logout</a></li>

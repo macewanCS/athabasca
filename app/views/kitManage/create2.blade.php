@@ -6,13 +6,13 @@
     <p>All fields are required. You may hover over a field for more explanation</p>
 
   <div class = "dropdown">
-    {{Form::open(['url' => 'kitmanage/create2']) }}
+    {{Form::open(['url' => 'kitmanage/create2add']) }}
     I want to Create a kit of
     {{Form::label('kitType', 'Kit Type: ') }}
-    {{Form::select('kitType', $kits, $kitInput,['disabled']) }}
+    {{Form::select('kitType', $kits, $kitInput) }}
     with this many
     {{Form::label('assets', 'Assets (Eg. 7 ipads in kit): ') }}
-    {{Form::number('assets', $assets,['disabled']) }}
+    {{Form::number('assets', $assets) }}
   </div>
   </div>
   <div>
@@ -27,6 +27,7 @@
         {{Form::text($i)}}
       </div>
     @endfor
+    <input type="submit" name="add"  value="Add Another Assets">
   <div>
     {{Form::label('notes', 'Notes')}}
     {{Form::textarea('notes')}}
