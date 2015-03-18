@@ -35,7 +35,7 @@
 
   <div class ="row">
       @for($i = 0; $i < $assets; $i++)
-      <div class="col-md-2">
+      <div class="col-sm-3">
         <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
           {{Form::label($i, 'Asset Tag  ')}}
           {{Form::text(($i), null, ['class' => 'form-control'])}}
