@@ -31,5 +31,12 @@ class HomeController extends BaseController {
         return Redirect::back()->withInput()->with('errors','Username or Password is incorrect. Please try again');
     }
 }
+    public function logout(){
+        $users = Session::get('userdata',NULL);
+        if($users != NULL){
+            Session::flush();
+        }
+        return View::make('Login');
+}
 
 }
