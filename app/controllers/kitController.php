@@ -9,7 +9,14 @@ class kitController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$xml = simplexml_load_file("http://www.epl.ca/branches.xml");
+		//$read = new SimpleXmlElement($xml);
+		foreach ($xml as $xml_data){
+
+        $branch = $xml_data->branchInfo->BranchId;
+				echo '<pre>'; print_r($branch);
+    }
+		//return $xml;
 	}
 
 
@@ -108,9 +115,9 @@ class kitController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit()
 	{
-		//
+
 	}
 
 
