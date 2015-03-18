@@ -38,18 +38,45 @@ class kitController extends \BaseController {
 	public function create2add()
 	{
 		//Adds an asset placeholder to the page, allowing for dynamic asset addings
-		if(Input::get('add')){
-			$kitType = Input::get('kitType');
-			Input::flash();
-			$kits = DB::table('kitType')->lists('kitType');
-			$assets = Input::old('assets') + 1;
-			return View::make('kitManage.create2')->with(Input::old())->with('kitInput',$kitType)->with('kits', $kits)->with('assets',$assets);
-		}
-		//Calls the database store function to store new kit
-		elseif(Input::get('save'))
-		{
 
+		if(Input::get('add')){
+			$assets = input::get('assets',NULL);
+			$assets += 1;
+			Input::merge(array('assets' => $assets));
+			Request::flash();
+			$input = input::all();
+			$assets = input::get('assets',NULL);
+			$kitType = Input::get('kitType');
+			$kits = DB::table('kitType')->lists('kitType');
+			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
+		elseif(input::get('sub') and input::get('assets',NULL) == 1){
+			$assets = input::get('assets',NULL);
+			Input::merge(array('assets' => $assets));
+			Request::flash();
+			$input = input::all();
+			$assets = input::get('assets',NULL);
+			$kitType = Input::get('kitType');
+			$kits = DB::table('kitType')->lists('kitType');
+			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input)->with('error', 'You need at least one asset');
+		}
+		elseif(Input::get('sub')){
+			$assets = input::get('assets',NULL);
+			$assets -= 1;
+			Input::merge(array('assets' => $assets));
+			Request::flash();
+			$input = input::all();
+			$assets = input::get('assets',NULL);
+			$kitType = Input::get('kitType');
+			$kits = DB::table('kitType')->lists('kitType');
+			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
+		}
+
+		//Calls the database store function to store new kit
+	//	elseif(Input::get('save'))
+	//	{
+
+	//	}
 	}
 
 	/**

@@ -9,6 +9,8 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/main.css')}}
     {{ HTML::script('js/bootstrap.min.js') }}
+    @yield('css1')
+    @yield('css2')
 
   </head>
 
