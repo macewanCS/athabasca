@@ -1,6 +1,6 @@
 @extends('layouts.default')
-@section('content')
 
+@section('content')
   <div class = "jumbotron">
     <h3>Create a new kit by filling out the data below</h3>
     <h5>All fields are required.</h5>
