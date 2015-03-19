@@ -78,6 +78,10 @@ class kitController extends \BaseController {
 			$kits = DB::table('kitType')->lists('kitType');
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
+		else
+			Request::flash();
+			return input::all();
+
 
 		//Calls the database store function to store new kit
 	//	elseif(Input::get('save'))
@@ -91,9 +95,13 @@ class kitController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public validator edit()
+	{
+
+	}
 	public function store()
 	{
-		//
+
 	}
 
 
