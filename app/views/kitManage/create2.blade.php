@@ -28,7 +28,7 @@
     <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
       {{Form::label('barcode', 'Kit Barcode') }}
       {{Form::text('barcode',null, ['class' => 'form-control']) }}
-      {{$errors->first('status', '<p class="help-block">:message</p>') }}
+      {{$errors->first('barcode', '<p class="help-block">:message</p>') }}
     </div>
   </div>
   </div> <!--end row1 -->
@@ -39,7 +39,7 @@
         <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
           {{Form::label($i, 'Asset Tag  ')}}
           {{Form::text(($i), null, ['class' => 'form-control'])}}
-          {{$errors->first('status', '<p class="help-block">:message</p>') }}
+          {{$errors->first('assetTag', '<p class="help-block">:message</p>') }}
         </div>
       </div>
       @endfor
@@ -57,7 +57,7 @@
       <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
       {{Form::label('notes', 'Notes')}}
       {{Form::textarea('notes',null, ['class' => 'form-control', 'rows' => 2])}}
-      {{$errors->first('status', '<p class="help-block">:message</p>') }}
+      {{$errors->first('notes', '<p class="help-block">:message</p>') }}
     </div>
   </div>
   </div>

@@ -78,6 +78,10 @@ class kitController extends \BaseController {
 			$kits = DB::table('kitType')->lists('kitType');
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
+		else
+			Request::flash();
+			return input::all();
+
 
 		//Calls the database store function to store new kit
 	//	elseif(Input::get('save'))
@@ -89,20 +93,25 @@ class kitController extends \BaseController {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
+	 * @return Respon
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
+
+	public function store()
+	{
+		$validator = Validator::make(Input::all());
+		if($validation->fails())
+		{
+			return redirect::back()->withInput()->withErrors($validation->messages());
+
+		}
+
+	}
+
+
 	public function show($id)
 	{
 		//
