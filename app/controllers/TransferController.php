@@ -2,15 +2,6 @@
 
 class TransferController extends \BaseController {
 
-    class transfer{
-        var $ktype;
-        var $rbranch;
-        var $knum;
-        var $shipdate;
-        var $emails = array();
-    }
-    
-    var $transfers = array();
         
 	/**
 	 * Display a listing of the resource.
@@ -30,7 +21,7 @@ class TransferController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('transfer');
 	}
 
 

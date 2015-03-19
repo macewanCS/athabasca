@@ -20,7 +20,13 @@ class kitViewController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('ViewKits');
+	    $kittype = Input::get('Kit Type');
+	    if($kittype == Null){
+		    return View::make('ViewKits');
+		}
+		else{
+		    return View::make("ViewKits")->with($kittype);
+		}
 	}
 
 
@@ -43,7 +49,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+	    //
 	}
 
 
