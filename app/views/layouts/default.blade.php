@@ -38,8 +38,7 @@
 				<li><a href = "/">Home</a></li>
 				<li class = "dropdown">
 
-					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
-            Bookings</a>
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Bookings</a>
 					<ul class = "dropdown-menu">
 						<li><a href = "/createBooking">Create A Booking</a></li>
 						<li><a href = "/viewbooking">View My Bookings</a></li>
