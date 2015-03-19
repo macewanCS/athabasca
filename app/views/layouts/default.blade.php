@@ -9,6 +9,11 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/main.css')}}
     {{ HTML::script('js/bootstrap.min.js') }}
+    {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js')}}
+    {{ HTML::script('/assets/js/jquery.js')}}
+    {{ HTML::style('//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/css/jquery.dataTables.min.css')}}
+    @yield('css1')
+    @yield('css2')
 
   </head>
 
@@ -30,13 +35,22 @@
 
 		<div class="collapse navbar-collapse" id="nav-collapse">
 			<ul class = "nav navbar-nav navbar-left">
-				<li><a href = "#">Home</a></li>
+				<li><a href = "/">Home</a></li>
 				<li class = "dropdown">
+<<<<<<< HEAD
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Bookings</a>
 					<ul class = "dropdown-menu">
 						<li><a href = "/createBooking">Create A Booking</a></li>
 						<li><a href = "/viewBooking">View My Bookings</a></li>
 						<li><a href = "/viewBooking">View All Bookings</a></li>
+=======
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
+            Bookings</a>
+					<ul class = "dropdown-menu">
+						<li><a href = "/createBooking">Create A Booking</a></li>
+						<li><a href = "/viewbooking">View My Bookings</a></li>
+						<li><a href = "/viewbooking">View All Bookings</a></li>
+>>>>>>> upstream/master
 					</ul>
 				</li>
 				<li class = "dropdown">
@@ -50,10 +64,14 @@
 				<li class = "dropdown">
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Transfers</a>
 					<ul class = "dropdown-menu">
+<<<<<<< HEAD
 						<li><a href = "/transfers">View My Transfers</a></li>
+=======
+						<li><a href = "/transfer">View My Transfers</a></li>
+>>>>>>> upstream/master
 					</ul>
 				</li>
-				<li><a href = "#">Logout</a></li>
+				<li><a href = "/logout">Logout</a></li>
 			</ul>
 		</div>
     </div> <!-- end container -->
