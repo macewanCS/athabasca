@@ -45,7 +45,6 @@ class kitController extends \BaseController {
 	public function create2add()
 	{
 		//Adds an asset placeholder to the page, allowing for dynamic asset addings
-
 		if(Input::get('add')){
 			$assets = input::get('assets',NULL);
 			$assets += 1;
@@ -57,16 +56,7 @@ class kitController extends \BaseController {
 			$kits = DB::table('kitType')->lists('kitType');
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
-		elseif(input::get('sub') and input::get('assets',NULL) == 1){
-			$assets = input::get('assets',NULL);
-			Input::merge(array('assets' => $assets));
-			Request::flash();
-			$input = input::all();
-			$assets = input::get('assets',NULL);
-			$kitType = Input::get('kitType');
-			$kits = DB::table('kitType')->lists('kitType');
-			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input)->with('error', 'You need at least one asset');
-		}
+
 		elseif(Input::get('sub')){
 			$assets = input::get('assets',NULL);
 			$assets -= 1;
@@ -78,16 +68,45 @@ class kitController extends \BaseController {
 			$kits = DB::table('kitType')->lists('kitType');
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
-		else
+
+		$validation =Validator::make(Input::all(),['kitType' => 'required','assets' => 'required', 'barcode' => 'required']);
+		if($validation->fails())
+		{
 			Request::flash();
-			return input::all();
+			$input = input::all();
+			$assets = input::get('assets',NULL);
+			$kitType = Input::get('kitType');
+			$kits = DB::table('kitType')->lists('kitType');
+			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input)->withErrors($validation->messages());
 
+			//return Redirect::back()->withInput()->withErrors($validation->messages()->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets));
+		}
 
-		//Calls the database store function to store new kit
-	//	elseif(Input::get('save'))
-	//	{
+			DB::beginTransaction();
+			//return input::all();
+			//Gets a list of kitTypes from database. sets $kits to chosen kittpye
+			$kits = DB::table('kitType')->lists('kitType');
+			$kitType = Input::get('kitType');
+			$kits = $kits[$kitType];
+			$assets = Input::get('assets');
+			$count = DB::table('kits')->count();//select("select count(*) as cnt FROM kits WHERE names LIKE '%?%' group by ",[$kits])->get();
+			//return $count;
+			$count += 1;
 
-	//	}
+			$name = $kits.$count;
+
+			$barcode = Input::get('barcode');
+			$notes = Input::get('notes');
+
+			DB::table('kits')->insert(array('barcode' => $barcode,'KitType' => $kits,'assets' => $assets,'notes' => $notes, 'name' => $name));
+
+			for($i = 1; $i < $assets+1; $i++){
+				$index = $i -1;
+				$assetTag = Input::get($index);
+				DB::table('kitAssets')->insert(array('kitBarcode' => $barcode,'assetName' => $kits.$i, 'assetTag' => $assetTag));
+			}
+			DB::commit();
+			return Redirect::to('/kitmanage/create')->with('message', 'Kit Created');
 	}
 
 	/**
@@ -100,17 +119,15 @@ class kitController extends \BaseController {
 	 * @return Response
 	 */
 
-	public function store()
-	{
-		$validator = Validator::make(Input::all());
-		if($validation->fails())
-		{
-			return redirect::back()->withInput()->withErrors($validation->messages());
+	//public function store()
+	//{
+	//	$validator = Validator::make(Input::all());
+	//	if($validation->fails())
+	//	{
+	//		return redirect::back()->withInput()->withErrors($validation->messages());
+	//	}
 
-		}
-
-	}
-
+	//}
 
 	public function show($id)
 	{

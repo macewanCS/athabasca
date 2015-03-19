@@ -1,6 +1,15 @@
 @extends('layouts.default')
 
 @section('content')
+
+  @if(isset($message))
+  <div class="alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    {{$message->first()}}
+  </div> <!--end of error message -->
+  @endif
+
   <div class = "jumbotron">
     <h3>Create a new kit by filling out the data below</h3>
     <h5>All fields are required.</h5>
