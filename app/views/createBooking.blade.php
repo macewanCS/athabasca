@@ -44,15 +44,16 @@
     {{Form::open(['url' => 'createbooking']) }}
     <p>{{Form::label('desKit', 'Select Kit Type: ')}}
     {{Form::select('desKit', $kits, $kit) }}</p>
+    <div class="errors">{{Session::get('errors');}}</div>
     <input type="submit" name="kit"  value="Select Kit">
 
     
   </div>
   <div>
     {{Form::label('branch', 'Booking Location')}}
-    {{Form::select('desBranch', $kits) }}
+    {{Form::select('desBranch', array('ABB'=>'ABB', 'CAL'=>'CAL','CPL'=>'CPL')) }}
     {{Form::label('eName', 'Event Name')}}
-    {{Form::text('barcode')}}
+    {{Form::text('eName')}}
    </div>
    
     <p>

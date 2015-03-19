@@ -32,5 +32,6 @@ Route::any('/viewbooking', 'bookingController@view');
 
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
+Route::resource('logout', 'HomeController@logout');
 Route::resource('ViewKits','kitViewController@create');
 Route::resource('viewBooking', 'bookingController@view');
