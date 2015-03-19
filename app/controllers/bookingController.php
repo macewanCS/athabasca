@@ -128,7 +128,7 @@ class bookingController extends \BaseController {
     	$this->layout->content = View::make('viewBooking', array('table' => $table));
 	}
 
-	public function getUsersDataTable(){
+	public function getBookingDataTable(){
 
 //    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
     	return Datatable::query(DB::table('booking'))
