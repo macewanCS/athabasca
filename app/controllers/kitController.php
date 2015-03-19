@@ -93,24 +93,25 @@ class kitController extends \BaseController {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @return Response
-	 */
-	public validator edit()
-	{
-
-	}
-	public function store()
-	{
-
-	}
-
-
-	/**
+	 * @return Respon
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
+
+	public function store()
+	{
+		$validator = Validator::make(Input::all());
+		if($validation->fails())
+		{
+			return redirect::back()->withInput()->withErrors($validation->messages());
+
+		}
+
+	}
+
+
 	public function show($id)
 	{
 		//
