@@ -49,7 +49,7 @@
 				<li class = "dropdown">
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Kit Info</a>
 					<ul class = "dropdown-menu">
-						<li><a href = "/ViewKits">Browse Kits</a></li>
+						<li><a href = "/viewkit">Browse Kits</a></li>
             <li><a href = "#">Add Note to Kit</a></li>
 						<li><a href = "/kitmanage/create">Create a Kit</a></li>
 					</ul>
@@ -57,7 +57,7 @@
 				<li class = "dropdown">
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Transfers</a>
 					<ul class = "dropdown-menu">
-						<li><a href = "/transfer">View My Transfers</a></li>
+						<li><a href = "/transfers">View My Transfers</a></li>
 					</ul>
 				</li>
 				<li><a href = "/logout">Logout</a></li>
