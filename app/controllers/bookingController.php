@@ -1,6 +1,7 @@
 <?php
 
 class bookingController extends \BaseController {
+	protected $layout = 'layouts.default';
 
 	/**
 	 * Display a listing of the resource.
@@ -108,10 +109,28 @@ class bookingController extends \BaseController {
 		return View::make('test')->with('te',$kitBarcode);
 	}
 
-	public function view()
+	/*public function view()
 	{
 		return View::make('viewBooking');
+	}*/
+	public function booking(){
+
+    	$table = Datatable::table()
+      	->addColumn('Kit Barcode', 'Date In', 'Date Out', 'Branch')
+      	->setUrl(route('api.booking'))
+      	->noScript();
+    	$this->layout->content = View::make('viewBooking', array('table' => $table));
 	}
+
+	public function getUsersDataTable(){
+
+//    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
+    	return Datatable::query(DB::table('booking'))
+    		->showColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
+        	->searchColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
+        	->orderColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
+        	->make();
+}
 	/**
 	 * Store a newly created resource in storage.
 	 *

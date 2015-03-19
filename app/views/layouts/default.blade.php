@@ -9,6 +9,9 @@
     {{ HTML::style('css/bootstrap.min.css') }}
     {{ HTML::style('css/main.css')}}
     {{ HTML::script('js/bootstrap.min.js') }}
+    {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js')}}
+    {{ HTML::script('/assets/js/jquery.js')}}
+    {{ HTML::style('//cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/css/jquery.dataTables.min.css')}}
     @yield('css1')
     @yield('css2')
 
@@ -38,8 +41,8 @@
             Bookings</a>
 					<ul class = "dropdown-menu">
 						<li><a href = "/createBooking">Create A Booking</a></li>
-						<li><a href = "/viewBooking">View My Bookings</a></li>
-						<li><a href = "/viewBooking">View All Bookings</a></li>
+						<li><a href = "/viewbooking">View My Bookings</a></li>
+						<li><a href = "/viewbooking">View All Bookings</a></li>
 					</ul>
 				</li>
 				<li class = "dropdown">
