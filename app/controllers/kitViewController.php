@@ -40,12 +40,10 @@ class kitViewController extends \BaseController {
 	}
 
 	public function getKitDataTable(){
-
-//    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
     	return Datatable::query(DB::table('kits'))
-    		->showColumns('kitType', 'barcode', 'notes')
-        	->searchColumns('kitType', 'barcode', 'notes')
-        	->orderColumns('kitType', 'barcode', 'notes')
+    		->showColumns('name', 'barcode', 'notes')
+        	->searchColumns('name', 'barcode', 'notes')
+        	->orderColumns('name', 'barcode', 'notes')
         	->make();
 }
 	/**

@@ -78,8 +78,6 @@ class kitController extends \BaseController {
 			$kitType = Input::get('kitType');
 			$kits = DB::table('kitType')->lists('kitType');
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input)->withErrors($validation->messages());
-
-			//return Redirect::back()->withInput()->withErrors($validation->messages()->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets));
 		}
 
 			DB::beginTransaction();
