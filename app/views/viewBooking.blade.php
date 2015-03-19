@@ -36,4 +36,11 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 @stop
+=======
+
+</body>
+</html>
+@stop
+>>>>>>> upstream/master

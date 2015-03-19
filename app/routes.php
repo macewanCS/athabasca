@@ -33,5 +33,6 @@ Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingControl
 
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
+Route::resource('logout', 'HomeController@logout');
 Route::resource('ViewKits','kitViewController@create');
 Route::resource('viewBooking', 'bookingController');
