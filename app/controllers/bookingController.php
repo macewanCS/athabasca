@@ -106,7 +106,13 @@ class bookingController extends \BaseController {
 	        return Redirect::back()->withInput()->with('errors','There are no Kits of this type avalable on the dates you selected');
 	    }
 	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode,'eventdate'=>$startdate));
-		return View::make('test')->with('te',$kitBarcode);
+		$holder = DB::table('booking')->lists('bookingID');
+		$id = $holder[count($holder)-1];
+		$rec = Session::get('rec',NULL);
+		for($i = 1; $i <= $rec; $i++){
+		    DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> Input::get($i)));
+		}
+		return View::make('test');
 	}
 
 	/*public function view()
@@ -122,7 +128,7 @@ class bookingController extends \BaseController {
     	$this->layout->content = View::make('viewBooking', array('table' => $table));
 	}
 
-	public function getUsersDataTable(){
+	public function getBookingDataTable(){
 
 //    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
     	return Datatable::query(DB::table('booking'))

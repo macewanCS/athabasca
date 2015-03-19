@@ -1,7 +1,7 @@
 <?php
 
 class kitViewController extends \BaseController {
-  
+  	protected $layout = 'layouts.default';
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -18,7 +18,7 @@ class kitViewController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	/*public function create()
 	{
 	    $kittype = Input::get('Kit Type');
 	    if($kittype == Null){
@@ -27,9 +27,27 @@ class kitViewController extends \BaseController {
 		else{
 		    return View::make("ViewKits")->with($kittype);
 		}
+	}*/
+
+
+	public function kit(){
+
+    	$table = Datatable::table()
+      	->addColumn('Kit Name', 'Kit Barcode', 'Notes')
+      	->setUrl(route('api.kit'))
+      	->noScript();
+    	$this->layout->content = View::make('ViewKits', array('table' => $table));
 	}
 
+	public function getKitDataTable(){
 
+//    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
+    	return Datatable::query(DB::table('kits'))
+    		->showColumns('kitType', 'barcode', 'notes')
+        	->searchColumns('kitType', 'barcode', 'notes')
+        	->orderColumns('kitType', 'barcode', 'notes')
+        	->make();
+}
 	/**
 	 * Store a newly created resource in storage.
 	 *
