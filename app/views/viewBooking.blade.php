@@ -1,35 +1,6 @@
 @extends('layouts.default')
 @section('content')
 
-<!DOCTYPE html>
-<html>
-<head>
-<script>
-function showBranch(str){
-var xmlhttp;    
-if (str==""){
-  document.getElementById("txtHint").innerHTML="";
-  return;
-  }
-if (window.XMLHttpRequest){
-  xmlhttp=new XMLHttpRequest();
-  }
-else{
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-
-xmlhttp.onreadystatechange=function(){
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    document.getElementById("txtHint").innerHTML=xmlhttp.responseText;
-    }
-  }
-xmlhttp.open("GET","getcustomer.asp?q="+str,true);
-xmlhttp.send();
-}
-</script>
-</head>
-<body>
 <div class="container"> 
   <h3> EPL Bookings </h3> 
   <label for="branch">Branch:</label>
@@ -55,39 +26,12 @@ xmlhttp.send();
     <option value="EPLWMC">Whitemud Crossing Branch</option>
     <option value="EPLWOO">Woodcroft Branch</option>
   </select>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Kit Name</th>
-        <th>Booking Start Date</th>
-        <th>Booking End Date</th>
-        <th>Branch ID</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>IPod Kits 1</td>
-        <td>Jan 28, 2015</td>
-        <td>Jan 30, 2015</td>
-        <td>EPL</td>
-      </tr>
-      <tr>
-        <td>IPod Kits 2</td>
-        <td>Jan 28, 2015</td>
-        <td>Jan 30, 2015</td>
-        <td>EPL</td>
-      </tr>
-      <tr>
-        <td>IPod Kits 3</td>
-        <td>Jan 28, 2015</td>
-        <td>Jan 30, 2015</td>
-        <td>EPL</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-md-12">
+    <h3>Bookings</h3>
+    {{ $table->render() }}
+    {{ $table->script() }}
+    </div>
+  </div>
 </div>
-<div id="txtHint">Customer info will be listed here...</div>
-
-</body>
-</html>
 @stop
