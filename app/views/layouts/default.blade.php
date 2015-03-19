@@ -37,17 +37,24 @@
 			<ul class = "nav navbar-nav navbar-left">
 				<li><a href = "/">Home</a></li>
 				<li class = "dropdown">
+<<<<<<< HEAD
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Bookings</a>
+					<ul class = "dropdown-menu">
+						<li><a href = "/createBooking">Create A Booking</a></li>
+						<li><a href = "/viewBooking">View My Bookings</a></li>
+						<li><a href = "/viewBooking">View All Bookings</a></li>
+=======
 					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
             Bookings</a>
 					<ul class = "dropdown-menu">
 						<li><a href = "/createBooking">Create A Booking</a></li>
 						<li><a href = "/viewbooking">View My Bookings</a></li>
 						<li><a href = "/viewbooking">View All Bookings</a></li>
+>>>>>>> upstream/master
 					</ul>
 				</li>
 				<li class = "dropdown">
-					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
-					Kit Info</a>
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Kit Info</a>
 					<ul class = "dropdown-menu">
 						<li><a href = "/ViewKits">Browse Kits</a></li>
             <li><a href = "#">Add Note to Kit</a></li>
@@ -55,10 +62,13 @@
 					</ul>
 				</li>
 				<li class = "dropdown">
-					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">
-					Transfers</a>
+					<a href = "#" class = "dropdown-toggle" data-toggle = "dropdown">Transfers</a>
 					<ul class = "dropdown-menu">
+<<<<<<< HEAD
+						<li><a href = "/transfers">View My Transfers</a></li>
+=======
 						<li><a href = "/transfer">View My Transfers</a></li>
+>>>>>>> upstream/master
 					</ul>
 				</li>
 				<li><a href = "/logout">Logout</a></li>
