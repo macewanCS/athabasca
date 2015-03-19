@@ -69,14 +69,9 @@ class bookingController extends \BaseController {
 
 	public function getUsersDataTable(){
 
-    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
-    	return Datatable::collection($query)
-        	->addColumn('datein', function($model){
-            	return date('M j, Y h:i A', strtotime($model->datein));
-        	})
-         	->addColumn('dateout', function($model){
-            	return date('M j, Y h:i A', strtotime($model->dateout));
-        	})
+//    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
+    	return Datatable::query(DB::table('booking'))
+    		->showColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
         	->searchColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
         	->orderColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
         	->make();

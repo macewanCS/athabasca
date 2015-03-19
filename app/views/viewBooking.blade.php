@@ -2,6 +2,7 @@
 @section('content')
 
 <div class="container"> 
+{{--
   <h3> EPL Bookings </h3> 
   <label for="branch">Branch:</label>
   <select onchange="showBranch(this.value)" class="form-control" id="branch">
@@ -26,6 +27,7 @@
     <option value="EPLWMC">Whitemud Crossing Branch</option>
     <option value="EPLWOO">Woodcroft Branch</option>
   </select>
+--}}
   <div class="row">
     <div class="col-md-12">
     <h3>Bookings</h3>
