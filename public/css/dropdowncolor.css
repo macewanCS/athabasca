@@ -1,0 +1,54 @@
+#home:hover
+{
+   color: #005097;
+   background-color: #F6BC2A;
+   border-color: #fff;
+}
+
+#book:hover
+{
+   color: #005097;
+   background-color: #79C33A;
+   border-color: #fff;
+}
+
+#booking
+{
+   color: #005097;
+   background-color: #79C33A;
+   border-color: #fff;	
+}
+
+#kit:hover
+{
+   color: #005097;
+   background-color: #DF115C;
+   border-color: #fff;
+}
+
+#kitinfo
+{
+   color: #005097;
+   background-color: #DF115C;
+   border-color: #fff;
+}
+
+#transfer:hover
+{
+   color: #005097;
+   background-color: #7D408D;
+   border-color: #fff;
+}
+
+#trans
+{
+   color: #005097;
+   background-color: #7D408D;
+   border-color: #fff;
+}
+#logout:hover
+{
+   color: #005097;
+   background-color: #009CDE;
+   border-color: #fff;
+}
