@@ -37,30 +37,30 @@
 
 		<div class="collapse navbar-collapse" id="nav-collapse">
 			<ul class = "nav navbar-nav navbar-left">
-				<li id="home"><a href = "/">Home</a></li>
+				<li id="home"><a id="homes" href = "/">Home</a></li>
 				<li class = "dropdown">
 					<a href = "#" id="book" class = "dropdown-toggle" data-toggle = "dropdown" data-hover="dropdown" data-delay="1" data-close-others="false">Bookings</a>
 					<ul id="booking" class = "dropdown-menu">
-						<li><a href = "/createBooking">Create A Booking</a></li>
-						<li><a href = "/viewbooking">View My Bookings</a></li>
-						<li><a href = "/viewbooking">View All Bookings</a></li>
+						<li><a id="boo" href = "/createBooking">Create A Booking</a></li>
+						<li><a id="booki" href = "/viewbooking">View My Bookings</a></li>
+						<li><a id="bookin" href = "/viewbooking">View All Bookings</a></li>
 					</ul>
 				</li>
 				<li class = "dropdown">
 					<a href = "#" id="kit" class = "dropdown-toggle" data-toggle = "dropdown" data-hover="dropdown" data-delay="1" data-close-others="false">Kit Info</a>
 					<ul id="kitinfo" class = "dropdown-menu">
-						<li><a href = "/viewkit">Browse Kits</a></li>
-            			<li><a href = "#">Add Note to Kit</a></li>
-						<li><a href = "/kitmanage/create">Create a Kit</a></li>
+						<li><a id="kiti" href = "/viewkit">Browse Kits</a></li>
+            			<li><a id="kitin" href = "#">Add Note to Kit</a></li>
+						<li><a id="kitinf" href = "/kitmanage/create">Create a Kit</a></li>
 					</ul>
 				</li>
 				<li class = "dropdown">
 					<a href = "#" id="transfer" class = "dropdown-toggle" data-toggle = "dropdown" data-hover="dropdown" data-delay="1" data-close-others="false">Transfers</a>
 					<ul id="trans" class = "dropdown-menu">
-						<li><a href = "/transfers">View My Transfers</a></li>
+						<li><a id="transf" href = "/transfers">View My Transfers</a></li>
 					</ul>
 				</li>
-				<li id="logout"><a href = "/logout">Logout</a></li>
+				<li id="logout"><a id="log" href = "/logout">Logout</a></li>
 			</ul>
 		</div>
     </div> <!-- end container -->

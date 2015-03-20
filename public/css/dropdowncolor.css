@@ -1,54 +1,99 @@
 #home:hover
 {
-   color: #005097;
-   background-color: #F6BC2A;
-   border-color: #fff;
+	background-color: #F6BC2A;
 }
 
 #book:hover
 {
-   color: #005097;
-   background-color: #79C33A;
-   border-color: #fff;
+	background-color: #79C33A;
 }
 
 #booking
 {
-   color: #005097;
-   background-color: #79C33A;
-   border-color: #fff;	
+	background-color: #79C33A;	
 }
 
 #kit:hover
 {
-   color: #005097;
-   background-color: #DF115C;
-   border-color: #fff;
+	background-color: #DF115C;
 }
 
 #kitinfo
 {
-   color: #005097;
-   background-color: #DF115C;
-   border-color: #fff;
+	background-color: #DF115C;
 }
 
 #transfer:hover
 {
-   color: #005097;
-   background-color: #7D408D;
-   border-color: #fff;
+	background-color: #7D408D;
 }
 
 #trans
 {
-   color: #005097;
-   background-color: #7D408D;
-   border-color: #fff;
+	background-color: #7D408D;
 }
+
 #logout:hover
 {
-   color: #005097;
    background-color: #009CDE;
-   border-color: #fff;
+}
+
+#homes
+{
+	color: #005097;
+}
+
+#book
+{
+	color: #005097;
+}
+
+#kit
+{
+	color: #005097;	
+}
+
+#transfer
+{
+	color: #005097;
+}
+
+#log
+{
+	color: #005097;
+}
+
+#boo
+{
+	color: #005097;
+}
+
+#bookin
+{
+	color: #005097;
+}
+
+#booki
+{
+	color: #005097;
+}
+
+#transf
+{
+	color: #005097;
+}
+
+#kiti
+{
+	color: #005097;
+}
+
+#kitin
+{
+	color: #005097;
+}
+
+#kitinf
+{
+	color: #005097;
 }
