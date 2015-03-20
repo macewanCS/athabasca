@@ -1,10 +1,12 @@
 #home:hover
 {
+	color: #FFFFFF;
 	background-color: #F6BC2A;
 }
 
 #book:hover
 {
+	color: #FFFFFF;
 	background-color: #79C33A;
 }
 
@@ -15,6 +17,7 @@
 
 #kit:hover
 {
+	color: #FFFFFF;
 	background-color: #DF115C;
 }
 
@@ -25,6 +28,7 @@
 
 #transfer:hover
 {
+	color: #FFFFFF;
 	background-color: #7D408D;
 }
 
@@ -35,12 +39,18 @@
 
 #logout:hover
 {
-   background-color: #009CDE;
+	color: #FFFFFF;
+	background-color: #009CDE;
 }
 
 #homes
 {
 	color: #005097;
+}
+
+#homes:hover
+{
+	color: #FFFFFF;
 }
 
 #book
@@ -63,37 +73,77 @@
 	color: #005097;
 }
 
+#log:hover
+{
+	color: #FFFFFF;
+}
+
 #boo
 {
-	color: #005097;
+	color: #FFFFFF;
 }
 
 #bookin
 {
-	color: #005097;
+	color: #FFFFFF;
 }
 
 #booki
+{
+	color: #FFFFFF;
+}
+
+#boo:hover
+{
+	color: #005097;
+}
+
+#bookin:hover
+{
+	color: #005097;
+}
+
+#booki:hover
 {
 	color: #005097;
 }
 
 #transf
 {
+	color: #FFFFFF;
+}
+
+#transf:hover
+{
 	color: #005097;
 }
 
 #kiti
+{
+	color: #FFFFFF;
+}
+
+#kiti:hover
 {
 	color: #005097;
 }
 
 #kitin
 {
+	color: #FFFFFF;
+}
+
+#kitin:hover
+{
 	color: #005097;
 }
 
 #kitinf
+{
+	color: #FFFFFF;
+}
+
+#kitinf:hover
 {
 	color: #005097;
 }
