@@ -9,4 +9,7 @@
 <?php 
     endif;
 ?>
+
+<p><?= $data;?></p>
+<p><?= $mon;?></p>
 @stop
