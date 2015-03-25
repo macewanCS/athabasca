@@ -6,7 +6,7 @@
 
     <title>EPL</title>
     {{ HTML::script('js/jquery.js') }}
-    {{ HTML::style('css/bootstrap.min.css') }}
+    {{ HTML::style('css/bootstrap.css') }}
     {{ HTML::style('css/main.css')}}
     {{ HTML::script('js/bootstrap.min.js') }}
     {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js')}}
@@ -20,7 +20,7 @@
   </head>
 
   <body>
-	 <nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 	<div class="container">
     <br></br>
 		<a href="{{URL::to('/')}}"><img src={{asset('/images/EPL_logo2.png')}}  alt="EPL" style="width:410px;height:46px"></a>
