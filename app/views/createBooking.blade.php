@@ -31,6 +31,8 @@
       }
     });
   });
+  $(function() { $("#to" ).datepicker( "option", "dateFormat", "D dd M yy" )});
+  $(function() { $("#from" ).datepicker( "option", "dateFormat", "D dd M yy" )});
   $(function() { $( "#from" ).datepicker( "setDate", +1 )});
   $(function() { $( "#from" ).datepicker( "option", "minDate", "+1d" )});
   $(function() { $( "#to" ).datepicker( "option", "minDate", "+1d" )});
@@ -58,10 +60,10 @@
    
     <p>
     {{Form::label('start', ' Booking Start Date ')}}
-    <input type="text" id="from" name="from">
+    <input type="text" id="from" name="from" readOnly="true">
     
     {{Form::label('end', 'Booking End Date')}}
-    <input type="text" id="to" name="to">
+    <input type="text" id="to" name="to" readOnly="true">
     </p>
 
     @for($i = 1; $i <= $rec; $i++)
