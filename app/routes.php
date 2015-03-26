@@ -22,9 +22,7 @@ Route::get('/', function()
 	}
 });
 Route::post('login', array('uses' => 'HomeController@login'));
-Route::resource('transfers', 'TransferController');
 Route::post('Home', array('uses' => 'HomeController@Home'));
-
 Route::any('/kitmanage/create2', 'kitController@create2');
 Route::any('/kitmanage/create2add', 'kitController@create2add');
 Route::any('/createbooking', 'bookingController@check');
@@ -34,13 +32,13 @@ Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingControl
 
 Route::get('/viewuserbooking', 'bookingController@userbooking');
 Route::get('api/userbooking', array('as' => 'api.userbooking', 'uses' => 'bookingController@getUserBookingDataTable'));
-
 Route::get('/viewkit', 'kitViewController@kit');
 Route::get('api/kit', array('as' => 'api.kit', 'uses' => 'kitViewController@getKitDataTable'));
 
-Route::get('/edit', 'bookingController@editBooking');
 
+Route::get('api/transfer', array('as' => 'api.transfer', 'uses' => 'TransferController@getTransferTable'));
+Route::get('/edit', 'bookingController@editBooking');
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
 Route::resource('logout', 'HomeController@logout');
-Route::resource('transfers', 'TransferController@create');
+Route::resource('/transfer', 'TransferController');
