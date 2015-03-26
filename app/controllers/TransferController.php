@@ -1,18 +1,18 @@
 <?php
 
-class TransferController extends \BaseController {
+class TransferController extends BaseController {
 
-        
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+  public function index(){
+     return 'nope';
+ 	 }
 
+ 	public function getTransferTable(){
+     	return Datatable::query(DB::table('booking'))
+     		->showColumns('eventdate', 'transferin', 'transferout', 'forBranch')
+         	->searchColumns('eventdate', 'transferin', 'transferout', 'forBranch')
+         	->orderColumns('eventdate', 'transferin', 'transferout', 'forBranch')
+         	->make();
+         }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -21,7 +21,7 @@ class TransferController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('transfer');
+
 	}
 
 
@@ -32,7 +32,7 @@ class TransferController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
 	}
 
 
@@ -42,10 +42,14 @@ class TransferController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
-		//
-	}
+      $table = Datatable::table()
+        ->addColumn('Event', 'Transfer In', 'Transfer Out', 'Branch')
+        ->setUrl(route('api.transfer'))
+        ->noScript();
+      $this->layout->content = View::make('transfer', array('table' => $table));
+  }
 
 
 	/**
@@ -56,7 +60,9 @@ class TransferController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+    $data = DB::table('booking')->where('bookingID', $id)->first();
+    //dd($data);
+    return View::make('transfers.edit')->with('data', $data);
 	}
 
 
@@ -68,7 +74,7 @@ class TransferController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+    //
 	}
 
 

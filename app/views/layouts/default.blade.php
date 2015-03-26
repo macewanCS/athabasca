@@ -57,7 +57,7 @@
 				<li class = "dropdown">
 					<a href = "#" id="transfer" class = "dropdown-toggle" data-toggle = "dropdown" data-hover="dropdown" data-delay="1" data-close-others="false">Transfers</a>
 					<ul id="trans" class = "dropdown-menu">
-						<li><a id="transf" href = "/transfers">View My Transfers</a></li>
+						<li><a id="transf" href = "/transfer">View My Transfers</a></li>
 					</ul>
 				</li>
 				<li id="logout"><a id="log" href = "/logout">Logout</a></li>

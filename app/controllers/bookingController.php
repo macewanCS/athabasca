@@ -27,7 +27,7 @@ class bookingController extends \BaseController {
 		Session::put('rec',$rec);
 		return View::make('createBooking')->with('kit', $kit);
 	}
-	
+
 	public function create2()
 	{
 	    $rec = Session::get('rec',NULL);
@@ -36,7 +36,7 @@ class bookingController extends \BaseController {
 		$kit = Input::get('desKit');
 		return View::make('createBooking')->with('kit', $kit);
 	}
-	
+
 	public function check()
 	{
 		if(Input::get('add')){
@@ -48,7 +48,7 @@ class bookingController extends \BaseController {
 		    return $this->create()->with('kit', $kit);
 		}
 	}
-	
+
 	public function confirm()
 	{
 	    $months = ['Jan'=>'31','Feb'=>'28','Mar'=> '31','Apr'=>'30','May'=>'31','Jun'=>'30','Jul'=>'31','Aug'=>'31','Sep'=>'30','Oct'=>'31','Nov'=>'30','Dec'=>'31'];
@@ -63,7 +63,7 @@ class bookingController extends \BaseController {
 	    $enddate;
 	    $tranIn;
 	    $tranOut;
-	    
+
 	    /*setting Booking Start and transfer in date*/
 	    $tDay = $fromDate[4].$fromDate[5];
 	    if($tDay == '01'){
@@ -90,7 +90,7 @@ class bookingController extends \BaseController {
 	    $stYear = $fromDate[11].$fromDate[12].$fromDate[13].$fromDate[14];
 	    $tranIn = $inMon.'/'.$inDay.'/'.$inYear;
 	    $startdate = $stMon.'/'.$tDay.'/'.$stYear;
-	    
+
 	    /*setting Booking End and transfer Out date*/
 	    $mon = $months[$toDate[7].$toDate[8].$toDate[9]];
 	    $tDay = $toDate[4].$toDate[5];
@@ -121,13 +121,13 @@ class bookingController extends \BaseController {
 	    $endYear = $toDate[11].$toDate[12].$toDate[13].$toDate[14];
 	    $tranOut = $outMon.'/'.$outDay.'/'.$outYear;
 	    $enddate = $endMon.'/'.$tDay.'/'.$endYear;
-	    
-	    
+
+
 	    $location = Input::get('desBranch');
 	    $eventName = Input::get('eName');
 	    $primaryUser = Session::get('userdata',NULL);
-	    
-	    
+
+
 	    $kits = DB::table('kitType')->lists('kitType');
 	    $book = DB::select('select kitBarcode from booking where transferin Between ? and ? or transferout Between ? and ?',[$tranIn,$tranOut,$startdate,$tranOut]);
 	    $booked =[];
@@ -135,21 +135,21 @@ class bookingController extends \BaseController {
 	        $booked[$x] = $book[$x]->kitBarcode;
 	    }
 	    $kitBarcode = DB::table('kits')->where('kitType',$kits[Input::get('desKit')])->whereNotIn('barcode',$booked)->first();
-	    
+
 	    if($kitBarcode == NULL){
 	        return Redirect::back()->withInput()->with('errors','There are no Kits of this type avalable on the dates you selected');
 	    }
 	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode,'eventdate'=>$startdate));
-		
-		
+
+
 		$holder = DB::table('booking')->lists('bookingID');
 		$id = $holder[count($holder)-1];
 		$rec = Session::get('rec',NULL);
 		for($i = 1; $i <= $rec; $i++){
 		    DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> Input::get($i)));
 		}
-		
-		
+
+
 		return View::make('test')->with('data',$tranIn)->with('mon',$tranOut);
 	}
 
