@@ -3,7 +3,6 @@
 <?php
     $today = new DateTime();
     $date = $today->format('m/d/Y');
-    date_sub($today, date_interval_create_from_date_string('1 day'));
 	$book = DB::table('booking')->where('datein','=',$date)->first();/*Change the date to today's wth $date*/
 	$transfer = DB::table('booking')->where('transferout','=',$date)->first();
     $users = Session::get('userdata',NULL);
