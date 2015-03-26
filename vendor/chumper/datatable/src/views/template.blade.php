@@ -24,4 +24,3 @@
 
 @if (!$noScript)
     @include('datatable::javascript', array('id' => $id, 'options' => $options, 'callbacks' =>  $callbacks))
-@endif
