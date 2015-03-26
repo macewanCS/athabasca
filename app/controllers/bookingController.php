@@ -51,68 +51,106 @@ class bookingController extends \BaseController {
 	
 	public function confirm()
 	{
-	    $months = [['3','1'],['2','8'],['3','1'],['3','0'],['3','1'],['3','0'],['3','1'],['3','1'],['3','0'],['3','1'],['3','0'],['3','1']];
-	    $days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
-	    $startdate = Input::get('from');
-	    $enddate = Input::get('to');
-	    $tranIn = Input::get('from');
-	    $tranOut = Input::get('to');
+	    $months = ['Jan'=>'31','Feb'=>'28','Mar'=> '31','Apr'=>'30','May'=>'31','Jun'=>'30','Jul'=>'31','Aug'=>'31','Sep'=>'30','Oct'=>'31','Nov'=>'30','Dec'=>'31'];
+	    $monValue = ['Jan'=>'01','Feb'=>'02','Mar'=> '03','Apr'=>'04','May'=>'05','Jun'=>'06','Jul'=>'07','Aug'=>'08','Sep'=>'09','Oct'=>'10','Nov'=>'11','Dec'=>'12'];
+	    $monBack = ['Jan'=>'Dec','Feb'=>'Jan','Mar'=> 'Feb','Apr'=>'Mar','May'=>'Apr','Jun'=>'May','Jul'=>'Jun','Aug'=>'Jul','Sep'=>'Aug','Oct'=>'Sep','Nov'=>'Oct','Dec'=>'Nov'];
+	    $monFront = ['Jan'=>'Feb','Feb'=>'Mar','Mar'=> 'Apr','Apr'=>'May','May'=>'Jun','Jun'=>'Jul','Jul'=>'Aug','Aug'=>'Sep','Sep'=>'Oct','Oct'=>'Nov','Nov'=>'Dec','Dec'=>'Jan'];
+	    $weBack= ['Sun'=>1,'Mon'=>2,'Tue'=>0,'Wed'=>0,'Thu'=>0,'Fri'=>0,'Sat'=>0];
+	    $weFront= ['Sun'=>0,'Mon'=>0,'Tue'=>0,'Wed'=>0,'Thu'=>0,'Fri'=>2,'Sat'=>1];
+	    $fromDate = Input::get('from');
+	    $toDate = Input::get('to');
+	    $startdate;
+	    $enddate;
+	    $tranIn;
+	    $tranOut;
 	    
-	    
-	    $mon = $tranIn[0] . $tranIn[1];
-	    $date = $months[intval($mon)-1];
-	    if($tranIn[3] == '0' and $tranIn[4] == '1'){ //need to create loop to go from 00 to 11 and reverse
-	        $date = $months[intval($mon)-2];
-	        $tranIn[3] = $date[0];
-	        $tranIn[4] = $date[1];
-	        $index = $days[array_search($mon,$days)-1];
-	        $tranIn[0] = $index[0];
-	        $tranIn[1] = $index[1];
+	    /*setting Booking Start and transfer in date*/
+	    $tDay = $fromDate[4].$fromDate[5];
+	    if($tDay == '01'){
+	        $inDay = $months[$monBack[$fromDate[7].$fromDate[8].$fromDate[9]]];
+	        $inDay = (string)(intval($inDay) - $weBack[$fromDate[0].$fromDate[1].$fromDate[2]]);
+	        $inMon = $monValue[$monBack[$fromDate[7].$fromDate[8].$fromDate[9]]];
+	        if(($fromDate[7].$fromDate[8].$fromDate[9]) == 'Jan'){
+	            $inYear = (string)(intval($fromDate[11].$fromDate[12].$fromDate[13].$fromDate[14])-1);
+            }
+            else{
+                $inYear = $fromDate[11].$fromDate[12].$fromDate[13].$fromDate[14];
+            }
 	    }
 	    else{
-	        $mon = $tranIn[3] . $tranIn[4];
-	        $index = $days[array_search($mon,$days)-1];
-	        $tranIn[3] = $index[0];
-	        $tranIn[4] = $index[1];
+	        $inDay = (string)(intval($tDay)-1);
+	        $inDay = (string)(intval($inDay) - $weBack[$fromDate[0].$fromDate[1].$fromDate[2]]);
+	        if(intval($inDay) < 10){
+	            $inDay = '0'.$inDay;
+	        }
+	        $inMon = $monValue[$fromDate[7].$fromDate[8].$fromDate[9]];
+	        $inYear = $fromDate[11].$fromDate[12].$fromDate[13].$fromDate[14];
 	    }
-	    $mon = $tranOut[0] . $tranOut[1];
-	    $date = $months[intval($mon)-1];
-	    if($tranIn[3] == $date[0] and $tranIn[4] == $date[1]){ //need to create loop to go from 00 to 11 and reverse
-	        $tranOut[3] = '0';
-	        $tranOut[4] = '1';
-	        $index = $days[array_search($mon,$days)+1];
-	        $tranOut[0] = $index[0];
-	        $tranOut[1] = $index[1];
+	    $stMon = $monValue[$fromDate[7].$fromDate[8].$fromDate[9]];
+	    $stYear = $fromDate[11].$fromDate[12].$fromDate[13].$fromDate[14];
+	    $tranIn = $inMon.'/'.$inDay.'/'.$inYear;
+	    $startdate = $stMon.'/'.$tDay.'/'.$stYear;
+	    
+	    /*setting Booking End and transfer Out date*/
+	    $mon = $months[$toDate[7].$toDate[8].$toDate[9]];
+	    $tDay = $toDate[4].$toDate[5];
+	    if($tDay == $mon){
+	        $outDay = '1';
+	        $outDay = (string)(intval($outDay) + $weFront[$toDate[0].$toDate[1].$toDate[2]]);
+	        $outMon = $monValue[$monFront[$toDate[7].$toDate[8].$toDate[9]]];
+	        if(intval($outDay) < 10){
+	            $outDay = '0'.$outDay;
+	        }
+	        if(($toDate[7].$toDate[8].$toDate[9]) == 'Dec'){
+	            $outYear = (string)(intval($toDate[11].$toDate[12].$toDate[13].$toDate[14])+1);
+            }
+            else{
+                $outYear = $toDate[11].$toDate[12].$toDate[13].$toDate[14];
+            }
 	    }
 	    else{
-	        $mon = $tranOut[3] . $tranOut[4];
-	        $index = $days[array_search($mon,$days)+1];
-	        $tranOut[3] = $index[0];
-	        $tranOut[4] = $index[1];
+	        $outDay = (string)(intval($tDay)+1);
+	        $outDay = (string)(intval($outDay) + $weFront[$toDate[0].$toDate[1].$toDate[2]]);
+	        if(intval($outDay) < 10){
+	            $outDay = '0'.$outDay;
+	        }
+	        $outMon = $monValue[$toDate[7].$toDate[8].$toDate[9]];
+	        $outYear = $toDate[11].$toDate[12].$toDate[13].$toDate[14];
 	    }
+	    $endMon = $monValue[$toDate[7].$toDate[8].$toDate[9]];
+	    $endYear = $toDate[11].$toDate[12].$toDate[13].$toDate[14];
+	    $tranOut = $outMon.'/'.$outDay.'/'.$outYear;
+	    $enddate = $endMon.'/'.$tDay.'/'.$endYear;
 	    
 	    
 	    $location = Input::get('desBranch');
 	    $eventName = Input::get('eName');
 	    $primaryUser = Session::get('userdata',NULL);
+	    
+	    
 	    $kits = DB::table('kitType')->lists('kitType');
-	    $book = DB::select('select kitBarcode from booking where transferin = ? or transferout = ?',[$tranIn,$tranOut]);
+	    $book = DB::select('select kitBarcode from booking where transferin Between ? and ? or transferout Between ? and ?',[$tranIn,$tranOut,$startdate,$tranOut]);
 	    $booked =[];
 	    for($x = 0; $x < count($book);$x++){
 	        $booked[$x] = $book[$x]->kitBarcode;
 	    }
 	    $kitBarcode = DB::table('kits')->where('kitType',$kits[Input::get('desKit')])->whereNotIn('barcode',$booked)->first();
+	    
 	    if($kitBarcode == NULL){
 	        return Redirect::back()->withInput()->with('errors','There are no Kits of this type avalable on the dates you selected');
 	    }
 	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode,'eventdate'=>$startdate));
+		
+		
 		$holder = DB::table('booking')->lists('bookingID');
 		$id = $holder[count($holder)-1];
 		$rec = Session::get('rec',NULL);
 		for($i = 1; $i <= $rec; $i++){
 		    DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> Input::get($i)));
 		}
-		return View::make('test');
+		
+		
+		return View::make('test')->with('data',$tranIn)->with('mon',$tranOut);
 	}
 
 	/*public function view()
