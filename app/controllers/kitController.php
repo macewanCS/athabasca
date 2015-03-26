@@ -47,6 +47,9 @@ class kitController extends \BaseController {
 		//Adds an asset placeholder to the page, allowing for dynamic asset addings
 		if(Input::get('add')){
 			$assets = input::get('assets',NULL);
+			//if($assets = 1){
+		//	 <><><><><><fix me
+		//	}
 			$assets += 1;
 			Input::merge(array('assets' => $assets));
 			Request::flash();
