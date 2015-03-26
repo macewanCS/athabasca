@@ -42,7 +42,7 @@
 					<a href = "#" id="book" class = "dropdown-toggle" data-toggle = "dropdown" data-hover="dropdown" data-delay="1" data-close-others="false">Bookings</a>
 					<ul id="booking" class = "dropdown-menu">
 						<li><a id="boo" href = "/createBooking">Create A Booking</a></li>
-						<li><a id="booki" href = "/viewbooking">View My Bookings</a></li>
+						<li><a id="booki" href = "/viewuserbooking">View My Bookings</a></li>
 						<li><a id="bookin" href = "/viewbooking">View All Bookings</a></li>
 					</ul>
 				</li>
