@@ -33,7 +33,7 @@ class kitViewController extends \BaseController {
 	public function kit(){
 
     	$table = Datatable::table()
-      	->addColumn('Kit Name', 'Kit Barcode', 'Notes')
+      	->addColumn('Kit Name', 'Kit Barcode', 'Damage Description', 'Notes')
       	->setUrl(route('api.kit'))
       	->noScript();
     	$this->layout->content = View::make('ViewKits', array('table' => $table));
