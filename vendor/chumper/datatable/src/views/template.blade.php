@@ -20,15 +20,6 @@
     </tr>
     @endforeach
     </tbody>
-    <tfoot>
-        <tr>
-            @foreach($columns as $i => $c)
-            <th align="center" valign="middle" class="head{{ $i }}">
-                <select class="form-control" class="search_init">
-            </th>
-            @endforeach
-        </tr>
-    </tfoot>
 </table>
 
 @if (!$noScript)
