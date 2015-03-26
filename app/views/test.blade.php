@@ -3,9 +3,8 @@
 <?php
     $today = new DateTime();
     $date = $today->format('m/d/Y');
-    date_sub($today, date_interval_create_from_date_string('1 day'));
-	$book = DB::table('booking')->where('datein','=','03/31/2015')->first();/*Change the date to today's wth $date*/
-	$transfer = DB::table('booking')->where('transferout','=','04/01/2015')->first();
+	$book = DB::table('booking')->where('datein','=',$date)->first();/*Change the date to today's wth $date*/
+	$transfer = DB::table('booking')->where('transferout','=',$date)->first();
     $users = Session::get('userdata',NULL);
     if($users != NULL):
         ?>
@@ -16,7 +15,9 @@
         <h3> Today is <?=$date?></h3>
         <?php
         if($book == Null):
-            echo("There are no bookings coming in today");
+        ?>
+            <h4>There are no bookings coming in today</h4>
+        <?php
         else:
             $type = DB::table('kits')->where('barcode','=',$book->kitBarcode)->first();
         ?>
@@ -25,8 +26,10 @@
         <?php
         endif;
         
-        if($transfer == Null && $book != $transfer):
-            echo("There are no transfers that need to ship out today");
+        if($transfer == Null):
+        ?>
+            <h4>There are no transfers that need to ship out today</h4>
+        <?php
         else:
             $type = DB::table('kits')->where('barcode','=',$book->kitBarcode)->first();
         ?>

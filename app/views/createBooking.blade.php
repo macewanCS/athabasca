@@ -3,6 +3,7 @@
 <?php
     $rec = Session::get('rec',NULL);
     $kits = DB::table('kitType')->lists('kitType');
+    $users = DB::table('users')->lists('username');
 ?>
 
 <head>
@@ -34,6 +35,7 @@
   $(function() { $("#to" ).datepicker( "option", "dateFormat", "D dd M yy" )});
   $(function() { $("#from" ).datepicker( "option", "dateFormat", "D dd M yy" )});
   $(function() { $( "#from" ).datepicker( "setDate", +1 )});
+  $(function() { $( "#to" ).datepicker( "setDate", +14 )});
   $(function() { $( "#from" ).datepicker( "option", "minDate", "+1d" )});
   $(function() { $( "#to" ).datepicker( "option", "minDate", "+1d" )});
 
@@ -45,31 +47,29 @@
     <h2>Select the Type of kit you want to Book(will default to Ipad Kit)</h2>
     {{Form::open(['url' => 'createbooking']) }}
     <p>{{Form::label('desKit', 'Select Kit Type: ')}}
-    {{Form::select('desKit', $kits, $kit) }}</p>
+    {{Form::select('desKit', $kits,$kit) }}</p>
     <div class="errors">{{Session::get('errors');}}</div>
-    <input type="submit" name="kit"  value="Select Kit">
-
     
   </div>
-  <div>
+  <div class = "Booking">
     {{Form::label('branch', 'Booking Location')}}
     {{Form::select('desBranch', array('ABB'=>'ABB', 'CAL'=>'CAL','CPL'=>'CPL')) }}
     {{Form::label('eName', 'Event Name')}}
     {{Form::text('eName')}}
    </div>
    
-    <p>
+    <div class = "Booking">
     {{Form::label('start', ' Booking Start Date ')}}
     <input type="text" id="from" name="from" readOnly="true">
     
     {{Form::label('end', 'Booking End Date')}}
     <input type="text" id="to" name="to" readOnly="true">
-    </p>
+    </div>
 
     @for($i = 1; $i <= $rec; $i++)
-      <div>
+      <div class = "Booking">
         {{Form::label($i, 'Additional Recipients: ')}}
-        {{Form::text($i)}}
+        {{Form::select($i, $users) }}
       </div>
     @endfor
    <input type="submit" name="add"  value="Add Another Recipients">

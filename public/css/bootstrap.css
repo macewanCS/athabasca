@@ -3418,7 +3418,7 @@ tbody.collapse.in {
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
-  font-size: 14px;
+  font-size: 15px;
   text-align: left;
   list-style: none;
   background-color: #fff;
@@ -4860,7 +4860,7 @@ a.badge:focus {
   border-radius: 6px;
 }
 .jumbotron .container {
-  max-width: 100%;
+  max-width: 180%;
 }
 @media screen and (min-width: 768px) {
   .jumbotron {

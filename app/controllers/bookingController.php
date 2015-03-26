@@ -23,7 +23,7 @@ class bookingController extends \BaseController {
 	{
 	    $kit = 0;
 	    $rec = Session::get('rec',NULL);
-		$rec = 1;
+		$rec = 0;
 		Session::put('rec',$rec);
 		return View::make('createBooking')->with('kit', $kit);
 	}
@@ -43,9 +43,6 @@ class bookingController extends \BaseController {
 		    return $this->create2();
 		} elseif(Input::get('create')){
 		    return $this->confirm();
-		} elseif(Input::get('kit')){
-		    $kit = Input::get('desKit');
-		    return $this->create()->with('kit', $kit);
 		}
 	}
 
@@ -137,7 +134,7 @@ class bookingController extends \BaseController {
 	    $kitBarcode = DB::table('kits')->where('kitType',$kits[Input::get('desKit')])->whereNotIn('barcode',$booked)->first();
 
 	    if($kitBarcode == NULL){
-	        return Redirect::back()->withInput()->with('errors','There are no Kits of this type avalable on the dates you selected');
+	        return Redirect::to('/createBooking')->with('errors','There are no Kits of this type avalable on the dates you selected');
 	    }
 	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode,'eventdate'=>$startdate));
 
@@ -145,12 +142,15 @@ class bookingController extends \BaseController {
 		$holder = DB::table('booking')->lists('bookingID');
 		$id = $holder[count($holder)-1];
 		$rec = Session::get('rec',NULL);
+		$users = DB::table('users')->lists('username');
 		for($i = 1; $i <= $rec; $i++){
-		    DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> Input::get($i)));
+		    $check = DB::select('select bookingID from bookingUsers where bookingID = ? and user = ?',[$id,$users[Input::get($i)]]);
+		    if($check == NULL){
+		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> $users[Input::get($i)]));
+		    }
 		}
+		return Redirect::to('/viewbooking');
 
-
-		return View::make('test')->with('data',$tranIn)->with('mon',$tranOut);
 	}
 
 	/*public function view()
@@ -158,23 +158,52 @@ class bookingController extends \BaseController {
 		return View::make('viewBooking');
 	}*/
 	public function booking(){
-
     	$table = Datatable::table()
-      	->addColumn('Kit Barcode', 'Date In', 'Date Out', 'Branch')
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type', 'View/Edit/Delete')
       	->setUrl(route('api.booking'))
       	->noScript();
     	$this->layout->content = View::make('viewBooking', array('table' => $table));
 	}
 
 	public function getBookingDataTable(){
-
-//    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
-    	return Datatable::query(DB::table('booking'))
-    		->showColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
-        	->searchColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
-        	->orderColumns('kitBarcode', 'datein', 'dateout', 'forBranch')
+    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode'))
+    		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
+            ->addColumn('Edit', function($model) {
+            	$model->bookingID;
+                return '<a href="/edit?param1 = $model" class="btn btn-default">View/Edit/Delete</a>';
+            })
+        	->searchColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
+        	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch', 'name')
         	->make();
-}
+	}
+
+	public function userbooking(){
+    	$table = Datatable::table()
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type' ,'View/Edit/Delete')
+      	->setUrl(route('api.userbooking'))
+      	->noScript();
+    	$this->layout->content = View::make('viewUserBooking', array('table' => $table));
+	}
+
+	public function getUserBookingDataTable(){
+		$primaryUser = Session::get('userdata',NULL);
+    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode') -> where('primaryUser', $primaryUser->username))
+    		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
+            ->addColumn('Edit', function($model) {
+            	$model->bookingID;
+                return '<a href="/edit?param1 = $model" class="btn btn-default">View/Edit/Delete</a>';
+            })
+        	->searchColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
+        	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch', 'name')
+        	->make();
+	}
+
+	public function editBooking(){
+		$id = $_GET['param1'];
+		$book = DB::table('booking')->where('bookingID', $id)->first();
+		$data['product'] = $book;
+		return view::make('/editbooking') ->with('bookingid', $data['product']);
+	}
 	/**
 	 * Store a newly created resource in storage.
 	 *
