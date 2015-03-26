@@ -173,14 +173,15 @@ class bookingController extends \BaseController {
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch')
             ->addColumn('Edit', function($model) {
             	$model->bookingID;
-                return '<a href="/edit/(.$model.)" class="btn btn-default">View/Edit/Delete</a>';
+                return '<a href="/edit?param1 = $model" class="btn btn-default">View/Edit/Delete</a>';
             })
         	->searchColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch')
         	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch')
         	->make();
 }
-	public function editBooking($id = null){
-		$book = DB::table('booking')->where('bookingID', '.$id.')->first();
+	public function editBooking(){
+		$id = $_GET['param1'];
+		$book = DB::table('booking')->where('bookingID', $id)->first();
 		$data['product'] = $book;
 		return view::make('/editbooking') ->with('bookingid', $data['product']);
 	}

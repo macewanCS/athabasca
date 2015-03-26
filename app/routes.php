@@ -32,7 +32,7 @@ Route::get('/viewbooking', 'bookingController@booking');
 Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingController@getBookingDataTable'));
 Route::get('/viewkit', 'kitViewController@kit');
 Route::get('api/kit', array('as' => 'api.kit', 'uses' => 'kitViewController@getKitDataTable'));
-Route::get('/edit/{model?}', 'bookingController@editBooking');
+Route::get('/edit', 'bookingController@editBooking');
 
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
