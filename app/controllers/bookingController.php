@@ -160,7 +160,7 @@ class bookingController extends \BaseController {
 	}*/
 	public function booking(){
     	$table = Datatable::table()
-      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'View/Edit/Delete')
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type', 'View/Edit/Delete')
       	->setUrl(route('api.booking'))
       	->noScript();
     	$this->layout->content = View::make('viewBooking', array('table' => $table));
@@ -169,14 +169,14 @@ class bookingController extends \BaseController {
 	public function getBookingDataTable(){
 
 //    	$query = User::select('kitBarcode', 'datein', 'dateout', 'forBranch')->get();
-    	return Datatable::query(DB::table('booking') -> where('forBranch', 'ABB'))
-    		->showColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch')
+    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode'))
+    		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
             ->addColumn('Edit', function($model) {
             	$model->bookingID;
                 return '<a href="/edit?param1 = $model" class="btn btn-default">View/Edit/Delete</a>';
             })
-        	->searchColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch')
-        	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch')
+        	->searchColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
+        	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch', 'name')
         	->make();
 }
 	public function editBooking(){
