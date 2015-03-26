@@ -23,7 +23,7 @@ class bookingController extends \BaseController {
 	{
 	    $kit = 0;
 	    $rec = Session::get('rec',NULL);
-		$rec = 1;
+		$rec = 0;
 		Session::put('rec',$rec);
 		return View::make('createBooking')->with('kit', $kit);
 	}
@@ -43,9 +43,6 @@ class bookingController extends \BaseController {
 		    return $this->create2();
 		} elseif(Input::get('create')){
 		    return $this->confirm();
-		} elseif(Input::get('kit')){
-		    $kit = Input::get('desKit');
-		    return $this->create()->with('kit', $kit);
 		}
 	}
 	
@@ -137,7 +134,7 @@ class bookingController extends \BaseController {
 	    $kitBarcode = DB::table('kits')->where('kitType',$kits[Input::get('desKit')])->whereNotIn('barcode',$booked)->first();
 	    
 	    if($kitBarcode == NULL){
-	        return Redirect::back()->withInput()->with('errors','There are no Kits of this type avalable on the dates you selected');
+	        return Redirect::to('/createBooking')->with('errors','There are no Kits of this type avalable on the dates you selected');
 	    }
 	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode,'eventdate'=>$startdate));
 		
@@ -145,12 +142,16 @@ class bookingController extends \BaseController {
 		$holder = DB::table('booking')->lists('bookingID');
 		$id = $holder[count($holder)-1];
 		$rec = Session::get('rec',NULL);
+		$users = DB::table('users')->lists('username');
 		for($i = 1; $i <= $rec; $i++){
-		    DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> Input::get($i)));
+		    $check = DB::select('select bookingID from bookingUsers where bookingID = ? and user = ?',[$id,$users[Input::get($i)]]);
+		    if($check == NULL){
+		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> $users[Input::get($i)]));
+		    }
 		}
 		
 		
-		return View::make('test')->with('data',$tranIn)->with('mon',$tranOut);
+		return Redirect::to('/viewbooking');;
 	}
 
 	/*public function view()
