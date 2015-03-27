@@ -12,40 +12,24 @@ class kitViewController extends \BaseController {
 		//
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	/*public function create()
-	{
-	    $kittype = Input::get('Kit Type');
-	    if($kittype == Null){
-		    return View::make('ViewKits');
-		}
-		else{
-		    return View::make("ViewKits")->with($kittype);
-		}
-	}*/
-
-
-	public function kit(){
-
-    	$table = Datatable::table()
-      	->addColumn('Kit Name', 'Kit Barcode', 'Damage Description', 'Notes')
-      	->setUrl(route('api.kit'))
-      	->noScript();
-    	$this->layout->content = View::make('ViewKits', array('table' => $table));
-	}
-
 	public function getKitDataTable(){
     	return Datatable::query(DB::table('kits'))
     		->showColumns('name', 'barcode', 'notes')
         	->searchColumns('name', 'barcode', 'notes')
         	->orderColumns('name', 'barcode', 'notes')
         	->make();
-}
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+
+	}
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -65,7 +49,11 @@ class kitViewController extends \BaseController {
 	 */
 	public function show($id)
 	{
-	    //
+    	$table = Datatable::table()
+      	->addColumn('Kit Name', 'Kit Barcode', 'Damage Description', 'Notes')
+      	->setUrl(route('api.kit'))
+      	->noScript();
+    	return View::make('ViewKits', array('table' => $table));
 	}
 
 
