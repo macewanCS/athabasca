@@ -7,6 +7,9 @@
     <h3>Kits</h3>
     {{ $table->render() }}
     {{ $table->script() }}
+    <script type=\"text/javascript\">
+    "defaultContent": ""
+    </script>
     </div>
   </div>
 </div>

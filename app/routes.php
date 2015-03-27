@@ -27,18 +27,18 @@ Route::any('/kitmanage/create2', 'kitController@create2');
 Route::any('/kitmanage/create2add', 'kitController@create2add');
 Route::any('/createbooking', 'bookingController@check');
 
-Route::get('/viewbooking', 'bookingController@booking');
-Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingController@getBookingDataTable'));
+Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingViewController@getBookingDataTable'));
 
-Route::get('/viewuserbooking', 'bookingController@userbooking');
-Route::get('api/userbooking', array('as' => 'api.userbooking', 'uses' => 'bookingController@getUserBookingDataTable'));
-Route::get('/viewkit', 'kitViewController@kit');
+Route::get('api/userbooking', array('as' => 'api.userbooking', 'uses' => 'bookingUserViewController@getUserBookingDataTable'));
+
 Route::get('api/kit', array('as' => 'api.kit', 'uses' => 'kitViewController@getKitDataTable'));
 
-
 Route::get('api/transfer', array('as' => 'api.transfer', 'uses' => 'TransferController@getTransferTable'));
-Route::get('/edit', 'bookingController@editBooking');
+
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
 Route::resource('logout', 'HomeController@logout');
 Route::resource('/transfer', 'TransferController');
+Route::resource('/viewbooking', 'bookingViewController');
+Route::resource('/viewuserbooking', 'bookingUserViewController');
+Route::resource('/viewkit', 'kitViewController');
