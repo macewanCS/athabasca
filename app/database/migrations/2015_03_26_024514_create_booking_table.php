@@ -18,11 +18,13 @@ class CreateBookingTable extends Migration {
 			$table->string('eventname', 60)->nullable();
 			$table->string('kitBarcode', 20);
 			$table->date('datein');
+			$table->string('forBranch', 10);
 			$table->date('dateout');
 			$table->date('transferin');
 			$table->date('transferout');
 			$table->date('eventdate')->nullable();
-			$table->timestamps();
+			$table->date('created_at')->nullable();
+			$table->date('updated_at')->nullable();
 			$table->rememberToken();
 	});
 	}

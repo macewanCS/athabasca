@@ -20,7 +20,8 @@ class CreateKitsTable extends Migration {
 		$table->text('notes')->nullable();
 		$table->text('damageDescription')->nullable();
 		$table->string('damaged', 10)->nullable();
-		$table->timestamps();
+		$table->date('created_at')->nullable();
+		$table->date('updated_at')->nullable();
 		$table->rememberToken();
 		$table->primary('barcode');
 		$table->foreign('kitType')->references('kitType')->on('kitType');

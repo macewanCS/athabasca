@@ -1,4 +1,4 @@
-<?php
+``<?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -21,7 +21,8 @@ class CreateUsersTable extends Migration {
 			$table->string('email', 60);
 			$table->string('homebranch', 10);
 			$table->string('role', 20);
-			$table->timestamps();
+			$table->date('created_at')->nullable();
+			$table->date('updated_at')->nullable();
 			$table->rememberToken();
 			$table->primary('empID');
 			$table->unique('username');

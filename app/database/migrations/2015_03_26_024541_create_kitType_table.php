@@ -15,7 +15,8 @@ class CreateKitTypeTable extends Migration {
 		Schema::create('kitType', function($table){
 		$table->string('kitType', 50);
 		$table->text('notes', 50)->nullable();
-		$table->timestamps();
+		$table->date('created_at')->nullable();
+		$table->date('updated_at')->nullable();
 		$table->rememberToken();
 		$table->primary('kitType');
 	});

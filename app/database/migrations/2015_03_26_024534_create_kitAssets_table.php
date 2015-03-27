@@ -16,7 +16,8 @@ class CreateKitAssetsTable extends Migration {
 		$table->string('kitBarcode', 20);
 		$table->string('assetName', 50);
 		$table->string('assetTag', 20);
-		$table->timestamps();
+		$table->date('created_at')->nullable();
+		$table->date('updated_at')->nullable();
 		$table->rememberToken();
 		$table->primary(array('kitBarcode', 'assetTag'));
 		$table->foreign('kitBarcode')->references('barcode')->on('kits');

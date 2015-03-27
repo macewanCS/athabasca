@@ -14,10 +14,11 @@ class CreateBookingUsersTable extends Migration {
 	{
 			Schema::create('bookingUsers', function($table){
 			$table->bigInteger('bookingID');
-			$table->string('empID');
-			$table->timestamps();
+			$table->string('user',60);
+			$table->date('created_at')->nullable();
+			$table->date('updated_at')->nullable();
 			$table->rememberToken();
-			$table->primary(array('bookingID', 'empID'));
+			$table->primary(array('bookingID', 'user'));
 			$table->foreign('bookingID')->references('bookingID')->on('booking');
 		});
 	}
