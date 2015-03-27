@@ -35,6 +35,8 @@ Route::get('api/kit', array('as' => 'api.kit', 'uses' => 'kitViewController@getK
 
 Route::get('api/transfer', array('as' => 'api.transfer', 'uses' => 'TransferController@getTransferTable'));
 
+
+Route::resource('/delete', 'deleteController');
 Route::resource('kitmanage', 'kitController');
 Route::resource('createBooking', 'bookingController@create');
 Route::resource('logout', 'HomeController@logout');
