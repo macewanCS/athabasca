@@ -49,6 +49,10 @@ class kitViewController extends \BaseController {
 	 */
 	public function show($id)
 	{
+	    $users = Session::get('userdata',NULL);
+	    if($users == NULL){
+	        return Redirect::to('/');
+	    }
     	$table = Datatable::table()
       	->addColumn('Kit Name', 'Kit Barcode', 'Damage Description', 'Notes')
       	->setUrl(route('api.kit'))

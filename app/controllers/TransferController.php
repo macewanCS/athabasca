@@ -48,11 +48,15 @@ class TransferController extends BaseController {
 	 */
 	public function show()
 	{
-      $table = Datatable::table()
-        ->addColumn('Event', 'Transfer In', 'Transfer Out', 'Branch', 'Edit')
-        ->setUrl(route('api.transfer'))
-        ->noScript();
-      return View::make('transfer', array('table' => $table));
+	    $users = Session::get('userdata',NULL);
+	    if($users == NULL){
+	        return Redirect::to('/');
+	    }
+        $table = Datatable::table()
+            ->addColumn('Event', 'Transfer In', 'Transfer Out', 'Branch', 'Edit')
+            ->setUrl(route('api.transfer'))
+            ->noScript();
+         return View::make('transfer', array('table' => $table));
   }
 
 

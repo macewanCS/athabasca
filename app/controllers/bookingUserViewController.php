@@ -53,6 +53,10 @@ class bookingUserViewController extends BaseController {
 	 */
 	public function show()
 	{
+	    $users = Session::get('userdata',NULL);
+	    if($users == NULL){
+	        return Redirect::to('/');
+	    }
     	$table = Datatable::table()
       	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type' ,'Edit' ,'Delete')
       	->setUrl(route('api.userbooking'))
