@@ -21,6 +21,10 @@ class bookingController extends \BaseController {
 	 */
 	public function create()
 	{
+	    $users = Session::get('userdata',NULL);
+	    if($users == NULL){
+	        return Redirect::to('/');
+	    }
 	    $kit = 0;
 	    $rec = Session::get('rec',NULL);
 		$rec = 0;
