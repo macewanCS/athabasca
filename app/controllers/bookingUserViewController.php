@@ -71,7 +71,7 @@ class bookingUserViewController extends BaseController {
 	{
     $data = DB::table('booking')->where('bookingID', $id)->first();
     //dd($data);
-    return View::make('transfers.edit')->with('data', $data);
+    return View::make('editbooking')->with('data', $data);
 	}
 
 
