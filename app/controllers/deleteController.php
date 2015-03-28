@@ -1,23 +1,10 @@
 <?php
 
-class kitViewController extends \BaseController {
-  	protected $layout = 'layouts.default';
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	public function getKitDataTable(){
-    	return Datatable::query(DB::table('kits'))
-    		->showColumns('name', 'barcode', 'notes')
-        	->searchColumns('name', 'barcode', 'notes')
-        	->orderColumns('name', 'barcode', 'notes')
-        	->make();
+class deleteController extends BaseController {
+  
+  	public function index()
+  	{
+ 	 
 	}
 
 	/**
@@ -30,6 +17,7 @@ class kitViewController extends \BaseController {
 
 	}
 
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
@@ -37,7 +25,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+
 	}
 
 
@@ -47,14 +35,8 @@ class kitViewController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show()
 	{
-    	$table = Datatable::table()
-      	->addColumn('Kit Name', 'Kit Barcode', 'Damage Description', 'Notes')
-      	->setUrl(route('api.kit'))
-      	->setOptions('defaultContent', '')
-      	->noScript();
-    	return View::make('ViewKits', array('table' => $table));
 	}
 
 
@@ -66,7 +48,9 @@ class kitViewController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		 DB::table('booking')->where('bookingID', $id)->delete();
+		 DB::table('bookingUsers')->where('bookingID', $id)->delete();
+		 return Redirect::back()->with('message','Delete Booking Successful!');
 	}
 
 
@@ -78,7 +62,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+    //
 	}
 
 
