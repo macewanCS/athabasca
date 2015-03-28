@@ -12,7 +12,11 @@ class bookingUserViewController extends BaseController {
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
             ->addColumn('Edit', function($model) {
             	$model->bookingID;
-                return HTML::link('/viewuserbooking/'.$model->bookingID.'/edit/', 'View/Edit/Delete', array('class' => 'btn btn-default'));
+                return HTML::link('/viewuserbooking/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
+            })
+            ->addColumn('Delete', function($model) {
+            	$model->bookingID;
+  				return HTML::link('/delete/'.$model->bookingID.'/edit/', 'Delete', array('class' => 'btn btn-default'));
             })
         	->searchColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
         	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch', 'name')
@@ -54,7 +58,7 @@ class bookingUserViewController extends BaseController {
 	        return Redirect::to('/');
 	    }
     	$table = Datatable::table()
-      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type' ,'View/Edit/Delete')
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type' ,'Edit' ,'Delete')
       	->setUrl(route('api.userbooking'))
       	->noScript();
     	return View::make('viewUserBooking', array('table' => $table));

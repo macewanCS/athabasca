@@ -56,6 +56,7 @@ class kitViewController extends \BaseController {
     	$table = Datatable::table()
       	->addColumn('Kit Name', 'Kit Barcode', 'Damage Description', 'Notes')
       	->setUrl(route('api.kit'))
+      	->setOptions('defaultContent', '')
       	->noScript();
     	return View::make('ViewKits', array('table' => $table));
 	}
