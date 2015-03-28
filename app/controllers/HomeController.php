@@ -35,11 +35,8 @@ class HomeController extends BaseController {
         $users = Session::get('userdata',NULL);
         if($users != NULL){
             Session::flush();
-            return Redirect::to('/');
         }
-        else{
             return Redirect::to('/');
-        }
 }
 
 }
