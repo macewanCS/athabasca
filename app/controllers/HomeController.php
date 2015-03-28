@@ -36,7 +36,7 @@ class HomeController extends BaseController {
         if($users != NULL){
             Session::flush();
         }
-        return View::make('Login');
+            return Redirect::to('/');
 }
 
 }

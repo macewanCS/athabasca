@@ -29,6 +29,10 @@ class kitController extends \BaseController {
 	//Allows for the starting of kit creation
 	public function create()
 	{
+	    $users = Session::get('userdata',NULL);
+	    if($users == NULL){
+	        return Redirect::to('/');
+	    }
 		$kits = DB::table('kitType')->lists('kitType');
 		return View::make('kitManage.create')->with('kits', $kits);
 	}
