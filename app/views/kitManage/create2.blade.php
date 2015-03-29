@@ -4,7 +4,7 @@
     <h3>Create a new kit by filling out the data below</h3>
     <h5>All fields are required.</h5>
     <div>
-      {{Form::open([action=>"_delete",'url' => 'kitmanage/create2add']) }}
+      {{Form::open(['action'=>"_delete",'url' => 'kitmanage/create2add']) }}
       Creating Kit of Class:
       {{Form::label('kitType', 'Kit Type: ') }}
       {{Form::select('kitType', $kits, $kitInput, ['readonly'],['class' => 'form-control']) }}

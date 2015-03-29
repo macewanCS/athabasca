@@ -34,48 +34,75 @@
   });
   $(function() { $("#to" ).datepicker( "option", "dateFormat", "D dd M yy" )});
   $(function() { $("#from" ).datepicker( "option", "dateFormat", "D dd M yy" )});
-  $(function() { $( "#from" ).datepicker( "setDate", +1 )});
-  $(function() { $( "#to" ).datepicker( "setDate", +14 )});
-  $(function() { $( "#from" ).datepicker( "option", "minDate", "+1d" )});
-  $(function() { $( "#to" ).datepicker( "option", "minDate", "+1d" )});
-
+  $(function() { $( "#from" ).datepicker( "setDate", +7 )});
+  $(function() { $( "#to" ).datepicker( "setDate", +3 )});
+  if($.datepicker.formatDate('DD', new Date()) == "Saterday"){
+  $(function() { $( "#from" ).datepicker( "option", "minDate", "+3d" )});
+  $(function() { $( "#to" ).datepicker( "option", "minDate", "+3d" )});
+  } else if($.datepicker.formatDate('DD', new Date()) == "Friday"){
+  $(function() { $( "#from" ).datepicker( "option", "minDate", "+4d" )});
+  $(function() { $( "#to" ).datepicker( "option", "minDate", "+4d" )});
+  } else{
+  $(function() { $( "#from" ).datepicker( "option", "minDate", "+2d" )});
+  $(function() { $( "#to" ).datepicker( "option", "minDate", "+2d" )});
+  }
   </script>
 </head>
-
-  <div class = "jumbotron">
-
-    <h2>Select the Type of kit you want to Book(will default to Ipad Kit)</h2>
-    {{Form::open(['url' => 'createbooking']) }}
-    <p>{{Form::label('desKit', 'Select Kit Type: ')}}
-    {{Form::select('desKit', $kits,$kit) }}</p>
-    <div class="errors">{{Session::get('errors');}}</div>
-    
+  <h1 style="color:#79C33A">Create a booking now (All fields are required)</h1>
+  {{Form::open(['url' => 'createbooking']) }}
+  <div class="errors">{{Session::get('errors');}}</div>
+  <p>  </p>
+  <div class ="row">
+  <div class="col-md-4">
+    {{Form::label('desKit', 'Select Kit Type: ')}}
+    {{Form::select('desKit', $kits,$kit,['class' => 'form-control']) }}
   </div>
-  <div class = "Booking">
-    {{Form::label('branch', 'Booking Location')}}
-    {{Form::select('desBranch', array('ABB'=>'ABB', 'CAL'=>'CAL','CPL'=>'CPL')) }}
-    {{Form::label('eName', 'Event Name')}}
-    {{Form::text('eName')}}
-   </div>
-   
-    <div class = "Booking">
-    {{Form::label('start', ' Booking Start Date ')}}
+  </div>
+  <p>  </p>
+  <div class ="row">
+  <div class="col-md-4">
+
+    {{Form::label('branch', 'Booking Location:  ')}}
+    {{Form::select('desBranch', array('ABB'=>'ABB', 'CAL'=>'CAL','CPL'=>'CPL'),null,['class' => 'form-control']) }}
+  </div>
+  </div>
+  <p>  </p>
+  
+  <div class ="row">
+  <div class="col-md-4">
+    {{Form::label('eName', 'Event Name:  ')}}
+    {{Form::text('eName',null,['class' => 'form-control'])}}
+  </div>
+  </div>
+   <p>  </p>
+    <div>
+    {{Form::label('start', 'Booking Start Date:  ')}}
     <input type="text" id="from" name="from" readOnly="true">
     
-    {{Form::label('end', 'Booking End Date')}}
+    {{Form::label('end', '    Booking End Date: ')}}
     <input type="text" id="to" name="to" readOnly="true">
     </div>
-
+    <p>  </p>
+    
+    <div class ="row">
     @for($i = 1; $i <= $rec; $i++)
-      <div class = "Booking">
+      <div class="col-sm-3">
         {{Form::label($i, 'Additional Recipients: ')}}
-        {{Form::select($i, $users) }}
+        {{Form::select($i, $users, null, ['class' => 'form-control']) }}
       </div>
-    @endfor
+      @endfor
+   </div>
+   <p>  </p>
+   <div>
    <input type="submit" name="add"  value="Add Another Recipients">
-   <input type="submit" name="create"  value="Create Booking">
+   <input type="submit" name="remove"  value="Remove the last Recipients">
+   </div>
+   <p>  </p>
+   <div>
+   <input type="submit" name="create"  value="Create Booking" class = "createbook">
    {{Form::close()}}
-  </div>
+   </div>
+   </div>
 
 </div>
 @stop
