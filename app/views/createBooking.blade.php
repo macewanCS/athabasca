@@ -80,6 +80,7 @@
     <input type="text" id="from" name="from" readOnly="true">
     
     {{Form::label('end', '    Booking End Date: ')}}
+
     <input type="text" id="to" name="to" readOnly="true">
     </div>
     <p>  </p>

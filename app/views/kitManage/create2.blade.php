@@ -4,7 +4,7 @@
     <h3>Create a new kit by filling out the data below</h3>
     <h5>All fields are required.</h5>
     <div>
-      {{Form::open(['action'=>"_delete",'url' => 'kitmanage/create2add']) }}
+      {{Form::open(['url' => 'kitmanage/create2add']) }}
       Creating Kit of Class:
       {{Form::label('kitType', 'Kit Type: ') }}
       {{Form::select('kitType', $kits, $kitInput, ['readonly'],['class' => 'form-control']) }}
@@ -39,7 +39,7 @@
         <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
           {{Form::label($i, 'Asset Tag  ')}}
           {{Form::text(($i), null, ['class' => 'form-control'])}}
-          {{$errors->first('assetTag', '<p class="help-block">:message</p>') }}
+          {{$errors->first($i, '<p class="help-block">:message</p>') }}
         </div>
       </div>
       @endfor
