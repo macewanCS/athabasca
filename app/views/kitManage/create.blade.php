@@ -5,7 +5,7 @@
   @if(isset($message))
   <div class="alert alert-success" role="alert">
     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
+    <span class="sr-only">Message:</span>
     {{$message->first()}}
   </div> <!--end of error message -->
   @endif

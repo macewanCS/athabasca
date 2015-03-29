@@ -22,10 +22,10 @@
             $type = DB::table('kits')->where('barcode','=',$book->kitBarcode)->first();
         ?>
             <h4> There is a(n) <?=$type->kitType?> kit coming in for <?=$book->eventname?> today </h4>
-            <a href="/viewbooking"><h5>Go see all bookings</h5></a>
+            <a href="/viewuserbooking/show"><h5>Go see all bookings</h5></a>
         <?php
         endif;
-        
+
         if($transfer == Null):
         ?>
             <h4>There are no transfers that need to ship out today</h4>

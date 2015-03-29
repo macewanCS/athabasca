@@ -14,9 +14,13 @@ class kitViewController extends \BaseController {
 
 	public function getKitDataTable(){
     	return Datatable::query(DB::table('kits'))
-    		->showColumns('name', 'barcode', 'notes')
-        	->searchColumns('name', 'barcode', 'notes')
-        	->orderColumns('name', 'barcode', 'notes')
+    		->showColumns('name', 'barcode', 'notes', 'damaged')
+        ->addColumn('Edit', function($model) {
+          $model->barcode;
+            return HTML::link('/viewkit/'.$model->barcode.'/edit/', 'View/Edit', array('class' => 'btn btn-default'));
+        })
+        	->searchColumns('name', 'barcode', 'notes', 'damaged')
+        	->orderColumns('name', 'barcode', 'notes', 'damaged')
         	->make();
 	}
 
@@ -54,7 +58,7 @@ class kitViewController extends \BaseController {
 	        return Redirect::to('/');
 	    }
     	$table = Datatable::table()
-      	->addColumn('Kit Name', 'Kit Barcode', 'Damage Description', 'Notes')
+      	->addColumn('Kit Name', 'Kit Barcode', 'Notes', 'Damaged?', 'View/Edit')
       	->setUrl(route('api.kit'))
       	->setOptions('defaultContent', '')
       	->noScript();
@@ -70,7 +74,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		return view::make('kitManage/edit')->with('id', $id);
 	}
 
 

@@ -47,10 +47,9 @@
 					</ul>
 				</li>
 				<li class = "dropdown">
-					<a href = "#" id="kit" class = "dropdown-toggle" data-toggle = "dropdown" data-hover="dropdown" data-delay="1" data-close-others="false">Kit Info</a>
+					<a href = "#" id="kit" class = "dropdown-toggle" data-toggle = "dropdown" data-hover="dropdown" data-delay="1" data-close-others="false">Kits</a>
 					<ul id="kitinfo" class = "dropdown-menu">
-						<li><a id="kiti" href = "/viewkit/show">Browse Kits</a></li>
-            			<li><a id="kitin" href = "#">Add Note to Kit</a></li>
+						<li><a id="kiti" href = "/viewkit/show">Browse All Kits</a></li>
 						<li><a id="kitinf" href = "/kitmanage/create">Create a Kit</a></li>
 					</ul>
 				</li>
