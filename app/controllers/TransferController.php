@@ -7,14 +7,14 @@ class TransferController extends BaseController {
  	 }
 
  	public function getTransferTable(){
-     	return Datatable::query(DB::table('booking'))
-        ->showColumns('eventdate', 'transferin', 'transferout', 'forBranch')
+     	return Datatable::query(DB::table('booking')->where('transferin', '>=', date('m/d/Y')))
+        ->showColumns('transferin','eventname','forBranch')
         ->addColumn('Edit', function($model) {
           $model->bookingID;
             return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
           })
-          ->searchColumns('eventdate', 'transferin', 'transferout', 'forBranch')
-         	->orderColumns('eventdate', 'transferin', 'transferout', 'forBranch')
+          ->searchColumns('transferin','eventname','forBranch')
+         	->orderColumns('transferin','eventname','forBranch')
          	->make();
          }
 
@@ -53,7 +53,7 @@ class TransferController extends BaseController {
 	        return Redirect::to('/');
 	    }
         $table = Datatable::table()
-            ->addColumn('Event', 'Transfer In', 'Transfer Out', 'Branch', 'Edit')
+            ->addColumn('Transfer On','Event Name', 'Transfer To', 'Actions')
             ->setUrl(route('api.transfer'))
             ->noScript();
          return View::make('transfer', array('table' => $table));

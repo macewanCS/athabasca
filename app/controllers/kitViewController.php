@@ -74,7 +74,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return $id;
+		return view::make('kitManage/edit')->with('id', $id);
 	}
 
 
