@@ -51,9 +51,6 @@ class kitController extends \BaseController {
 		//Adds an asset placeholder to the page, allowing for dynamic asset addings
 		if(Input::get('add')){
 			$assets = input::get('assets',NULL);
-			//if($assets = 1){
-		//	 <><><><><><fix me
-		//	}
 			$assets += 1;
 			Input::merge(array('assets' => $assets));
 			Request::flash();
@@ -66,7 +63,11 @@ class kitController extends \BaseController {
 
 		elseif(Input::get('sub')){
 			$assets = input::get('assets',NULL);
+			if($assets = 1){
+			 goto skip;
+			}
 			$assets -= 1;
+			skip:
 			Input::merge(array('assets' => $assets));
 			Request::flash();
 			$input = input::all();
@@ -76,7 +77,27 @@ class kitController extends \BaseController {
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
 
-		$validation =Validator::make(Input::all(),['kitType' => 'required','assets' => 'required', 'barcode' => 'required']);
+		//Rules for Validation go HERE
+		$message = array(
+			'barcode.digits' => 'Barcode must be 14 digits long and begin with 31221',
+			'barcode.regex' => 'Barcode must be 14 digits long and begin with 31221',
+		);
+
+
+		$rules = ['kitType' => 'required',
+		'assets' => 'required',
+		'barcode' => 'required|digits:14|unique:kits|regex:/^(31221)\w{9}/',];
+
+		$assets = input::get('assets',NULL);
+		for($i = 0; $i < $assets; $i++){
+			$rules[$i] = 'required|digits:7|unique:kitAssets,assetTag';
+			$message[$i.'.unique'] = 'Asset Tag Allready Taken';
+			$message[$i.'.digits'] = 'Asset Tags are 7 digits';
+			$message[$i.'.required'] = 'All Fields Required, Remove an asset if unneeded';
+		}
+
+		
+		$validation =Validator::make(Input::all(),$rules, $message);
 		if($validation->fails())
 		{
 			Request::flash();
@@ -111,7 +132,7 @@ class kitController extends \BaseController {
 				DB::table('kitAssets')->insert(array('kitBarcode' => $barcode,'assetName' => $kits.$i, 'assetTag' => $assetTag));
 			}
 			DB::commit();
-			return Redirect::to('/kitmanage/create')->with('message', 'Kit Created');
+			return Redirect::to('/viewkit/show')->with('message', 'Kit Created');
 	}
 
 	/**

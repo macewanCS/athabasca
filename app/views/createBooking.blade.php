@@ -49,7 +49,7 @@
     <p>{{Form::label('desKit', 'Select Kit Type: ')}}
     {{Form::select('desKit', $kits,$kit) }}</p>
     <div class="errors">{{Session::get('errors');}}</div>
-    
+
   </div>
   <div class = "Booking">
     {{Form::label('branch', 'Booking Location')}}
@@ -57,11 +57,11 @@
     {{Form::label('eName', 'Event Name')}}
     {{Form::text('eName')}}
    </div>
-   
+
     <div class = "Booking">
     {{Form::label('start', ' Booking Start Date ')}}
     <input type="text" id="from" name="from" readOnly="true">
-    
+
     {{Form::label('end', 'Booking End Date')}}
     <input type="text" id="to" name="to" readOnly="true">
     </div>

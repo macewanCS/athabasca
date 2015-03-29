@@ -34,11 +34,13 @@ class bookingController extends \BaseController {
 
 	public function create2()
 	{
-	    $rec = Session::get('rec',NULL);
+		Request::flash();
+	  $rec = Session::get('rec',NULL);
 		$rec += 1;
 		Session::put('rec',$rec);
 		$kit = Input::get('desKit');
-		return View::make('createBooking')->with('kit', $kit);
+		$input = input::all();
+		return View::make('createBooking')->with('kit', $kit)->withInput($input);
 	}
 
 	public function check()
