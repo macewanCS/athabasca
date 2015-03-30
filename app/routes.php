@@ -11,7 +11,8 @@ Route::get('/', function()
 });
 
 //Assorted Routes for secondary pages
-Route::any('viewkit/{$id}/edit2', array('uses' => 'kitViewController@edit2'));
+Route::any('/viewkit/{id2}/edit2', array('uses' => 'kitViewController@edit2'));
+Route::any('/transfer/{id2}/edit2', array('uses' => 'TransferController@edit2'));
 Route::post('login', array('uses' => 'HomeController@login'));
 Route::post('Home', array('uses' => 'HomeController@Home'));
 Route::any('/kitmanage/create2', 'kitController@create2');
@@ -23,6 +24,7 @@ Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingViewCon
 Route::get('api/userbooking', array('as' => 'api.userbooking', 'uses' => 'bookingUserViewController@getUserBookingDataTable'));
 Route::get('api/kit', array('as' => 'api.kit', 'uses' => 'kitViewController@getKitDataTable'));
 Route::get('api/transfer', array('as' => 'api.transfer', 'uses' => 'TransferController@getTransferTable'));
+Route::get('api/transfer2', array('as' => 'api.transfer2', 'uses' => 'TransferController@getTransferTable2'));
 
 //Resources for each function
 Route::resource('/delete', 'deleteController');

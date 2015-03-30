@@ -1,8 +1,9 @@
 @extends('layouts.default')
 @section('content')
+<h3>Kit Creation: Step 2</h3>
+
   <div class = "jumbotron">
-    <h3>Create a new kit by filling out the data below</h3>
-    <h5>All fields are required.</h5>
+    <h3>Input Data Below to Complete Kit Creation</h3>
     <div>
       {{Form::open(['url' => 'kitmanage/create2add']) }}
       Creating Kit of Class:

@@ -96,13 +96,11 @@
    <p>  </p>
    <div>
    <input type="submit" name="add"  value="Add Another Recipients">
-   <input type="submit" name="remove"  value="Remove the last Recipients">
+   <input type="submit" name="remove"  value="Remove the last Recipient">
    </div>
    <p>  </p>
-   <div class = "jumbotron">
-  <h2>
+   <div>
    <input type="submit" name="create"  value="Create Booking" class = "createbook">
- </h2>
    {{Form::close()}}
    </div>
    </div>

@@ -42,7 +42,7 @@ class bookingController extends \BaseController {
 		$input = input::all();
 		return View::make('createBooking')->with('kit', $kit)->withInput($input);
 	}
-	
+
 	public function create3()
 	{
 	    $rec = Session::get('rec',NULL);
@@ -170,7 +170,7 @@ class bookingController extends \BaseController {
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> $users[Input::get($i)]));
 		    }
 		}
-		return Redirect::to('/viewbooking/show');
+		return Redirect::to('viewuserbooking/show');
 
 	}
 

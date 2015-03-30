@@ -19,6 +19,7 @@ class CreateKitsTable extends Migration {
 		$table->string('name');
 		$table->text('notes')->nullable();
 		$table->text('damageDescription')->nullable();
+		$table->text('location')->nullable();
 		$table->string('damaged', 10)->nullable();
 		$table->date('created_at')->nullable();
 		$table->date('updated_at')->nullable();

@@ -1,12 +1,24 @@
 @extends('layouts.default')
 
 @section('content')
+  @if($errors->any())
+  <div class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong> Update: </strong> {{$errors->first()}}.
+  </div> <!--end of error message -->
+  @endif
+
   <h3>Kit Named: {{$kitinfo->name}}</h3>
   <h3>Kit Barcode: {{$kitinfo->barcode}}</h3>
   <h3>Kit Type: {{$kitinfo->kitType}}</h3>
   <h3>Kit Has {{$kitinfo->assets}} assets.</h3>
-  <h4> !!List Assets Here!! </h4>
 
+  @for($i = 0; $i < $kitinfo->assets; $i++)
+    <b>Name:</b> {{$assets[$i]}}
+    <b>Tag:</b> {{$assettag[$i]}}
+    <br>
+  @endfor
+  <br>
   {{Form::open(['url' => 'viewkit/'.$kitinfo->barcode.'/edit2']) }}
     <div class ="row">
       <div class="col-md-4">
@@ -34,21 +46,21 @@
         </div>
         <br>
 
-    @elseif($kitinfo->damaged !== null)
-    <h3>
+    @elseif($kitinfo->damaged == 'Yes')
     <div class ="row">
       <div class="col-md-4">
 
         <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
-        {{Form::label('damage', 'Damage Description (If Any)')}}
+        {{Form::label('damage', 'Damage Description')}}
         {{Form::textarea('damage',$kitinfo->damageDescription, ['class' => 'form-control', 'rows' => 2])}}
         {{$errors->first('damage', '<p class="help-block">:message</p>') }}
+        <input type="submit" name="senddesc"  value="Save Damage Description">
+        <input type="submit" name="unreport"  value="Kit Has been Fixed">
+
       </div>
     </div>
     </div>
     @endif
-    {{Form::submit('Create Kit') }}
-
     {{Form::close()}}
 
 

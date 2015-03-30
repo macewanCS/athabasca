@@ -12,10 +12,33 @@ class kitViewController extends \BaseController {
 
 	}
 
-  public function edit2()
+  public function edit2($id2)
   {
-    return 'hello';
-    return $id;
+    $kitinfo = DB::table('kits')->where('barcode',$id2)->get();
+    if (!count($kitinfo)){
+      App::abort(404);
+    }
+    //To save kit notes
+    if(Input::get('savenotes')){
+      DB::table('kits')->where('barcode', $id2)->update(array('notes' => Input::get('notes')));
+      return Redirect::to(URL::previous())->withErrors(['Note Saved']);
+    }
+    //To report kit is fixed
+    if(Input::get('unreport')){
+      DB::table('kits')->where('barcode', $id2)->update(array('damageDescription' => null));
+      DB::table('kits')->where('barcode', $id2)->update(array('damaged' => null));
+      return Redirect::to(URL::previous())->withErrors(['Damage Removed']);
+    }
+    //To report damage
+    elseif(Input::get('report')){
+      DB::table('kits')->where('barcode', $id2)->update(array('damaged' => 'Yes'));
+      return Redirect::to(URL::previous())->withErrors(['Please Describe the Damage']);
+    }
+    elseif(Input::get('senddesc')){
+      DB::table('kits')->where('barcode', $id2)->update(array('damageDescription' => Input::get('damage')));
+      return Redirect::to(URL::previous())->withErrors(['Damage Description Saved']);
+    }
+    return 'error, howd you find me?';
   }
 
 
@@ -85,8 +108,12 @@ class kitViewController extends \BaseController {
     if (!count($kitinfo)){
       App::abort(404);
     }
+    $assets = DB::table('kitAssets')->where('kitBarcode', $id)->lists('assetName');
+    $assettag = DB::table('kitAssets')->where('kitBarcode', $id)->lists('assetTag');
     $kitinfo = $kitinfo[0];
-		return view::make('kitManage/edit')->with('kitinfo', $kitinfo);
+		return view::make('kitManage/edit')->with('kitinfo', $kitinfo)
+    ->with('assets', $assets)
+    ->with('assettag', $assettag);
 	}
 
 
