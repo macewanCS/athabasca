@@ -7,7 +7,7 @@ class userTableSeeder extends Seeder {
 
     $users = array(
         array(
-          'username' => 1,
+          'username' => 'joshd',
           'empID' => 1,
           'password'=> 1,
           'phone' => '780-123-4567',
@@ -16,7 +16,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 2,
+          'username' => 'sykesa',
           'empID' => 2,
           'password'=> 2,
           'phone' => '780-123-4567',
@@ -25,7 +25,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 3,
+          'username' => 'koensm',
           'empID' => 3,
           'password'=> 3,
           'phone' => '780-123-4567',
@@ -34,7 +34,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 4,
+          'username' => 'debauc',
           'empID' => 4,
           'password'=> 4,
           'phone' => '780-123-4567',
@@ -43,7 +43,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 5,
+          'username' => 'cooper',
           'empID' => 5,
           'password'=> 5,
           'phone' => '780-123-4567',
@@ -52,7 +52,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 6,
+          'username' => 'candice',
           'empID' => 6,
           'password'=> 6,
           'phone' => '780-123-4567',
@@ -61,7 +61,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 7,
+          'username' => 'mcam',
           'empID' => 7,
           'password'=> 7,
           'phone' => '780-123-4567',
@@ -70,7 +70,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 8,
+          'username' => 'sykesa5',
           'empID' => 8,
           'password'=> 8,
           'phone' => '780-123-4567',
@@ -79,7 +79,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 9,
+          'username' => 'Librarian',
           'empID' => 9,
           'password'=> 9,
           'phone' => '780-123-4567',
@@ -88,7 +88,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 10,
+          'username' => 'jessicad',
           'empID' => 10,
           'password'=> 10,
           'phone' => '780-123-4567',
@@ -97,7 +97,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 11,
+          'username' => 'justinm',
           'empID' => 11,
           'password'=> 11,
           'phone' => '780-123-4567',
@@ -106,7 +106,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 12,
+          'username' => 'brittanyw',
           'empID' => 12,
           'password'=> 12,
           'phone' => '780-123-4567',
@@ -115,7 +115,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 13,
+          'username' => 'littleb',
           'empID' => 13,
           'password'=> 13,
           'phone' => '780-123-4567',
@@ -124,7 +124,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 14,
+          'username' => 'jutinem',
           'empID' => 14,
           'password'=> 14,
           'phone' => '780-123-4567',
@@ -133,7 +133,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 15,
+          'username' => 'salenag',
           'empID' => 15,
           'password'=> 15,
           'phone' => '780-123-4567',
@@ -142,7 +142,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 16,
+          'username' => 'tswizzle',
           'empID' => 16,
           'password'=> 16,
           'phone' => '780-123-4567',
@@ -151,7 +151,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 17,
+          'username' => 'taylors',
           'empID' => 17,
           'password'=> 17,
           'phone' => '780-123-4567',
@@ -160,7 +160,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 18,
+          'username' => 'mairandab',
           'empID' => 18,
           'password'=> 18,
           'phone' => '780-123-4567',
@@ -169,7 +169,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 19,
+          'username' => 'franny',
           'empID' => 19,
           'password'=> 19,
           'phone' => '780-123-4567',
@@ -178,7 +178,7 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 20,
+          'username' => 'admin',
           'empID' => 20,
           'password'=> 20,
           'phone' => '780-123-4567',
