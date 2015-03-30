@@ -9,14 +9,15 @@ class kitViewController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+
 	}
 
-  public function update($id)
+  public function edit2()
   {
     return 'hello';
     return $id;
   }
+
 
 	public function getKitDataTable(){
     	return Datatable::query(DB::table('kits'))
@@ -106,7 +107,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-    return $id;
+
 	}
 
 

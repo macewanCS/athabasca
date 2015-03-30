@@ -7,7 +7,7 @@
   <h3>Kit Has {{$kitinfo->assets}} assets.</h3>
   <h4> !!List Assets Here!! </h4>
 
-  {{Form::open(['route' => 'viewkit.update']) }}
+  {{Form::open(['url' => 'viewkit/'.$kitinfo->barcode.'/edit2']) }}
     <div class ="row">
       <div class="col-md-4">
         <div class="form-group{{ $errors->has('status') ? ' has-error' : '' }}">
@@ -47,6 +47,8 @@
     </div>
     </div>
     @endif
+    {{Form::submit('Create Kit') }}
+
     {{Form::close()}}
 
 

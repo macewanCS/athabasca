@@ -16,7 +16,6 @@ class kitController extends \BaseController {
         $branch = $xml_data->branchInfo->BranchId;
 				echo '<pre>'; print_r($branch);
     }
-		//return $xml;
 	}
 
 
