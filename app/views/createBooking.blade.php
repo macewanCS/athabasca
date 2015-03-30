@@ -67,7 +67,7 @@
   </div>
   </div>
   <p>  </p>
-  
+
   <div class ="row">
   <div class="col-md-4">
     {{Form::label('eName', 'Event Name:  ')}}
@@ -78,13 +78,13 @@
     <div>
     {{Form::label('start', 'Booking Start Date:  ')}}
     <input type="text" id="from" name="from" readOnly="true">
-    
+
     {{Form::label('end', '    Booking End Date: ')}}
 
     <input type="text" id="to" name="to" readOnly="true">
     </div>
     <p>  </p>
-    
+
     <div class ="row">
     @for($i = 1; $i <= $rec; $i++)
       <div class="col-sm-3">
@@ -96,7 +96,7 @@
    <p>  </p>
    <div>
    <input type="submit" name="add"  value="Add Another Recipients">
-   <input type="submit" name="remove"  value="Remove the last Recipients">
+   <input type="submit" name="remove"  value="Remove the last Recipient">
    </div>
    <p>  </p>
    <div>

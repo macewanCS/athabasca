@@ -17,6 +17,17 @@ class TransferController extends BaseController {
          	->orderColumns('transferin','eventname','forBranch')
          	->make();
          }
+  public function getTransferTable2(){
+    return Datatable::query(DB::table('booking')->where('transferin', '>=', date('m/d/Y')))
+        ->showColumns('transferin','eventname','forBranch')
+        ->addColumn('Edit', function($model) {
+          $model->bookingID;
+              return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
+            })
+            ->searchColumns('transferin','eventname','forBranch')
+            ->orderColumns('transferin','eventname','forBranch')
+            ->make();
+            }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -53,10 +64,15 @@ class TransferController extends BaseController {
 	        return Redirect::to('/');
 	    }
         $table = Datatable::table()
-            ->addColumn('Transfer On','Event Name', 'Transfer To', 'Actions')
+            ->addColumn('Transfer On','Event Name', 'Transfer To', 'Send Transfer')
             ->setUrl(route('api.transfer'))
             ->noScript();
-         return View::make('transfer', array('table' => $table));
+        $table2 =Datatable::table()
+            ->addColumn('Transfering On','Event Name', 'Transfering From', 'Accept Transfer')
+            ->setUrl(route('api.transfer2'))
+            ->noScript();
+
+      return View::make('transfers.transfer')->with('table',$table)->with('table2',$table2);
   }
 
 
@@ -68,12 +84,30 @@ class TransferController extends BaseController {
 	 */
 	public function edit($id)
 	{
-    $data = DB::table('booking')->where('bookingID', $id)->first();
-    //dd($data);
-    return View::make('transfers.edit')->with('data', $data);
+    $data = DB::table('booking')->where('bookingID', $id)->get();
+    $data = $data[0];
+    $kitdata = DB::table('kits')->where('barcode',$data->kitBarcode)->get();
+    $kitdata = $kitdata[0];
+    return View::make('transfers.edit')->with('data', $data)->with('kitdata', $kitdata);
 	}
 
+  public function edit2($id)
+	{
+    if(Input::get('intransit')){
+      $barcode = DB::table('booking')->where('bookingID', $id)->pluck('kitBarcode');
+      DB::table('kits')->where('barcode', $barcode)->update(array('location' => 'intransit'));
+      return Redirect::to(URL::previous())->withErrors(['Kit has Been put In Transit']);
+    }
 
+    if(Input::get('arrived')){
+      $location = DB::table('booking')->where('bookingID', $id)->pluck('forBranch');
+      $barcode = DB::table('booking')->where('bookingID', $id)->pluck('kitBarcode');
+      DB::table('kits')->where('barcode', $barcode)->update(array('location' => $location));
+      return Redirect::to(URL::previous())->withErrors(['Kit Has Arrived']);
+    }
+    return Input::all();
+
+  }
 	/**
 	 * Update the specified resource in storage.
 	 *
