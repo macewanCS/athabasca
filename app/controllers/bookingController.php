@@ -42,6 +42,17 @@ class bookingController extends \BaseController {
 		$input = input::all();
 		return View::make('createBooking')->with('kit', $kit)->withInput($input);
 	}
+	
+	public function create3()
+	{
+	    $rec = Session::get('rec',NULL);
+	    if($rec >= 1){
+		    $rec -= 1;
+		}
+		Session::put('rec',$rec);
+		$kit = Input::get('desKit');
+		return View::make('createBooking')->with('kit', $kit);
+	}
 
 	public function check()
 	{
@@ -49,6 +60,8 @@ class bookingController extends \BaseController {
 		    return $this->create2();
 		} elseif(Input::get('create')){
 		    return $this->confirm();
+		} elseif(Input::get('remove')){
+		    return $this->create3();
 		}
 	}
 
@@ -138,7 +151,9 @@ class bookingController extends \BaseController {
 	        $booked[$x] = $book[$x]->kitBarcode;
 	    }
 	    $kitBarcode = DB::table('kits')->where('kitType',$kits[Input::get('desKit')])->whereNotIn('barcode',$booked)->first();
-
+        if($eventName == ""){
+            return Redirect::to('/createBooking')->with('errors','You must enter an Event Name');
+          }
 	    if($kitBarcode == NULL){
 	        return Redirect::to('/createBooking')->with('errors','There are no Kits of this type avalable on the dates you selected');
 	    }
