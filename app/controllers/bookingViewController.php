@@ -73,6 +73,7 @@ class bookingViewController extends BaseController {
 	public function edit($id)
 	{
     $data = DB::table('booking')->where('bookingID', $id)->first();
+    $data2 = DB::table('bookingUsers')->where('bookingID', $id);
     return View::make('editbooking')->with('data', $data);
 	}
 
