@@ -11,7 +11,7 @@ class bookingViewController extends BaseController {
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
             ->addColumn('Edit', function($model) {
             	$model->bookingID;
-                return HTML::link('/viewuserbooking/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
+                return HTML::link('/viewbooking/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
             })
             ->addColumn('Delete', function($model) {
             	$model->bookingID;
@@ -73,8 +73,7 @@ class bookingViewController extends BaseController {
 	public function edit($id)
 	{
     $data = DB::table('booking')->where('bookingID', $id)->first();
-    //dd($data);
-    return View::make('transfers.edit')->with('data', $data);
+    return View::make('editbooking')->with('data', $data);
 	}
 
 
