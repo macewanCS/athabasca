@@ -12,6 +12,12 @@ class kitViewController extends \BaseController {
 		//
 	}
 
+  public function update($id)
+  {
+    return 'hello';
+    return $id;
+  }
+
 	public function getKitDataTable(){
     	return Datatable::query(DB::table('kits'))
     		->showColumns('name', 'barcode', 'notes', 'damaged')
@@ -74,7 +80,12 @@ class kitViewController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return view::make('kitManage/edit')->with('id', $id);
+    $kitinfo = DB::table('kits')->where('barcode',$id)->get();
+    if (!count($kitinfo)){
+      App::abort(404);
+    }
+    $kitinfo = $kitinfo[0];
+		return view::make('kitManage/edit')->with('kitinfo', $kitinfo);
 	}
 
 
@@ -84,10 +95,7 @@ class kitViewController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
-	}
+
 
 
 	/**
@@ -98,7 +106,7 @@ class kitViewController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+    return $id;
 	}
 
 

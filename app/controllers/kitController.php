@@ -63,7 +63,7 @@ class kitController extends \BaseController {
 
 		elseif(Input::get('sub')){
 			$assets = input::get('assets',NULL);
-			if($assets = 1){
+			if($assets == 1){
 			 goto skip;
 			}
 			$assets -= 1;
@@ -96,7 +96,7 @@ class kitController extends \BaseController {
 			$message[$i.'.required'] = 'All Fields Required, Remove an asset if unneeded';
 		}
 
-		
+
 		$validation =Validator::make(Input::all(),$rules, $message);
 		if($validation->fails())
 		{

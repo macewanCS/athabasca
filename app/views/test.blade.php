@@ -1,5 +1,7 @@
 @extends('layouts.default')
 @section('content')
+{{ date('m/d/Y')}}
+
 <?php
     $today = new DateTime();
     $date = $today->format('m/d/Y');
