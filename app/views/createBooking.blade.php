@@ -35,7 +35,7 @@
   $(function() { $("#to" ).datepicker( "option", "dateFormat", "D dd M yy" )});
   $(function() { $("#from" ).datepicker( "option", "dateFormat", "D dd M yy" )});
   $(function() { $( "#from" ).datepicker( "setDate", +7 )});
-  $(function() { $( "#to" ).datepicker( "setDate", +3 )});
+  $(function() { $( "#to" ).datepicker( "setDate", +8 )});
   if($.datepicker.formatDate('DD', new Date()) == "Saterday"){
   $(function() { $( "#from" ).datepicker( "option", "minDate", "+3d" )});
   $(function() { $( "#to" ).datepicker( "option", "minDate", "+3d" )});

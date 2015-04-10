@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('content')
 <h3>Kit Creation: Step 2</h3>
+<hr class="divider">
 
   <div class = "jumbotron">
     <h3>Input Data Below to Complete Kit Creation</h3>
@@ -66,6 +67,9 @@
   <div>
     {{Form::submit('Create Kit') }}
     {{Form::close()}}
+    <hr class="divider"></hr>
+
   </div>
+  <hr class="divider"></hr>
 
 @stop

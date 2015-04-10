@@ -10,6 +10,7 @@
   </div> <!--end of error message -->
   @endif
   <h3>Kit Creation: Step 1</h3>
+  <hr class="divider">
 
   <h4>
   <div class = "dropdown">
@@ -24,6 +25,7 @@
     {{Form::submit('Start Kit Creation') }}
     {{Form::close()}}
   </h4>
+  <hr class="divider">
 
   </div>
 

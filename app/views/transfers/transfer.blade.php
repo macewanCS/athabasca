@@ -4,6 +4,8 @@
   <div class="row">
     <div class="col-md-12">
     <h3>Your Outgoing transfers</h3>
+    <hr class="divider">
+
     {{ $table->render() }}
     {{ $table->script() }}
     </div>
@@ -12,6 +14,8 @@
   <div class="row">
     <div class="col-md-12">
     <h3>Your Incoming transfers</h3>
+    <hr class="divider">
+
     {{ $table2->render() }}
     {{ $table2->script() }}
     </div>
