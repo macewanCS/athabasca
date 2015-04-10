@@ -63,7 +63,7 @@
   <div class="col-md-4">
 
     {{Form::label('branch', 'Booking Location:  ')}}
-    {{Form::select('desBranch', array('ABB'=>'ABB', 'CAL'=>'CAL','CPL'=>'CPL'),null,['class' => 'form-control']) }}
+    {{Form::select('desBranch', array('ABB'=>'Abbottsfield - Penny McKee Branch', 'CAL'=>'Calder Branch','CPL'=>'Capilano Branch','CSD'=>'Castle Downs Branch','CLV'=>'Clareview Branch','HIG'=>'Highlands Branch','IDY'=>'Idylwylde Branch','JPL'=>'Jasper Place Branch','LHL'=>'Lois Hole Library','LON'=>'Londonderry Branch','MEA'=>'Meadows Branch','MLW'=>'Mill Woods Branch','RIV'=>'Riverbend Branch','SPW'=>'Sprucewood Branch','MNA'=>'Stanley A. Milner Library','STR'=>'Strathcona Branch','WMC'=>'Whitemud Crossing Branch','WOO'=>'Woodcroft Branch'),null,['class' => 'form-control']) }}
   </div>
   </div>
   <p>  </p>
