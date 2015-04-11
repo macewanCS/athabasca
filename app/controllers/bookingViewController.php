@@ -9,10 +9,6 @@ class bookingViewController extends BaseController {
 	public function getBookingDataTable(){
     	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode'))
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
-            ->addColumn('Edit', function($model) {
-            	$model->bookingID;
-                return HTML::link('/viewbooking/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
-            })
             ->addColumn('Delete', function($model) {
             	$model->bookingID;
   				return HTML::link('/delete/'.$model->bookingID.'/edit/', 'Delete', array('class' => 'btn btn-default'));
@@ -57,7 +53,7 @@ class bookingViewController extends BaseController {
 	        return Redirect::to('/');
 	    }
     	$table = Datatable::table()
-      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type', 'Edit', 'Delete')
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type', 'Delete')
       	->setUrl(route('api.booking'))
       	->noScript();
     	return View::make('viewBooking', array('table' => $table));
@@ -72,9 +68,7 @@ class bookingViewController extends BaseController {
 	 */
 	public function edit($id)
 	{
-    $data = DB::table('booking')->where('bookingID', $id)->first();
-    $data2 = DB::table('bookingUsers')->where('bookingID', $id);
-    return View::make('editbooking')->with('data', $data);
+		
 	}
 
 
