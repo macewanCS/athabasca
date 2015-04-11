@@ -63,6 +63,8 @@ class TransferController extends BaseController {
 	    if($users == NULL){
 	        return Redirect::to('/');
 	    }
+      $data = DB::table('booking')->where('transferin', '>=', date('m/d/Y');
+      return $data;
         $table = Datatable::table()
             ->addColumn('Transfer On','Event Name', 'Transfer To', 'Send Transfer')
             ->setUrl(route('api.transfer'))

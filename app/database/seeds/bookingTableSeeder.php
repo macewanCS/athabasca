@@ -7,7 +7,7 @@ class bookingTableSeeder extends Seeder {
 
     $booking = array(
         array(
-          'primaryuser' => 'joshd',
+          'primaryuser' => 'joshdoti',
           'eventname' => 'Ipad School Event',
           'kitBarcode'=> '31221111111001',
           'datein' => '04/18/2015',

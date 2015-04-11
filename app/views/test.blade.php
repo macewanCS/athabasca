@@ -2,17 +2,19 @@
 @section('content')
 {{ date('m/d/Y h:i:s a')}}
 <hr class="divider">
-
 <?php
     $today = new DateTime();
+
     $date = $today->format('m/d/Y');
 	$book = DB::table('booking')->where('datein','=',$date)->first();/*Change the date to today's wth $date*/
 	$transfer = DB::table('booking')->where('transferout','=',$date)->first();
     $users = Session::get('userdata',NULL);
     if($users != NULL):
+
         ?>
-        <h2>Hello, <?= $users->username;?></h2>
+        <h2 style="color:#005097"> Hello, <?= $users->username;?> </h2>
         <?php
+
         $date = $today->format('l, F j,Y');
         ?>
         <h3> Today is <?=$date?></h3>
