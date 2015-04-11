@@ -7,6 +7,7 @@
   <strong> Update: </strong> {{$errors->first()}}.
 </div> <!--end of error message -->
 @endif
+<h2 style="color:#7D408D">Edit a Booking<h2>
 
 <h3>Booking ID: {{$data->bookingID}}</h3>
 <h3>For User: {{$data->primaryUser}}</h3>

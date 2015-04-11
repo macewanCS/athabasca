@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<h3>Kit Creation: Step 2</h3>
+<h2 style="color:#DF115C">Kit Creation: Step 2</h2>
 <hr class="divider">
 
   <div class = "jumbotron">
@@ -65,10 +65,9 @@
   </div>
 
   <div>
-    {{Form::submit('Create Kit') }}
+    {{Form::submit('Create Kit', ['class' =>  'createbook']) }}
     {{Form::close()}}
     <hr class="divider"></hr>
-
   </div>
   <hr class="divider"></hr>
 

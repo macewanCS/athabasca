@@ -6,8 +6,8 @@
 
     <title>EPL</title>
     {{ HTML::script('js/jquery.js') }}
-    {{ HTML::style('css/bootstrap.css') }}
     {{ HTML::style('css/main.css')}}
+    {{ HTML::style('css/bootstrap.css') }}
     {{ HTML::script('js/bootstrap.min.js') }}
     {{ HTML::script('https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.4/js/jquery.dataTables.min.js')}}
     {{ HTML::script('/assets/js/jquery.js')}}

@@ -9,10 +9,9 @@
     {{$message->first()}}
   </div> <!--end of error message -->
   @endif
-  <h3>Kit Creation: Step 1</h3>
+  <h2 style="color:#DF115C">Kit Creation: Step 1</h2>
   <hr class="divider">
 
-  <h4>
   <div class = "dropdown">
     {{Form::open(['url' => 'kitmanage/create2']) }}
     I want to Create
@@ -22,9 +21,10 @@
     <br>
     {{Form::label('assets', 'Assets (Eg. 7 ipads in kit): ') }}
     {{Form::number('assets', '1') }}
-    {{Form::submit('Start Kit Creation') }}
+    <hr class="divider">
+
+    {{Form::submit('Start Kit Creation', ['class' => 'createbook'])}}
     {{Form::close()}}
-  </h4>
   <hr class="divider">
 
   </div>

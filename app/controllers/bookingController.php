@@ -165,9 +165,9 @@ class bookingController extends \BaseController {
 		$rec = Session::get('rec',NULL);
 		$users = DB::table('users')->lists('username');
 		for($i = 1; $i <= $rec; $i++){
-		    $check = DB::select('select bookingID from bookingUsers where bookingID = ? and user = ?',[$id,$users[Input::get($i)]]);
+		    $check = DB::select('select bookingID from bookingUsers where bookingID = ? and email = ?',[$id,$users[Input::get($i)]]);
 		    if($check == NULL){
-		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> $users[Input::get($i)]));
+		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'email'=> $users[Input::get($i)]));
 		    }
 		}
 		return Redirect::to('viewuserbooking/show');

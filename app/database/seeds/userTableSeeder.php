@@ -7,13 +7,13 @@ class userTableSeeder extends Seeder {
 
     $users = array(
         array(
-          'username' => 'joshd',
+          'username' => 'joshdoti',
           'empID' => 1,
           'password'=> 1,
           'phone' => '780-123-4567',
-          'email' => 'emp1@epl.ca',
+          'email' => 'joshdoti15@gmail.com',
           'homebranch' => 'ABB',
-          'role' => 'librarian'
+          'role' => 'admin'
         ),
         array(
           'username' => 'sykesa',
