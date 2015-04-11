@@ -170,7 +170,7 @@ class bookingController extends \BaseController {
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'email'=> $users[Input::get($i)]));
 		    }
 		}
-		return Redirect::to('viewuserbooking/show');
+		return Redirect::to('viewuserbooking/show')->with('created','The Booking was Created');
 
 	}
 
