@@ -3,7 +3,7 @@
 <?php
     $rec = Session::get('rec',NULL);
     $kits = DB::table('kitType')->lists('kitType');
-    $users = DB::table('users')->lists('username');
+    $users = DB::table('users')->lists('email');
 ?>
 
 <head>
@@ -34,8 +34,8 @@
   });
   $(function() { $("#to" ).datepicker( "option", "dateFormat", "D dd M yy" )});
   $(function() { $("#from" ).datepicker( "option", "dateFormat", "D dd M yy" )});
-  $(function() { $( "#from" ).datepicker( "setDate", +7 )});
-  $(function() { $( "#to" ).datepicker( "setDate", +3 )});
+  $(function() { $( "#from" ).datepicker( "setDate", +4 )});
+  $(function() { $( "#to" ).datepicker( "setDate", +4 )});
   if($.datepicker.formatDate('DD', new Date()) == "Saterday"){
   $(function() { $( "#from" ).datepicker( "option", "minDate", "+3d" )});
   $(function() { $( "#to" ).datepicker( "option", "minDate", "+3d" )});
@@ -47,10 +47,19 @@
   $(function() { $( "#to" ).datepicker( "option", "minDate", "+2d" )});
   }
   </script>
-</head>
+  </head>
+  
   <h1 style="color:#79C33A">Create a booking now (All fields are required)</h1>
   {{Form::open(['url' => 'createbooking']) }}
-  <div class="errors">{{Session::get('errors');}}</div>
+  
+  <?php if(Session::get('errors',NULL)!=NULL): ?>
+   <div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <span class="sr-only">Message:</span>
+    {{$errors}}
+   </div>
+   <?php endif; ?>
+   
   <p>  </p>
   <div class ="row">
   <div class="col-md-4">
@@ -63,7 +72,7 @@
   <div class="col-md-4">
 
     {{Form::label('branch', 'Booking Location:  ')}}
-    {{Form::select('desBranch', array('ABB'=>'ABB', 'CAL'=>'CAL','CPL'=>'CPL'),null,['class' => 'form-control']) }}
+    {{Form::select('desBranch', array('ABB'=>'Abbottsfield - Penny McKee Branch', 'CAL'=>'Calder Branch','CPL'=>'Capilano Branch','CSD'=>'Castle Downs Branch','CLV'=>'Clareview Branch','HIG'=>'Highlands Branch','IDY'=>'Idylwylde Branch','JPL'=>'Jasper Place Branch','LHL'=>'Lois Hole Library','LON'=>'Londonderry Branch','MEA'=>'Meadows Branch','MLW'=>'Mill Woods Branch','RIV'=>'Riverbend Branch','SPW'=>'Sprucewood Branch','MNA'=>'Stanley A. Milner Library','STR'=>'Strathcona Branch','WMC'=>'Whitemud Crossing Branch','WOO'=>'Woodcroft Branch'),null,['class' => 'form-control']) }}
   </div>
   </div>
   <p>  </p>
