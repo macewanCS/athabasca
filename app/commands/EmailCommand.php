@@ -37,10 +37,14 @@ class EmailCommand extends Command {
 	 */
 	public function fire()
 	{
-	    //$date = 
-		//echo "email sent";
-		//var $message = "This is a reminder that a kit needs to be sent from your location immediately. Please check the system for more information.";
-		//var $email = DB::table('users')->where('date','==',')->get();
+	    $date = date('m/d/Y');
+		echo "email sent";
+		var $email = DB::table('email')->where('date','==',$date)->get();
+		if($email != NULL){
+		    foreach($email as $mail){
+		        mail($mail->address,$mail->subject,$mail->message);
+		    }
+		}
 	}
 
 	/**
