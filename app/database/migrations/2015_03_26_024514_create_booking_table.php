@@ -26,8 +26,7 @@ class CreateBookingTable extends Migration {
 			$table->date('updated_at')->nullable();
 			$table->rememberToken();
 	});
-	}
-
+}
 	/**
 	 * Reverse the migrations.
 	 *

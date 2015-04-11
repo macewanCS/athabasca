@@ -7,7 +7,7 @@
     <strong> Update: </strong> {{$errors->first()}}.
   </div> <!--end of error message -->
   @endif
-
+  <h2 style="color:#DF115C">Edit Kit Information<h2>
   <h3>Kit Named: {{$kitinfo->name}}</h3>
   <h3>Kit Barcode: {{$kitinfo->barcode}}</h3>
   <h3>Kit Type: {{$kitinfo->kitType}}</h3>

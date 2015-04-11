@@ -10,7 +10,7 @@
     {{$errors}}
    </div>
    <?php endif; ?>
-   
+
    {{Form::open(array('url' => 'login'))}}
    <div class ="row">
    <div class="col-md-3">
@@ -28,7 +28,7 @@
       </div>
       </div> <!--end row1 -->
 
-
+      <div>
         <p>{{Form::submit('Log Me In!')}}<p>
         {{Form::close()}}
     </div>
