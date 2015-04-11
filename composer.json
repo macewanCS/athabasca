@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"twitter/bootstrap": "*",
-		"chumper/datatable": "2.*"
+		"chumper/datatable": "2.*",
+		"liebig/cron": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

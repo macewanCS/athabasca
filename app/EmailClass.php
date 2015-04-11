@@ -17,8 +17,12 @@ class Email{
         $this->message = $mess;
     }
     
-    function send(){
+    function fire($job,$data){
+        $this->setAddress($data[0]);
+        $this->setSubject($data[1]);
+        $this->setMessage($data[2]);
         mail($address,$subject,$message,$headers);
+        $job->delete()
     }
 }
 ?>
