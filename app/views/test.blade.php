@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('content')
-{{ date('m/d/Y')}}
+{{ date('m/d/Y h:i:s a')}}
+<hr class="divider">
 
 <?php
     $today = new DateTime();
@@ -41,5 +42,6 @@
         endif;
     endif;
 ?>
+<hr class="divider">
 
 @stop
