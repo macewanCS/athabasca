@@ -4,7 +4,7 @@
 <div class="container"> 
   <div class="row">
     <div class="col-md-12">
-    <h3>Users Bookings</h3>
+    	<h2 style="color:#79C33A">User Bookings</h2>
     {{ $table->render() }}
     {{ $table->script() }}
     </div>

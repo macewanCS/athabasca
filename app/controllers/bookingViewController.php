@@ -53,7 +53,7 @@ class bookingViewController extends BaseController {
 	        return Redirect::to('/');
 	    }
     	$table = Datatable::table()
-      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Type', 'Delete')
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name', 'Delete')
       	->setUrl(route('api.booking'))
       	->noScript();
     	return View::make('viewBooking', array('table' => $table));
