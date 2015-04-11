@@ -39,7 +39,7 @@ class EmailCommand extends Command {
 	{
 	    $date = date('m/d/Y');
 		echo "email sent";
-		var $email = DB::table('email')->where('date','==',$date)->get();
+		$email = DB::table('email')->where('date','==',$date)->get();
 		if($email != NULL){
 		    foreach($email as $mail){
 		        mail($mail->address,$mail->subject,$mail->message);

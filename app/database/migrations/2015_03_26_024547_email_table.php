@@ -19,7 +19,6 @@ class EmailTable extends Migration {
 		$table->string("subject",150);
 		$table->text("message");
 		$table->date("date");
-		$table->primary("emailID");
 	});
 	}
 
