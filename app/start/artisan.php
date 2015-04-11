@@ -5,6 +5,7 @@ if (Config::get('database.default') === 'sqlite') {
         touch($path);
     }
 }
+Artisan::add(new EmailCommand);
 /*
 |--------------------------------------------------------------------------
 | Register The Artisan Commands
