@@ -49,7 +49,7 @@
   </script>
   </head>
   
-  <h1 style="color:#79C33A">Create a booking now (All fields are required)</h1>
+  <h2 style="color:#79C33A">Create a booking now (All fields are required)</h2>
   {{Form::open(['url' => 'createbooking']) }}
   
   <?php if(Session::get('errors',NULL)!=NULL): ?>

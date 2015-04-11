@@ -22,7 +22,6 @@ class CreateBookingTable extends Migration {
 			$table->date('dateout');
 			$table->date('transferin');
 			$table->date('transferout');
-			$table->date('eventdate')->nullable();
 			$table->date('created_at')->nullable();
 			$table->date('updated_at')->nullable();
 			$table->rememberToken();
