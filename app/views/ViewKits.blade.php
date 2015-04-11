@@ -12,7 +12,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-    <h3>Kits</h3>
+      <h2 style="color:#DF115C">Kits</h2>
     {{ $table->render() }}
     {{ $table->script() }}
     <script type=\"text/javascript\">

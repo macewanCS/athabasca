@@ -48,10 +48,10 @@
   }
   </script>
   </head>
-  
+
   <h2 style="color:#79C33A">Create a booking now (All fields are required)</h2>
   {{Form::open(['url' => 'createbooking']) }}
-  
+
   <?php if(Session::get('errors',NULL)!=NULL): ?>
    <div class="alert alert-warning" role="alert">
     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -59,7 +59,7 @@
     {{$errors}}
    </div>
    <?php endif; ?>
-   
+
   <p>  </p>
   <div class ="row">
   <div class="col-md-4">
