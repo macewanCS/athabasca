@@ -1,4 +1,32 @@
-## Laravel PHP Framework
+#Epl Kit Manager (Team Athabasca)
+#####This is a website built using the laravel framework that can be used for managing assets(ie.Kits)     
+#####Users can book, transfer and update kits in the system while admin users can create new kits for use. 
+
+###--Created by:--(Alphabetical)    
+Adam Sykes    
+Chris Dubeau    
+Joshua Dotinga dotingaj@mymacewan.ca    
+Mitchell Koens    
+
+
+###Requirements:    
+PHP >= 5.4 , Mycrypt PHP Extension    
+
+###Install and Run
+
+
+
+<br>   
+<br>   
+<br>   
+<br>   
+<br>   
+<br>   
+<br>   
+
+***
+##Laravel Information Below
+#### Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/downloads.svg)](https://packagist.org/packages/laravel/framework)
