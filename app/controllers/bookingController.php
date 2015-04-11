@@ -157,7 +157,7 @@ class bookingController extends \BaseController {
 	    if($kitBarcode == NULL){
 	        return Redirect::to('/createBooking')->with('errors','There are no Kits of this type avalable on the dates you selected');
 	    }
-	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode,'eventdate'=>$startdate));
+	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode));
 
 
 		$holder = DB::table('booking')->lists('bookingID');
@@ -170,7 +170,7 @@ class bookingController extends \BaseController {
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'user'=> $users[Input::get($i)]));
 		    }
 		}
-		return Redirect::to('viewuserbooking/show');
+		return Redirect::to('viewuserbooking/show')->with('created','The Booking was Created');
 
 	}
 

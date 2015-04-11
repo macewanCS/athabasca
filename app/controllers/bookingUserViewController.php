@@ -57,7 +57,12 @@ class bookingUserViewController extends BaseController {
       	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name' ,'Delete')
       	->setUrl(route('api.userbooking'))
       	->noScript();
-    	return View::make('viewUserBooking', array('table' => $table));
+      	if (Session::get('created',NULL)!=NULL){
+      	    return View::make('viewUserBooking', array('table' => $table))->with('created','The Booking Was Created');
+      	}
+      	else{
+    	    return View::make('viewUserBooking', array('table' => $table));
+        }
   }
 
 
