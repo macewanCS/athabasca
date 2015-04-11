@@ -159,15 +159,16 @@ class bookingController extends \BaseController {
 	    }
 	    DB::table('booking')->insert(array('forBranch' => $location, 'datein' => $startdate,'dateout' => $enddate,'transferin' => $tranIn,'transferout' => $tranOut,'primaryUser' => $primaryUser->username,'eventname' => $eventName,'kitBarcode' => $kitBarcode->barcode));
 
-
 		$holder = DB::table('booking')->lists('bookingID');
 		$id = $holder[count($holder)-1];
+		DB::table('email')->insert(array('Address'=> $primaryUser->email, 'subject'=>'test','message'=>'test','date'=>$tranIn));
 		$rec = Session::get('rec',NULL);
-		$users = DB::table('users')->lists('username');
+		$users = DB::table('users')->lists('email');
 		for($i = 1; $i <= $rec; $i++){
 		    $check = DB::select('select bookingID from bookingUsers where bookingID = ? and email = ?',[$id,$users[Input::get($i)]]);
 		    if($check == NULL){
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'email'=> $users[Input::get($i)]));
+		        DB::table('email')->insert(array('Address'=> $users[Input::get($i)], 'subject'=>'test','message'=>'test','date'=>$tranIn));
 		    }
 		}
 		return Redirect::to('viewuserbooking/show')->with('created','The Booking was Created');
