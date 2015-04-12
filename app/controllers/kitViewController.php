@@ -14,6 +14,7 @@ class kitViewController extends \BaseController {
 
   public function edit2($id2)
   {
+    $users = Session::get('userdata',NULL);
     $kitinfo = DB::table('kits')->where('barcode',$id2)->get();
     if (!count($kitinfo)){
       App::abort(404);
@@ -25,9 +26,14 @@ class kitViewController extends \BaseController {
     }
     //To report kit is fixed
     if(Input::get('unreport')){
-      DB::table('kits')->where('barcode', $id2)->update(array('damageDescription' => null));
-      DB::table('kits')->where('barcode', $id2)->update(array('damaged' => null));
-      return Redirect::to(URL::previous())->withErrors(['Damage Removed']);
+      if($users->role == 'admin'){
+        DB::table('kits')->where('barcode', $id2)->update(array('damageDescription' => null));
+        DB::table('kits')->where('barcode', $id2)->update(array('damaged' => null));
+        return Redirect::to(URL::previous())->withErrors(['Damage Removed']);
+      }
+      else{
+        return Redirect::to(URL::previous())->withErrors(['Please contact administrator to remove damage.']);
+      }
     }
     //To report damage
     elseif(Input::get('report')){

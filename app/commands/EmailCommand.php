@@ -38,12 +38,15 @@ class EmailCommand extends Command {
 	public function fire()
 	{
 	    $date = date('m/d/Y');
-		echo "email sent";
-		$email = DB::table('email')->where('date','==',$date)->get();
+		$email = DB::table('email')->where('date',$date)->get();
+		$mail = null;
 		if($email != NULL){
 		    foreach($email as $mail){
-		        mail($mail->address,$mail->subject,$mail->message);
+		        Mail::send('emails.email',array(),function($message) use($mail){
+		            $message->to($mail->address, ' ')->subject($mail->subject);
+		        });
 		    }
+		    DB::table('email')->where('date','==',$date)->delete();
 		}
 	}
 

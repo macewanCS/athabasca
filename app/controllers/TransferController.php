@@ -11,7 +11,7 @@ class TransferController extends BaseController {
         ->showColumns('transferin','eventname','forBranch')
         ->addColumn('Edit', function($model) {
           $model->bookingID;
-            return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
+            return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Send', array('class' => 'btn btn-default'));
           })
           ->searchColumns('transferin','eventname','forBranch')
          	->orderColumns('transferin','eventname','forBranch')
@@ -22,7 +22,7 @@ class TransferController extends BaseController {
         ->showColumns('transferin','eventname','forBranch')
         ->addColumn('Edit', function($model) {
           $model->bookingID;
-              return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Edit', array('class' => 'btn btn-default'));
+              return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Accept', array('class' => 'btn btn-default'));
             })
             ->searchColumns('transferin','eventname','forBranch')
             ->orderColumns('transferin','eventname','forBranch')

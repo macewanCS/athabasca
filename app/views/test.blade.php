@@ -1,7 +1,17 @@
 @extends('layouts.default')
 @section('content')
+<<<<<<< HEAD
 {{ date('m/d/Y h:i:s a')}}
 <hr class="divider">
+
+<?php if(Session::get('errors',NULL)!=NULL): ?>
+   <div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    <span class="sr-only">Message:</span>
+    {{$errors}}
+   </div>
+   <?php endif; ?>
+
 <?php
     $today = new DateTime();
 
