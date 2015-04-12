@@ -8,11 +8,11 @@ class bookingUserViewController extends BaseController {
 
 	public function getUserBookingDataTable(){
 		$primaryUser = Session::get('userdata',NULL);
-    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode') 
+    	return Datatable::query(DB::table('booking')
+    		-> join('kits', 'booking.kitBarcode', '=', 'kits.barcode') 
     		-> join('bookingUsers', 'booking.bookingID', '=', 'bookingUsers.bookingID')  
-    		-> where('primaryUser', $primaryUser->username) ->where('transferin', '>=', date('m/d/Y'))
-    		-> orWhere('bookingUsers.email', $primaryUser->email) ->where('transferin', '>=', date('m/d/Y')))
-
+    		->where('booking.primaryUser', '=' ,$primaryUser->username) ->where('transferin', '>=', date('m/d/Y')))
+    		//->orWhere('bookingUsers.email', $primaryUser->email)->where('transferin', '>=', date('m/d/Y')))
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
             ->addColumn('Delete', function($model) {
             	$model->bookingID;
