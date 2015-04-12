@@ -166,7 +166,7 @@ class bookingController extends \BaseController {
 		$users = DB::table('users')->lists('email');
 		for($i = 1; $i <= $rec; $i++){
 		    $check = DB::select('select bookingID from bookingUsers where bookingID = ? and email = ?',[$id,$users[Input::get($i)]]);
-		    if($check == NULL){
+		    if($check == NULL && $users[Input::get($i)] != $primaryUser->email){
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'email'=> $users[Input::get($i)]));
 		        DB::table('email')->insert(array('Address'=> $users[Input::get($i)], 'subject'=>'test','message'=>'test','date'=>$tranIn));
 		    }
