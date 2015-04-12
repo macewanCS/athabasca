@@ -34,11 +34,11 @@ class userTableSeeder extends Seeder {
           'role' => 'librarian'
         ),
         array(
-          'username' => 'debauc',
+          'username' => 'dubeauc',
           'empID' => 4,
           'password'=> 4,
           'phone' => '780-123-4567',
-          'email' => 'emp4@epl.ca',
+          'email' => 'ChristopherDubeau@gmail.com',
           'homebranch' => 'CLV',
           'role' => 'librarian'
         ),
