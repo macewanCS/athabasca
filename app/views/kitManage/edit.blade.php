@@ -4,7 +4,7 @@
   @if($errors->any())
   <div class="alert alert-success">
     <a href="#" class="close" data-dismiss="alert">&times;</a>
-    <strong> Update: </strong> {{$errors->first()}}.
+    <strong> Important: </strong> {{$errors->first()}}.
   </div> <!--end of error message -->
   @endif
   <h2 style="color:#DF115C">Edit Kit Information<h2>

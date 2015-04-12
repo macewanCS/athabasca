@@ -32,8 +32,11 @@ class kitController extends \BaseController {
 	    if($users == NULL){
 	        return Redirect::to('/');
 	    }
-		$kits = DB::table('kitType')->lists('kitType');
-		return View::make('kitManage.create')->with('kits', $kits);
+	    if($users->role == "admin"){
+		    $kits = DB::table('kitType')->lists('kitType');
+		    return View::make('kitManage.create')->with('kits', $kits);
+		}
+		return Redirect::to('/')->with('errors','You must be an administrator to access this page.');
 	}
 
 	//Renders a page for adding all needed kit information based on create input
