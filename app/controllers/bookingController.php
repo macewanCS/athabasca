@@ -169,6 +169,9 @@ class bookingController extends \BaseController {
 		    if($check == NULL){
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'email'=> $users[Input::get($i)]));
 		        DB::table('email')->insert(array('Address'=> $users[Input::get($i)], 'subject'=>'test','message'=>'test','date'=>$tranIn));
+		        Mail::send('emails.email2',array(),function($message) use($users){
+		            $message->to($users[Input::get($i)], ' ')->subject('EPL Booking Created');
+		        });
 		    }
 		}
 		return Redirect::to('viewuserbooking/show')->with('created','The Booking was Created');

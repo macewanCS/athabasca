@@ -52,11 +52,14 @@ class bookingViewController extends BaseController {
 	    if($users == NULL){
 	        return Redirect::to('/');
 	    }
-    	$table = Datatable::table()
-      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name', 'Delete')
-      	->setUrl(route('api.booking'))
-      	->noScript();
-    	return View::make('viewBooking', array('table' => $table));
+	    if($users->role == 'admin'){
+    	    $table = Datatable::table()
+      	    ->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name', 'Delete')
+      	    ->setUrl(route('api.booking'))
+      	    ->noScript();
+    	    return View::make('viewBooking', array('table' => $table));
+    	}
+    	return Redirect::to('/')->with('errors','You must be an administrator to access this page.');
 	}
 
 
