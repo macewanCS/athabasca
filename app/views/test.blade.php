@@ -1,8 +1,5 @@
 @extends('layouts.default')
 @section('content')
-<<<<<<< HEAD
-{{ date('m/d/Y h:i:s a')}}
-<hr class="divider">
 
 <?php if(Session::get('errors',NULL)!=NULL): ?>
    <div class="alert alert-warning" role="alert">
@@ -54,6 +51,18 @@
         endif;
     endif;
 ?>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2 style="color:#005097">Upcoming Transfers For Your Branch</h2>
+  <hr class="divider">
+
+  {{ $table->render() }}
+  {{ $table->script() }}
+  </div>
+</div>
+
+
 <hr class="divider">
 
 @stop

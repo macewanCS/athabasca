@@ -17,8 +17,8 @@ class CreateBookingUsersTable extends Migration {
 			$table->string('email',60);
 			$table->date('created_at')->nullable();
 			$table->date('updated_at')->nullable();
-			$table->rememberToken();
-			$table->primary(array('bookingID', 'user'));
+			$table->rememberToken();yth
+			$table->primary(array('bookingID', 'email'));
 			$table->foreign('bookingID')->references('bookingID')->on('booking');
 		});
 	}
