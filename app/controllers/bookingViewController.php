@@ -7,7 +7,8 @@ class bookingViewController extends BaseController {
  	 }
 
 	public function getBookingDataTable(){
-    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode'))
+    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode') 
+    		->where('transferin', '>=', date('m/d/Y')))
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
             ->addColumn('Delete', function($model) {
             	$model->bookingID;
