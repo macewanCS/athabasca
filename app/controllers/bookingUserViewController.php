@@ -8,7 +8,7 @@ class bookingUserViewController extends BaseController {
 
 	public function getUserBookingDataTable(){
 		$primaryUser = Session::get('userdata',NULL);
-    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode') -> join('bookingUsers', 'booking.bookingID', '=', 'bookingUsers.bookingID')  -> where('primaryUser', $primaryUser->username) -> orWhere('bookingUsers.email', $primaryUser->username))
+    	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode') -> join('bookingUsers', 'booking.bookingID', '=', 'bookingUsers.bookingID')  -> where('primaryUser', $primaryUser->username) -> orWhere('bookingUsers.email', $primaryUser->email))
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
             ->addColumn('Delete', function($model) {
             	$model->bookingID;
@@ -54,7 +54,7 @@ class bookingUserViewController extends BaseController {
 	        return Redirect::to('/');
 	    }
     	$table = Datatable::table()
-      	->addColumn('Event Name', 'Date In', 'Date Out', 'Recipient', 'Branch', 'Kit Name' ,'Delete')
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name' ,'Delete')
       	->setUrl(route('api.userbooking'))
       	->noScript();
       	if (Session::get('created',NULL)!=NULL){
