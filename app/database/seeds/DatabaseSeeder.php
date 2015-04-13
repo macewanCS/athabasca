@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('kitsTableSeeder');
 		$this->call('kitAssetsTableSeeder');
 		$this->call('bookingTableSeeder');
+		$this->call('emailTableSeeder');
 	}
 
 }
