@@ -18,14 +18,25 @@ class HomeController extends BaseController {
 
 
 	public function Home(){
-        return View::make('test');
+		$users = Session::get('userdata',NULL);
+		if($users == NULL){
+				return View::make('Login');
+		}
+
+		$table = Datatable::table()
+				->addColumn('Transfer On','Event Name', 'Transfer To', 'Current Location', 'Send')
+				->setUrl(route('api.transfer'))
+				->noScript();
+
+    return View::make('test')->with('table',$table);
     }
 
 	public function login(){
     $users = DB::table('users')->where('username',Input::get('username'))->first(); /* tries to find a username or returns null if none is found*/
     if($users != NULL and $users->username == Input::get('username') and $users->password == Input::get('password')){ /* compares the password to the stored if one was found */
         $users = Session::put('userdata',$users);
-        return View::make('test');
+				return Redirect::to('/');
+
     }
     else{
         return Redirect::back()->withInput()->with('errors','Username or Password is incorrect. Please try again');
