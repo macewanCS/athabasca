@@ -7,7 +7,7 @@ class TransferController extends BaseController {
  	 }
 
  	public function getTransferTable(){
-     	return Datatable::query(DB::table('booking')->where('transferin', '>=', date('m/d/Y')))
+     	return Datatable::query(DB::table('booking')->where('transferin', '>=', date('m/d/Y'))->where()
         ->showColumns('transferin','eventname','forBranch')
         ->addColumn('Edit', function($model) {
           $model->bookingID;
