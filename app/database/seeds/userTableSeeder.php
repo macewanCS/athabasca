@@ -12,7 +12,7 @@ class userTableSeeder extends Seeder {
           'password'=> 1,
           'phone' => '780-123-4567',
           'email' => 'joshdoti15@gmail.com',
-          'homebranch' => 'ABB',
+          'homebranch' => 'MNA',
           'role' => 'admin'
         ),
         array(

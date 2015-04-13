@@ -1,14 +1,4 @@
 <?php
-Route::get('/', function()
-{
-    $users = Session::get('userdata',NULL);
-    if ($users != NULL){
-	    return View::make('test');
-	}
-	else{
-	    return View::make('Login');
-	}
-});
 
 //Assorted Routes for secondary pages
 Route::any('/viewkit/{id2}/edit2', array('uses' => 'kitViewController@edit2'));
@@ -18,6 +8,7 @@ Route::post('Home', array('uses' => 'HomeController@Home'));
 Route::any('/kitmanage/create2', 'kitController@create2');
 Route::any('/kitmanage/create2add', 'kitController@create2add');
 Route::any('/createbooking', 'bookingController@check');
+Route::any('/', 'HomeController@Home');
 
 //Api's for creating tables when called
 Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingViewController@getBookingDataTable'));

@@ -5,27 +5,37 @@ class TransferController extends BaseController {
   public function index(){
      return 'nope';
  	 }
+//       ->where('transferin', '>=', date('m/d/Y')))
 
  	public function getTransferTable(){
-     	return Datatable::query(DB::table('booking')->where('transferin', '>=', date('m/d/Y')))
-        ->showColumns('transferin','eventname','forBranch')
+     $users = Session::get('userdata',NULL);
+     	return Datatable::query(DB::table('booking')
+       ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
+       ->where('kits.location', $users->homebranch)
+       ->where('booking.forBranch', '<>', $users->homebranch))
+        ->showColumns('transferin','eventname','forBranch','location')
         ->addColumn('Edit', function($model) {
           $model->bookingID;
             return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Send', array('class' => 'btn btn-default'));
           })
-          ->searchColumns('transferin','eventname','forBranch')
-         	->orderColumns('transferin','eventname','forBranch')
+          ->searchColumns('transferin','eventname','forBranch','location')
+         	->orderColumns('transferin','eventname','forBranch','location')
          	->make();
          }
+
   public function getTransferTable2(){
-    return Datatable::query(DB::table('booking')->where('transferin', '>=', date('m/d/Y')))
-        ->showColumns('transferin','eventname','forBranch')
+    $users = Session::get('userdata',NULL);
+    return Datatable::query(DB::table('booking')
+    ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
+    ->where('transferin', '>=', date('m/d/Y'))
+    ->where('booking.forBranch', $users->homebranch))
+        ->showColumns('transferin','eventname','forBranch','location')
         ->addColumn('Edit', function($model) {
           $model->bookingID;
               return HTML::link('/transfer/'.$model->bookingID.'/edit/', 'Accept', array('class' => 'btn btn-default'));
             })
-            ->searchColumns('transferin','eventname','forBranch')
-            ->orderColumns('transferin','eventname','forBranch')
+            ->searchColumns('transferin','eventname','forBranch','location')
+            ->orderColumns('transferin','eventname','forBranch','location')
             ->make();
             }
 
@@ -59,16 +69,24 @@ class TransferController extends BaseController {
 	 */
 	public function show()
 	{
+
 	    $users = Session::get('userdata',NULL);
 	    if($users == NULL){
 	        return Redirect::to('/');
 	    }
+      $querys = DB::table('booking')
+      ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
+      ->where('kits.location', $users->homebranch);
+
+      //return $users->homebranch;
+
+      $data = DB::table('booking')->where('transferin', '>=', date('m/d/Y'));
         $table = Datatable::table()
-            ->addColumn('Transfer On','Event Name', 'Transfer To', 'Send Transfer')
+            ->addColumn('Transfer On','Event Name', 'Transfer To','Current Location', 'Send Transfer')
             ->setUrl(route('api.transfer'))
             ->noScript();
         $table2 =Datatable::table()
-            ->addColumn('Transfering On','Event Name', 'Transfering From', 'Accept Transfer')
+            ->addColumn('Transfering On','Event Name', 'Transfering From', 'Current Location', 'Accept Transfer')
             ->setUrl(route('api.transfer2'))
             ->noScript();
 
@@ -84,11 +102,19 @@ class TransferController extends BaseController {
 	 */
 	public function edit($id)
 	{
+    $users = Session::get('userdata',NULL);
+    if($users == NULL){
+        return Redirect::to('/');
+    }
     $data = DB::table('booking')->where('bookingID', $id)->get();
     $data = $data[0];
     $kitdata = DB::table('kits')->where('barcode',$data->kitBarcode)->get();
     $kitdata = $kitdata[0];
-    return View::make('transfers.edit')->with('data', $data)->with('kitdata', $kitdata);
+    if($data->forBranch == $kitdata->location){
+      return View::make('transfers.edit')->with('data', $data)
+      ->with('kitdata', $kitdata)->withErrors(['Kit is intended location'])->with('user', $users);
+    }
+    return View::make('transfers.edit')->with('data', $data)->with('kitdata', $kitdata)->with('user', $users);
 	}
 
   public function edit2($id)

@@ -164,14 +164,16 @@ class bookingController extends \BaseController {
 		DB::table('email')->insert(array('Address'=> $primaryUser->email, 'subject'=>'test','message'=>'test','date'=>$tranIn));
 		$rec = Session::get('rec',NULL);
 		$users = DB::table('users')->lists('email');
+		
 		for($i = 1; $i <= $rec; $i++){
 		    $check = DB::select('select bookingID from bookingUsers where bookingID = ? and email = ?',[$id,$users[Input::get($i)]]);
-		    if($check == NULL && $users[Input::get($i)] != $primaryUser->email){
+
+				if($check == NULL && $users[Input::get($i)] != $primaryUser->email){
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'email'=> $users[Input::get($i)]));
 		        DB::table('email')->insert(array('Address'=> $users[Input::get($i)], 'subject'=>'test','message'=>'test','date'=>$tranIn));
-		        Mail::send('emails.email2',array(),function($message) use($users,$i){
-		            $message->to($users[Input::get($i)], ' ')->subject('EPL Booking Created');
-		        });
+				//Mail::send('emails.email2',array(),function($message) use($users){
+		        //   $message->to($users[Input::get($i)], ' ')->subject('EPL Booking Created');
+		        //});
 		    }
 		}
 		return Redirect::to('viewuserbooking/show')->with('created','The Booking was Created');
