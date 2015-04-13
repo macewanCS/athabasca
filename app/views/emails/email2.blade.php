@@ -1,1 +1,5 @@
-Booking Made
+<h1>
+Your Booking Has Been Made
+<h1>
+
+  
