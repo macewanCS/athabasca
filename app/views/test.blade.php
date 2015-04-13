@@ -19,7 +19,7 @@
 <hr class="divider">
 <div class="row">
   <div class="col-md-12">
-  <h2 style="color:#F6BC2A">Upcoming Transfers For Your Branch</h2>
+  <h2 style="color:#F6BC2A">Upcoming Transfers Form Your Branch</h2>
   {{ $table->render() }}
   {{ $table->script() }}
   </div>
