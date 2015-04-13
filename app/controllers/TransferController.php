@@ -8,6 +8,7 @@ class TransferController extends BaseController {
 //       ->where('transferin', '>=', date('m/d/Y')))
 
  	public function getTransferTable(){
+
      $users = Session::get('userdata',NULL);
      	return Datatable::query(DB::table('booking')
        ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
