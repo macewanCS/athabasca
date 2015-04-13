@@ -11,13 +11,13 @@
   <h3>Kit Named: {{$kitinfo->name}}</h3>
   <h3>Kit Barcode: {{$kitinfo->barcode}}</h3>
   <h3>Kit Type: {{$kitinfo->kitType}}</h3>
-  <h3>Kit Has {{$kitinfo->assets}} assets.</h3>
-
+  <h3>Kit Has {{$kitinfo->assets}} assets:<br>
   @for($i = 0; $i < $kitinfo->assets; $i++)
-    <b>Name:</b> {{$assets[$i]}}
-    <b>Tag:</b> {{$assettag[$i]}}
+     Name: {{$assets[$i]}}
+     Tag: {{$assettag[$i]}}
     <br>
   @endfor
+  </h3>
   <br>
   {{Form::open(['url' => 'viewkit/'.$kitinfo->barcode.'/edit2']) }}
     <div class ="row">
