@@ -35,23 +35,25 @@ class bookingController extends \BaseController {
 	public function create2()
 	{
 		Request::flash();
-	  $rec = Session::get('rec',NULL);
+	    $rec = Session::get('rec',NULL);
 		$rec += 1;
 		Session::put('rec',$rec);
 		$kit = Input::get('desKit');
-		$input = input::all();
+		$input = Input::all();
 		return View::make('createBooking')->with('kit', $kit)->withInput($input);
 	}
 
 	public function create3()
 	{
+	    Request::flash();
 	    $rec = Session::get('rec',NULL);
 	    if($rec >= 1){
 		    $rec -= 1;
 		}
 		Session::put('rec',$rec);
 		$kit = Input::get('desKit');
-		return View::make('createBooking')->with('kit', $kit);
+		$input = Input::all();
+		return View::make('createBooking')->with('kit', $kit)->withInput($input);
 	}
 
 	public function check()
@@ -171,9 +173,8 @@ class bookingController extends \BaseController {
 				if($check == NULL && $users[Input::get($i)] != $primaryUser->email){
 		        DB::table('bookingUsers')->insert(array('bookingID'=> $id, 'email'=> $users[Input::get($i)]));
 		        DB::table('email')->insert(array('Address'=> $users[Input::get($i)], 'subject'=>'test','message'=>'test','date'=>$tranIn));
-
-						//Mail::send('emails.email2',array(),function($message) use($users){
-		         //   $message->to($users[Input::get($i)], ' ')->subject('EPL Booking Created');
+				//Mail::send('emails.email2',array(),function($message) use($users){
+		        //   $message->to($users[Input::get($i)], ' ')->subject('EPL Booking Created');
 		        //});
 		    }
 		}

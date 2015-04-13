@@ -37,11 +37,11 @@
   $(function() { $( "#from" ).datepicker( "setDate", +4 )});
   $(function() { $( "#to" ).datepicker( "setDate", +4 )});
   if($.datepicker.formatDate('DD', new Date()) == "Saterday"){
-  $(function() { $( "#from" ).datepicker( "option", "minDate", "+3d" )});
-  $(function() { $( "#to" ).datepicker( "option", "minDate", "+3d" )});
-  } else if($.datepicker.formatDate('DD', new Date()) == "Friday"){
   $(function() { $( "#from" ).datepicker( "option", "minDate", "+4d" )});
   $(function() { $( "#to" ).datepicker( "option", "minDate", "+4d" )});
+  } else if($.datepicker.formatDate('DD', new Date()) == "Friday"){
+  $(function() { $( "#from" ).datepicker( "option", "minDate", "+3d" )});
+  $(function() { $( "#to" ).datepicker( "option", "minDate", "+3d" )});
   } else{
   $(function() { $( "#from" ).datepicker( "option", "minDate", "+2d" )});
   $(function() { $( "#to" ).datepicker( "option", "minDate", "+2d" )});
