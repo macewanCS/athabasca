@@ -24,7 +24,7 @@
 @if($kitdata->location == 'intransit' && $data->forBranch == $user->homebranch)
 <input type="submit" name="arrived"  value="Confirm Transfer Has Been Received">
 
-@elseif($kitdata->location !== $data->forBranch && $kitdata->location !== 'intransit')
+@elseif($kitdata->location !== $user->homebranch && $kitdata->location !== 'intransit')
 <h3>Only Users From {{$kitdata->location}} can send kits. Please contact {{$kitdata->location}} for more information.
 
 @elseif($kitdata->location !== $data->forBranch && $kitdata->location == $user->homebranch)
