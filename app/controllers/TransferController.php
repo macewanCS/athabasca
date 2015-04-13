@@ -113,7 +113,7 @@ class TransferController extends BaseController {
     $kitdata = $kitdata[0];
     if($data->forBranch == $kitdata->location){
       return View::make('transfers.edit')->with('data', $data)
-      ->with('kitdata', $kitdata)->withErrors(['Kit is intended location'])->with('user', $users);
+      ->with('kitdata', $kitdata)->withErrors(['Kit is at the Intended Location'])->with('user', $users);
     }
     return View::make('transfers.edit')->with('data', $data)->with('kitdata', $kitdata)->with('user', $users);
 	}

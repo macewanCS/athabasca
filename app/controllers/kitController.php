@@ -92,9 +92,9 @@ class kitController extends \BaseController {
 
 		$assets = input::get('assets',NULL);
 		for($i = 0; $i < $assets; $i++){
-			$rules[$i] = 'required|digits:7|unique:kitAssets,assetTag';
+			$rules[$i] = 'required|digits:6|unique:kitAssets,assetTag';
 			$message[$i.'.unique'] = 'Asset Tag Allready Taken';
-			$message[$i.'.digits'] = 'Asset Tags are 7 digits';
+			$message[$i.'.digits'] = 'Asset Tags are 6 digits';
 			$message[$i.'.required'] = 'All Fields Required, Remove an asset if unneeded';
 		}
 
