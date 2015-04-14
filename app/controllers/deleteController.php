@@ -48,7 +48,7 @@ class deleteController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		 DB::table('booking')->where('bookingID', $id)->delete();
+		 DB::table('booking')->where('bookingID', $id)->delete(); 
 		 DB::table('bookingUsers')->where('bookingID', $id)->delete();
 		 return Redirect::back()->with('message','Delete Booking Successful!');
 	}
