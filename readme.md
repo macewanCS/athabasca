@@ -2,7 +2,7 @@
 #####This is a website built using the laravel framework that can be used for managing assets(ie.Kits)     
 #####Users can book, transfer and update kits in the system while admin users can create new kits for use. 
 
-###Created by:    
+###Contributors:    
 Adam Sykes    
 Chris Dubeau    
 Joshua Dotinga
@@ -13,17 +13,18 @@ Mitchell Koens
 PHP >= 5.4 , Mycrypt PHP Extension    
 
 ###Install and Run
-Step 1: Clone repo    
+Step 1: Clone repo
+`$ git clone https://github.com/macewanCMPT395/athabasca.git`
 Step 2: Install all required packages    
-`$composer install`       
+`$ composer install`       
 Step 3: Ensure permissions of /app/storage folder are correct    
-`$sudo chmod -R 777 app/storage/`  
+`$ sudo chmod -R 777 app/storage/`  
 Step 4: Migrate database    
-`$php artisan migrate`    
+`$ php artisan migrate`    
 Step 5: Seed Database with example data    
-`$php artisan db:seed`    
+`$ php artisan db:seed`    
 Step 6: Run webserver      
-`$php artisan serve` or for access outside of a virtual machine `$php artisan serve --host 0.0.0.0`          
+`$ php artisan serve` or for access outside of a virtual machine `$ php artisan serve --host 0.0.0.0`          
 Step 7: Access Website at `http://localhost:8000/` or outside of virtual machine at that machines IP address under port:8000    
 Login information can be found under `app/database/seeds/userTableSeeder.php`    
 Or you may use Username:admin Password:20 for quick access.     
@@ -32,7 +33,7 @@ Or you may use Username:admin Password:20 for quick access.
 
 
 ***
-##Laravel Information Below
+##Built on the Laravel Framework, Information can be found below.
 #### Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
