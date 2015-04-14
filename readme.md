@@ -23,17 +23,13 @@ Step 4: Migrate database
 Step 5: Seed Database with example data    
 `$php artisan db:seed`    
 Step 6: Run webserver      
-`$php artisan serve` or for access outside of a virtual machine `php artisan serve --host 0.0.0.0`          
-Step 7: Access Website at `http://localhost:8000/` or outside of virtual machine at that machines ip address under port 8000    
+`$php artisan serve` or for access outside of a virtual machine `$php artisan serve --host 0.0.0.0`          
+Step 7: Access Website at `http://localhost:8000/` or outside of virtual machine at that machines IP address under port:8000    
 Login information can be found under `app/database/seeds/userTableSeeder.php`    
 Or you may use Username:admin Password:20 for quick access.     
 <br>   
 <br>   
-<br>   
-<br>   
-<br>   
-<br>   
-<br>   
+
 
 ***
 ##Laravel Information Below
