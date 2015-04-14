@@ -8,16 +8,18 @@
   </div> <!--end of error message -->
   @endif
   <h2 style="color:#DF115C">Edit Kit Information<h2>
+  <hr class="divider">
+
   <h3>Kit Named: {{$kitinfo->name}}</h3>
   <h3>Kit Barcode: {{$kitinfo->barcode}}</h3>
   <h3>Kit Type: {{$kitinfo->kitType}}</h3>
-  <h3>Kit Has {{$kitinfo->assets}} assets:<br>
+  <hr class="divider">
+  <h3>Kit Has {{$kitinfo->assets}} assets.</h3>
   @for($i = 0; $i < $kitinfo->assets; $i++)
-     Name: {{$assets[$i]}}
-     Tag: {{$assettag[$i]}}
-    <br>
+      <h4>Name: {{$assets[$i]}}
+     Tag: {{$assettag[$i]}}</h4>
   @endfor
-  </h3>
+  <hr class="divider">
   <br>
   {{Form::open(['url' => 'viewkit/'.$kitinfo->barcode.'/edit2']) }}
     <div class ="row">
@@ -30,12 +32,14 @@
     </div>
     </div>
 
+
     <div class ="row">
       <div class="col-md-6">
       <input type="submit" name="savenotes"  value="Save New Notes">
     </div>
     </div>
     <br>
+    <hr class="divider">
 
     @if($kitinfo->damaged == null)
       <h3>Kit is not damaged</h3>
@@ -62,6 +66,6 @@
     </div>
     @endif
     {{Form::close()}}
-
+    <hr class="divider">
 
 @stop

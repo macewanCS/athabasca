@@ -18,7 +18,6 @@
     {{Form::label('kitType', 'Kit Of: ') }}
     {{Form::select('kitType', $kits) }}
     With this many
-    <br>
     {{Form::label('assets', 'Assets (Eg. 7 ipads in kit): ') }}
     {{Form::number('assets', '1') }}
     <hr class="divider">
