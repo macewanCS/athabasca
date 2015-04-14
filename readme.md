@@ -12,8 +12,8 @@ Mitchell Koens
 ###Requirements:    
 PHP >= 5.4 , Mycrypt PHP Extension    
 
-###Install and Run
-Step 1: Clone repo
+###Install and Run     
+Step 1: Clone repo     
 `$ git clone https://github.com/macewanCMPT395/athabasca.git`
 Step 2: Install all required packages    
 `$ composer install`       
