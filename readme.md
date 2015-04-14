@@ -14,7 +14,7 @@ PHP >= 5.4 , Mycrypt PHP Extension
 
 ###Install and Run     
 Step 1: Clone repo     
-`$ git clone https://github.com/macewanCMPT395/athabasca.git`
+`$ git clone https://github.com/macewanCMPT395/athabasca.git`     
 Step 2: Install all required packages    
 `$ composer install`       
 Step 3: Ensure permissions of /app/storage folder are correct    
