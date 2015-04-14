@@ -1,17 +1,11 @@
 <?php
 
 class kitViewController extends \BaseController {
-  	protected $layout = 'layouts.default';
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
+  protected $layout = 'layouts.default';
 
-	}
-
+  //is called when button is pressed on specific kit view page
+  //Has functions of edit kit notes
+  //and function for editing kit damage
   public function edit2($id2)
   {
     $users = Session::get('userdata',NULL);
@@ -47,7 +41,7 @@ class kitViewController extends \BaseController {
     return 'error, howd you find me?';
   }
 
-
+  //Gets data for kits table on view kits page
 	public function getKitDataTable(){
     	return Datatable::query(DB::table('kits'))
     		->showColumns('name', 'barcode', 'notes', 'damaged')
@@ -60,33 +54,7 @@ class kitViewController extends \BaseController {
         	->make();
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+  //Displays table of all kits in view
 	public function show($id)
 	{
 	    $users = Session::get('userdata',NULL);
@@ -102,12 +70,7 @@ class kitViewController extends \BaseController {
 	}
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	//Creates the edit a kit page
 	public function edit($id)
 	{
     $kitinfo = DB::table('kits')->where('barcode',$id)->get();
@@ -120,27 +83,6 @@ class kitViewController extends \BaseController {
 		return view::make('kitManage/edit')->with('kitinfo', $kitinfo)
     ->with('assets', $assets)
     ->with('assettag', $assettag);
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-
 	}
 
 

@@ -2,11 +2,7 @@
 
 class kitController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	//Test function for loading branches from xml
 	public function index()
 	{
 		$xml = simplexml_load_file("http://www.epl.ca/branches.xml");
@@ -18,14 +14,8 @@ class kitController extends \BaseController {
     }
 	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-
 	//Allows for the starting of kit creation
+	//passes data entered to create2 for second step
 	public function create()
 	{
 	    $users = Session::get('userdata',NULL);
@@ -40,6 +30,7 @@ class kitController extends \BaseController {
 	}
 
 	//Renders a page for adding all needed kit information based on create input
+
 	public function create2()
 	{
 		$assets = Input::get('assets');
@@ -48,6 +39,9 @@ class kitController extends \BaseController {
 		return View::make('kitManage.create2')->with('kits', $kits)->with('kitInput',$kitType)->with('assets',$assets);
 	}
 
+
+	//Is called when button on create2 is clicked,
+	//has functions add asset, sub asset, or save kit
 	public function create2add()
 	{
 		//Adds an asset placeholder to the page, allowing for dynamic asset addings
@@ -62,7 +56,7 @@ class kitController extends \BaseController {
 			$kits = DB::table('kitType')->lists('kitType');
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
-
+		//removes last box when remove asset is clicked
 		elseif(Input::get('sub')){
 			$assets = input::get('assets',NULL);
 			if($assets == 1){
@@ -79,17 +73,19 @@ class kitController extends \BaseController {
 			return View::make('kitManage.create2')->with('kitInput',$kitType)->with('kits', $kits)->with('assets', $assets)->withInput($input);
 		}
 
-		//Rules for Validation go HERE
+		//custom validation messsage returned by form
 		$message = array(
 			'barcode.digits' => 'Barcode must be 14 digits long and begin with 31221',
 			'barcode.regex' => 'Barcode must be 14 digits long and begin with 31221',
 		);
 
-
+		//custom rules for validation of kit
 		$rules = ['kitType' => 'required',
 		'assets' => 'required',
 		'barcode' => 'required|digits:14|unique:kits|regex:/^(31221)\w{9}/',];
 
+		//creates rules and messages for a dynamic amount of assets
+		//depends on how many  assets are being added for kit
 		$assets = input::get('assets',NULL);
 		for($i = 0; $i < $assets; $i++){
 			$rules[$i] = 'required|digits:6|unique:kitAssets,assetTag';
@@ -98,7 +94,8 @@ class kitController extends \BaseController {
 			$message[$i.'.required'] = 'All Fields Required, Remove an asset if unneeded';
 		}
 
-
+		//validates data entered based on rules above
+		//Otherwise saves kit to database and returns with message
 		$validation =Validator::make(Input::all(),$rules, $message);
 		if($validation->fails())
 		{
@@ -111,23 +108,23 @@ class kitController extends \BaseController {
 		}
 
 			DB::beginTransaction();
-			//return input::all();
-			//Gets a list of kitTypes from database. sets $kits to chosen kittpye
+			//Gets a list of kitTypes from database. sets $kits to chosen kittypee
 			$kits = DB::table('kitType')->lists('kitType');
 			$kitType = Input::get('kitType');
 			$kits = $kits[$kitType];
 			$assets = Input::get('assets');
 			$count = DB::table('kits')->count();//select("select count(*) as cnt FROM kits WHERE names LIKE '%?%' group by ",[$kits])->get();
-			//return $count;
 			$count += 1;
-
 			$name = $kits.$count;
 
+			//gets the rest of input
 			$barcode = Input::get('barcode');
 			$notes = Input::get('notes');
 
+			//Save to kit database
 			DB::table('kits')->insert(array('barcode' => $barcode,'KitType' => $kits,'assets' => $assets,'notes' => $notes, 'name' => $name));
 
+			//Save to kit assets database
 			for($i = 1; $i < $assets+1; $i++){
 				$index = $i -1;
 				$assetTag = Input::get($index);
@@ -136,67 +133,4 @@ class kitController extends \BaseController {
 			DB::commit();
 			return Redirect::to('/viewkit/show')->with('message', 'Kit Created');
 	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Respon
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-
-	//public function store()
-	//{
-	//	$validator = Validator::make(Input::all());
-	//	if($validation->fails())
-	//	{
-	//		return redirect::back()->withInput()->withErrors($validation->messages());
-	//	}
-
-	//}
-
-	public function show($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit()
-	{
-
-	}
-
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
-
 }

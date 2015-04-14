@@ -15,15 +15,12 @@
   <h3>Kit Type: {{$kitinfo->kitType}}</h3>
   <hr class="divider">
   <h3>Kit Has {{$kitinfo->assets}} assets.</h3>
-
-
   @for($i = 0; $i < $kitinfo->assets; $i++)
-    <b>Name:</b> {{$assets[$i]}}
-    <b>Tag:</b> {{$assettag[$i]}}
-    <br>
+      <h4>Name: {{$assets[$i]}}
+     Tag: {{$assettag[$i]}}</h4>
   @endfor
   <hr class="divider">
-
+  <br>
   {{Form::open(['url' => 'viewkit/'.$kitinfo->barcode.'/edit2']) }}
     <div class ="row">
       <div class="col-md-4">

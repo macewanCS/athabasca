@@ -5,8 +5,8 @@ class TransferController extends BaseController {
   public function index(){
      return 'nope';
  	 }
-//       ->where('transferin', '>=', date('m/d/Y')))
 
+  //Function Fills the upcomming transfers table
  	public function getTransferTable(){
 
      $users = Session::get('userdata',NULL);
@@ -24,11 +24,13 @@ class TransferController extends BaseController {
          	->make();
          }
 
+  //Function Fills the incomming transfers table
   public function getTransferTable2(){
     $users = Session::get('userdata',NULL);
     return Datatable::query(DB::table('booking')
     ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
     ->where('transferin', '>=', date('m/d/Y'))
+    ->where('kits.location','<>',$users->homebranch)
     ->where('booking.forBranch', $users->homebranch))
         ->showColumns('transferin','eventname','forBranch','location')
         ->addColumn('Edit', function($model) {
@@ -40,34 +42,7 @@ class TransferController extends BaseController {
             ->make();
             }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-
-	}
-
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-
-	}
-
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+  //creates the views for the transfer tables to be displayed on
 	public function show()
 	{
 
@@ -79,15 +54,14 @@ class TransferController extends BaseController {
       ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
       ->where('kits.location', $users->homebranch);
 
-      //return $users->homebranch;
-
+      //Formats collumns on table and calls table controllers
       $data = DB::table('booking')->where('transferin', '>=', date('m/d/Y'));
         $table = Datatable::table()
             ->addColumn('Transfer On','Event Name', 'Transfer To','Current Location', 'Send Transfer')
             ->setUrl(route('api.transfer'))
             ->noScript();
         $table2 =Datatable::table()
-            ->addColumn('Transfering On','Event Name', 'Transfering From', 'Current Location', 'Accept Transfer')
+            ->addColumn('Transfering On','Event Name', 'Destination', 'Current Location', 'Accept Transfer')
             ->setUrl(route('api.transfer2'))
             ->noScript();
 
@@ -95,12 +69,8 @@ class TransferController extends BaseController {
   }
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+  //Create the edit transfer view
+  //gets information from database relevent to kit transfer
 	public function edit($id)
 	{
     $users = Session::get('userdata',NULL);
@@ -118,6 +88,8 @@ class TransferController extends BaseController {
     return View::make('transfers.edit')->with('data', $data)->with('kitdata', $kitdata)->with('user', $users);
 	}
 
+  //called by buttons on transfer edit page.
+  //Sets location of kit and returns proper message
   public function edit2($id)
 	{
     if(Input::get('intransit')){
@@ -135,28 +107,5 @@ class TransferController extends BaseController {
     return Input::all();
 
   }
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-    //
-	}
-
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 
 }
