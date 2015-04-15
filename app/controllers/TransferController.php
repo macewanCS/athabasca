@@ -6,7 +6,7 @@ class TransferController extends BaseController {
      return 'nope';
  	 }
 
-  //Function Fills the upcomming transfers table
+  //Function Fills the upcoming transfers table
  	public function getTransferTable(){
 
      $users = Session::get('userdata',NULL);
@@ -24,7 +24,7 @@ class TransferController extends BaseController {
          	->make();
          }
 
-  //Function Fills the incomming transfers table
+  //Function Fills the incoming transfers table
   public function getTransferTable2(){
     $users = Session::get('userdata',NULL);
     return Datatable::query(DB::table('booking')
@@ -54,7 +54,7 @@ class TransferController extends BaseController {
       ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
       ->where('kits.location', $users->homebranch);
 
-      //Formats collumns on table and calls table controllers
+      //Formats columns on table and calls table controllers
       $data = DB::table('booking')->where('transferin', '>=', date('m/d/Y'));
         $table = Datatable::table()
             ->addColumn('Transfer On','Event Name', 'Transfer To','Current Location', 'Send Transfer')

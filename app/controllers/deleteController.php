@@ -46,11 +46,12 @@ class deleteController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	//Function to delete from the Booking table and the BookingUsers table where the ID sent matches
 	public function edit($id)
 	{
 		 DB::table('booking')->where('bookingID', $id)->delete(); 
 		 DB::table('bookingUsers')->where('bookingID', $id)->delete();
-		 return Redirect::back()->with('message','Delete Booking Successful!');
+		 return Redirect::back()
 	}
 
 

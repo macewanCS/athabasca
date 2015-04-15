@@ -13,6 +13,7 @@ Route::any('/', 'HomeController@Home');
 //Api's for creating tables when called
 Route::get('api/booking', array('as' => 'api.booking', 'uses' => 'bookingViewController@getBookingDataTable'));
 Route::get('api/userbooking', array('as' => 'api.userbooking', 'uses' => 'bookingUserViewController@getUserBookingDataTable'));
+Route::get('api/userbooking2', array('as' => 'api.userbooking2', 'uses' => 'bookingUserViewController@getUserBookingDataTable2'));
 Route::get('api/kit', array('as' => 'api.kit', 'uses' => 'kitViewController@getKitDataTable'));
 Route::get('api/transfer', array('as' => 'api.transfer', 'uses' => 'TransferController@getTransferTable'));
 Route::get('api/transfer2', array('as' => 'api.transfer2', 'uses' => 'TransferController@getTransferTable2'));
