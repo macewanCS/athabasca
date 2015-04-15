@@ -16,5 +16,13 @@
     {{ $table->script() }}
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+    <h2 style="color:#79C33A">Branch Bookings</h2>
+    <hr class="divider">
+    {{ $table2->render() }}
+    {{ $table2->script() }}
+    </div>
+  </div>
 </div>
 @stop

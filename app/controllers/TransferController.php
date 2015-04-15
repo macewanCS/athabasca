@@ -29,7 +29,7 @@ class TransferController extends BaseController {
     return Datatable::query(DB::table('booking')
     ->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
     ->where('transferin', '>=', date('m/d/Y'))
-    ->where('booking.forBranch', $users->homebranch))
+    ->where('forBranch', $users->homebranch))
         ->showColumns('transferin','eventname','forBranch','location')
         ->addColumn('Edit', function($model) {
           $model->bookingID;

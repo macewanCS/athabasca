@@ -22,7 +22,20 @@ class bookingUserViewController extends BaseController {
         	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch', 'name')
         	->make();
 	}
-
+	public function getUserBookingDataTable2(){
+		$users = Session::get('userdata',NULL);
+    	return Datatable::query(DB::table('booking')
+    		->where('forBranch', $users->homebranch)    
+    		->where('transferin', '>=', date('m/d/Y')))
+    			->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
+            	->addColumn('Delete', function($model) {
+            		$model->bookingID;
+  					return HTML::link('/delete/'.$model->bookingID.'/edit/', 'Delete', array('class' => 'btn btn-default'));
+            	})
+        			->searchColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
+        			->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch', 'name')
+        			->make();
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -61,11 +74,15 @@ class bookingUserViewController extends BaseController {
       	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name' ,'Delete')
       	->setUrl(route('api.userbooking'))
       	->noScript();
+      	 $table2 = Datatable::table()
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name' ,'Delete')
+      	->setUrl(route('api.userbooking2'))
+      	->noScript();
       	if (Session::get('created',NULL)!=NULL){
-      	    return View::make('viewUserBooking', array('table' => $table))->with('created','The Booking Was Created');
+      	    return View::make('viewUserBooking')->with('table',$table)->with('table2',$table2)->with('created','The Booking Was Created');
       	}
       	else{
-    	    return View::make('viewUserBooking', array('table' => $table));
+      		return View::make('viewUserBooking')->with('table',$table)->with('table2',$table2);
         }
   }
 
