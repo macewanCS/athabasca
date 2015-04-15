@@ -1,7 +1,0 @@
-<?php
-
-class Thumb extends Eloquent
-{
-    public $timestamps = true;
-
-}
