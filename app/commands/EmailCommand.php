@@ -3,7 +3,11 @@
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-
+/* Email command for sending the emails list
+ *in the database. Crontab runs php artisan Email
+ *every day
+ *Made by Adam Sykes
+ */
 class EmailCommand extends Command {
 
 	/**
@@ -45,8 +49,10 @@ class EmailCommand extends Command {
 		        Mail::send('emails.email',array(),function($message) use($mail){
 		            $message->to($mail->address, ' ')->subject($mail->subject);
 		        });
+		        //get all of the emails that need to be sent today, and Mail them
 		    }
 		    DB::table('email')->where('date','==',$date)->delete();
+		    //then erase them from the table so we don't get duplicate emails
 		}
 	}
 
