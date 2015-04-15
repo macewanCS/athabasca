@@ -1,5 +1,6 @@
 @extends('layouts.default')
 @section('content')
+<hr class="divider">
 
 @if(Session::get('errors',NULL)!=NULL)
    <div class="alert alert-warning" role="alert">
@@ -19,10 +20,11 @@
 <hr class="divider">
 <div class="row">
   <div class="col-md-12">
-  <h2 style="color:#F6BC2A">Upcoming Transfers For Your Branch</h2>
+  <h2 style="color:#F6BC2A">Upcoming Transfers Leaving Your Branch</h2>
   {{ $table->render() }}
   {{ $table->script() }}
   </div>
 </div>
+<hr class="divider">
 
 @stop

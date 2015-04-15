@@ -1,7 +1,7 @@
 <?php
 
 class bookingUserViewController extends BaseController {
-  
+
   public function index(){
      return 'nope';
  	 }
@@ -9,15 +9,15 @@ class bookingUserViewController extends BaseController {
 	public function getUserBookingDataTable(){
 		$users = Session::get('userdata',NULL);
     	return Datatable::query(DB::table('booking')
-    		->join('kits', 'booking.kitBarcode', '=', 'kits.barcode') 
-    		->leftjoin('bookingUsers', 'booking.bookingID', '=', 'bookingUsers.bookingID')  
+    		->join('kits', 'booking.kitBarcode', '=', 'kits.barcode')
+    		->leftjoin('bookingUsers', 'booking.bookingID', '=', 'bookingUsers.bookingID')
     		->where('booking.primaryUser' ,$users->username) ->where('transferin', '>=', date('m/d/Y'))
     		->orWhere('bookingUsers.email', $users->email)->where('transferin', '>=', date('m/d/Y')))
     		->showColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
-            ->addColumn('Delete', function($model) {
-            	$model->bookingID;
-  				return HTML::link('/delete/'.$model->bookingID.'/edit/', 'Delete', array('class' => 'btn btn-default'));
-            })
+        ->addColumn('Delete', function($model) {
+          $model->bookingID;
+      return HTML::link('/delete/'.$model->bookingID.'/edit/', 'Delete', array('class' => 'btn btn-default'));
+        })
         	->searchColumns('eventname', 'datein', 'dateout', 'primaryUser' ,'forBranch', 'name')
         	->orderColumns('eventname', 'datein', 'dateout', 'primaryUser', 'forBranch', 'name')
         	->make();
@@ -71,7 +71,7 @@ class bookingUserViewController extends BaseController {
 	        return Redirect::to('/');
 	    }
     	$table = Datatable::table()
-      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name' ,'Delete')
+      	->addColumn('Event Name', 'Date In', 'Date Out', 'Primary Recipient', 'Branch', 'Kit Name')
       	->setUrl(route('api.userbooking'))
       	->noScript();
       	 $table2 = Datatable::table()

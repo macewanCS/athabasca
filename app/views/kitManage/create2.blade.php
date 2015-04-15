@@ -3,7 +3,6 @@
 <h2 style="color:#DF115C">Kit Creation: Step 2</h2>
 <hr class="divider">
 
-  <div class = "jumbotron">
     <h3>Input Data Below to Complete Kit Creation</h3>
     <div>
       {{Form::open(['url' => 'kitmanage/create2add']) }}
@@ -14,7 +13,7 @@
       {{Form::label('assets', 'Assets (Eg. 7 ipads in kit): ') }}
       {{Form::number('assets', $assets,['readonly'],['class' => 'form-control']) }}
     </div>
-  </div> <!--End of jumbotron -->
+    <hr class="divider">
 
   @if(isset($error))
   <div class="alert alert-danger" role="alert">
