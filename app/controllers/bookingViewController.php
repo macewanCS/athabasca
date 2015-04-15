@@ -5,7 +5,7 @@ class bookingViewController extends BaseController {
   public function index(){
      return 'nope';
  	 }
-
+ 	//Function Fills the All Bookings Table
 	public function getBookingDataTable(){
     	return Datatable::query(DB::table('booking') -> join('kits', 'booking.kitBarcode', '=', 'kits.barcode') 
     		->where('transferin', '>=', date('m/d/Y')))
@@ -47,6 +47,7 @@ class bookingViewController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	//Function builds the view for the all bookings table
 	public function show()
 	{
 	    $users = Session::get('userdata',NULL);
