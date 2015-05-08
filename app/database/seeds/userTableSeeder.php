@@ -11,7 +11,7 @@ class userTableSeeder extends Seeder {
           'empID' => 1,
           'password'=> 1,
           'phone' => '780-123-4567',
-          'email' => 'joshdoti15@gmail.com',
+          'email' => 'emp@epl.ca',
           'homebranch' => 'MNA',
           'role' => 'admin'
         ),
@@ -38,7 +38,7 @@ class userTableSeeder extends Seeder {
           'empID' => 4,
           'password'=> 4,
           'phone' => '780-123-4567',
-          'email' => 'ChristopherDubeau@gmail.com',
+          'email' => 'emp40@epl.ca',
           'homebranch' => 'CLV',
           'role' => 'librarian'
         ),
