@@ -14,7 +14,7 @@ PHP >= 5.4 , Mycrypt PHP Extension, Composer
 
 
 ###Install and Run    
-(assumes composer has been installed globaly, [See instructions here](https://getcomposer.org/doc/00-intro.md)     
+(assumes composer has been installed globaly, [See instructions here](https://getcomposer.org/doc/00-intro.md))     
 Step 1: Clone repo     
 `$ git clone https://github.com/macewanCMPT395/athabasca.git`     
 Step 2: Install all required packages    
